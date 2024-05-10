@@ -15,10 +15,8 @@
     <h2>Register new employee</h2>
     <form th:action="@{/registerNewEmployee}" th:object="${employeeModel}" method="post">
       <div class="form-group">
-        <div class="form-group">
-          <label for="employeeID">Employee ID:</label>
-          <input type="text" id="employeeID" th:field="*{employeeID}" required />
-        </div>
+
+
         <label for="firstname">First name:</label>
         <input type="text" id="firstname" th:field="*{firstName}" required />
       </div>
@@ -35,7 +33,7 @@
           <option value="admin">Admin</option>
           <option value="employee">Employee</option>
           <option value="ansat?">Chef</option>
-          <option value="Mekaniker">Lopp</option>
+          <option value="Mekaniker">Mechanic</option>
         </select>
 
 

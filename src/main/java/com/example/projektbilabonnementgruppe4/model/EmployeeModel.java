@@ -1,7 +1,7 @@
 package com.example.projektbilabonnementgruppe4.model;
 
 
-public class AdminModel {
+public class EmployeeModel {
 
   private int employeeID;
   private String firstName;
@@ -13,11 +13,11 @@ public class AdminModel {
   private String password;
 
 
-  public AdminModel(){
+  public EmployeeModel(){
 
   }
 
-  public AdminModel(int employeeID, String firstName, String lastName, String userType, String userName, String password) {
+  public EmployeeModel(int employeeID, String firstName, String lastName, String userType, String userName, String password) {
     this.employeeID = employeeID;
     this.firstName = firstName;
     this.lastName = lastName;
