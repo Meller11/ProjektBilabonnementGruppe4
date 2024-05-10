@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register Employee</title>
+  <link th:href="@{/css/registerNewEmployee.css}" rel="stylesheet">
+
+
+</head>
+<body>
+
+
+<div class="content">
+  <div class="container">
+    <h2>Register new employee</h2>
+    <form th:action="@{/registerNewEmployee}" th:object="${employeeModel}" method="post">
+      <div class="form-group">
+        <div class="form-group">
+          <label for="employeeID">Employee ID:</label>
+          <input type="text" id="employeeID" th:field="*{employeeID}" required />
+        </div>
+        <label for="firstname">First name:</label>
+        <input type="text" id="firstname" th:field="*{firstName}" required />
+      </div>
+      <div class="form-group">
+        <label for="lastname">Last name:</label>
+        <input type="text" id="lastname" th:field="*{lastName}" required />
+      </div>
+
+      <div class="form-group">
+        <label for="usertype">Usertype:</label>
+
+        <select id="usertype" th:field="*{userType}" required>
+          <option value="">Select Usertype</option>
+          <option value="admin">Admin</option>
+          <option value="employee">Employee</option>
+          <option value="ansat?">Chef</option>
+          <option value="Mekaniker">Lopp</option>
+        </select>
+
+
+      </div>
+      <div class="form-group">
+        <label for="email">Username:</label>
+        <input type="email" id="email" th:field="*{userName}" required />
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" th:field="*{password}" required />
+      </div>
+      <button type="submit" class="btn">Opret Bruger</button>
+    </form>
+  </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+body {
+  background: #edeff2;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Tilføj denne regel for at forhindre scrolling */
+html, body {
+  overflow: hidden;
+}
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.login-container {
+  background-color: #fff;
+  padding: 90px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 50vw;
+}
+
+h2 {
+  margin-bottom: 40px;
+}
+
+.input-group {
+  margin-bottom: 30px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+  button {
+    padding: 10px 70px;
+    background-color: #3696ff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+
+.error-message {
+  color: Black;
+  font-weight: bold;
+}

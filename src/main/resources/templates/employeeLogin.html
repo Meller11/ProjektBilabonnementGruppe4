@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Administration Login</title>
+  <link th:href="@{/css/employeeLogin.css}" rel="stylesheet">
+
+</head>
+<body class="body">
+
+
+
+<div class="content">
+  <div class="container">
+
+    <!-- Vis fejlmeddelelse -->
+    <div id="messageBox" class="message-box">
+      <p id="errorMessage" th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></p>
+    </div>
+
+
+    <div class="login-page">
+      <div class="login-container">
+        <form action="/employeeLogin" method="post">
+          <h2>Administration Login</h2>
+          <div class="input-group">
+            <label for="username">Employee name:</label>
+            <input type="text" id="username" placeholder="Employee name" name="navn" class="form-control my-3 p-4" required>
+          </div>
+          <div class="input-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="*********" name="password" class="form-control my-3 p-4" required>
+          </div>
+          <button type="submit" class="submit-button" data-qa="proceed-button">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
