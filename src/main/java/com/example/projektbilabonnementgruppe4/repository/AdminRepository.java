@@ -12,7 +12,7 @@ public class AdminRepository {
   private JdbcTemplate jdbcTemplate;
 
 public void saveNewEmployee(AdminModel adminModel){
-  String sql ="INSERT INTO gruppe4_db.employee (FirstName, LastName, UserType, UserName, Password) VALUES (?, ?, ?, ?, ?)";
+  String sql ="INSERT INTO employee (FirstName, LastName, UserType, UserName, Password) VALUES (?, ?, ?, ?, ?)";
   jdbcTemplate.update(sql, adminModel.getFirstName(), adminModel.getLastName(), adminModel.getUserType(), adminModel.getUserName(), adminModel.getPassword());
 
 }
