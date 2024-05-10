@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/rentalAgreements}" th:object="${rentalAgreement}" method="post">
+    <input type="hidden" th:field="*{contractId}">
+    <input type="hidden" th:field="*{carId}">
+    <input type="hidden" th:field="*{employeeId}">
+    <input type="text" th:field="*{contractNumber}" placeholder="Contract Number">
+    <input type="text" th:field="*{pickupLocation}" placeholder="Pickup Location">
+    <input type="date" th:field="*{contractStartDate}" placeholder="Start Date">
+    <input type="date" th:field="*{contractEndDate}" placeholder="End Date">
+    <select th:field="*{contractType}">
+        <option value="Limited">Limited</option>
+        <option value="Unlimited">Unlimited</option>
+    </select>
+    <input type="number" step="0.01" th:field="*{contractMonthlyFee}" placeholder="Monthly fee">
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
