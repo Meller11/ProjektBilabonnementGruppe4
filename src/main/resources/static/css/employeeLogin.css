@@ -64,3 +64,8 @@ h2 {
     text-decoration: underline;
   }
 
+
+.error-message {
+  color: Black;
+  font-weight: bold;
+}

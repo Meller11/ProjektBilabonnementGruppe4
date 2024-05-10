@@ -22,7 +22,6 @@ public class AdminController {
   }
 
 //Viser siden for medarbejder login
-
   @GetMapping("/employeeLogin")
   public String showEmployeeLogin(){
     return "employeeLogin";
@@ -30,8 +29,13 @@ public class AdminController {
 
   //Håndterer indsendelse af login-formular
   @PostMapping("/employeeLogin")
-  public String processEmployeeLogin(@RequestParam String username, @RequestParam String password, RedirectAttributes redirectAttributes) {
-    return "redirect:/";
+  public String processEmployeeLogin(@RequestParam String navn, @RequestParam String password, RedirectAttributes redirectAttributes) {
+    if (navn.equals("Nutella")&& password.equals("Smoer")){
+      return "redirect:/registerNewEmployee";
+    }else {
+      redirectAttributes.addFlashAttribute("errorMessage","Forkert brugernavn eller adgangskode");
+      return "redirect:/employeeLogin";
+    }
   }
 
   //viser siden for registrering af ny medarbejder

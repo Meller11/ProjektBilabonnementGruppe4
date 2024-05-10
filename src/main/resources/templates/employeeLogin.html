@@ -8,8 +8,17 @@
 </head>
 <body class="body">
 
+
+
 <div class="content">
   <div class="container">
+
+    <!-- Vis fejlmeddelelse -->
+    <div id="messageBox" class="message-box">
+      <p id="errorMessage" th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></p>
+    </div>
+
+
     <div class="login-page">
       <div class="login-container">
         <form action="/employeeLogin" method="post">
