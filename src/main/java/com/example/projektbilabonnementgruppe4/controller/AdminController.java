@@ -1,6 +1,7 @@
 package com.example.projektbilabonnementgruppe4.controller;
 
 import com.example.projektbilabonnementgruppe4.model.AdminModel;
+import com.example.projektbilabonnementgruppe4.repository.AdminRepository;
 import com.example.projektbilabonnementgruppe4.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +16,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AdminController {
 
   private final AdminService adminService;
+  private final AdminRepository adminRepository;
 
   @Autowired
-  public AdminController(AdminService adminService){
+  public AdminController(AdminService adminService, AdminRepository adminRepository){
     this.adminService=adminService;
+    this.adminRepository=adminRepository;
   }
 
 //Viser siden for medarbejder login
@@ -47,7 +50,7 @@ public class AdminController {
 
   @PostMapping("/registerNewEmployee")
   public String processRegisterNewEmployee(@ModelAttribute("employeeModel") AdminModel adminModel, RedirectAttributes redirectAttributes) {
-    adminService.saveNewEmployee(adminModel);
+    adminRepository.saveNewEmployee(adminModel);
     return "redirect:/employeeLogin";
   }
 
