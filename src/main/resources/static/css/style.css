@@ -1,0 +1,72 @@
+body {
+    font-family: "Arial", sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 10px;
+    font-size: 0.8vw;
+}
+
+.content {
+    margin-top: 30px;
+}
+
+.container {
+    background-color: white;
+    padding: 10px;
+    margin: auto;
+    width: 50vw;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2vw;
+    font-weight: bold;
+    margin-bottom: 1vw;
+    border-bottom: 0.1vw solid #ccc;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5vw;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea
+{
+    width: 100%;
+    padding: 0.8vw;
+    border: 0.1vw solid #ccc;
+    border-radius: 0.6vw;
+    box-sizing: border-box;
+}
+
+input[type="date"]{
+    width: 17%
+}
+
+button[type="submit"], .button {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    min-width: 30%;
+    font-size: 1vw;
+    margin-top: 1vw;
+    padding: 0.5vw 1vw;
+    background: linear-gradient(to bottom, #425bc5, #367ecf);
+    color: white;
+    border: none;
+    border-radius: 0.4vw;
+    cursor: pointer;
+}
+
+
+
+button[type="submit"]:hover, .btn:hover, .home-link:hover .button:hover {
+    background-color: #0a386e;
+    cursor: pointer;
+    text-decoration: underline;
+}
