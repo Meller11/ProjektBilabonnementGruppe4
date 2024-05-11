@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Contract Number</th>
+        <th>Pickup Location</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Contract Type</th>
+        <th>Monthly Fee</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="rentalAgreement : ${rentalAgreements}">
+        <td th:text="${rentalAgreement.contractNumber}"></td>
+        <td th:text="${rentalAgreement.pickupLocation}"></td>
+        <td th:text="${rentalAgreement.contractStartDate}"></td>
+        <td th:text="${rentalAgreement.contractEndDate}"></td>
+        <td th:text="${rentalAgreement.contractType}"></td>
+        <td th:text="${rentalAgreement.contractMonthlyFee}"></td>
+        <td>
+            <form th:action="@{/rentalAgreements/update/{id}(id=${rentalAgreement.contractId})}" method="post">
+                <input type="submit" value="Update">
+            </form>
+            <form th:action="@{/rentalAgreements/delete/{id}(id=${rentalAgreement.contractId})}" method="post">
+                <input type="submit" value="Delete">
+            </form>
+        </td>
+    </tr>
+</table>
+<a href="/createRentalAgreement">Opret ny kontrakt</a>
+</body>
+</html>
+</body>
+</html>
