@@ -3,12 +3,12 @@ package com.example.projektbilabonnementgruppe4.model;
 
 public class EmployeeModel {
 
-  private int employeeID;
-  private String firstName;
-  private String lastName;
+  private int employeeId;
+  private String firstname;
+  private String lastname;
   private String userType;
 
-  private String userName;
+  private String username;
 
   private String password;
 
@@ -17,37 +17,37 @@ public class EmployeeModel {
 
   }
 
-  public EmployeeModel(int employeeID, String firstName, String lastName, String userType, String userName, String password) {
-    this.employeeID = employeeID;
-    this.firstName = firstName;
-    this.lastName = lastName;
+  public EmployeeModel(int employeeId, String firstname, String lastname, String userType, String username, String password) {
+    this.employeeId = employeeId;
+    this.firstname = firstname;
+    this.lastname = lastname;
     this.userType = userType;
-    this.userName = userName;
+    this.username = username;
     this.password = password;
   }
 
-  public int getEmployeeID() {
-    return employeeID;
+  public int getEmployeeId() {
+    return employeeId;
   }
 
-  public void setEmployeeID(int employeeID) {
-    this.employeeID = employeeID;
+  public void setEmployeeId(int employeeId) {
+    this.employeeId = employeeId;
   }
 
-  public String getFirstName() {
-    return firstName;
+  public String getFirstname() {
+    return firstname;
   }
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
+  public void setFirstname(String firstname) {
+    this.firstname = firstname;
   }
 
-  public String getLastName() {
-    return lastName;
+  public String getLastname() {
+    return lastname;
   }
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
+  public void setLastname(String lastname) {
+    this.lastname = lastname;
   }
 
   public String getUserType() {
@@ -58,12 +58,12 @@ public class EmployeeModel {
     this.userType = userType;
   }
 
-  public String getUserName() {
-    return userName;
+  public String getUsername() {
+    return username;
   }
 
-  public void setUserName(String userName) {
-    this.userName = userName;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
   public String getPassword() {

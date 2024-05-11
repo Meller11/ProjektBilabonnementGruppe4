@@ -17,25 +17,24 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class EmployeeController {
 
   private final EmployeeService employeeService;
-  private final EmployeeRepository employeeRepository;
 
   @Autowired
-  public EmployeeController(EmployeeService employeeService, EmployeeRepository employeeRepository){
+  public EmployeeController(EmployeeService employeeService){
     this.employeeService = employeeService;
-      this.employeeRepository = employeeRepository;
   }
 
 //Viser siden for medarbejder login
   @GetMapping("/employeeLogin")
-  public String showEmployeeLogin(){
+  public String showEmployeeLogin(Model model){
+    model.addAttribute("employeeModel", new EmployeeModel());
     return "employeeLogin";
   }
 
   //Håndterer indsendelse af login-formular
   @PostMapping("/employeeLogin")
   public String processEmployeeLogin(@RequestParam String username, @RequestParam String password, HttpSession session, Model model) {
-
     EmployeeModel loggedInUser = employeeService.validateUser(username, password);
+
     if (loggedInUser != null){
       session.setAttribute("loggedInUser", loggedInUser);
       return "redirect:/registerNewEmployee";
@@ -52,7 +51,7 @@ public class EmployeeController {
   }
   @PostMapping("/registerNewEmployee")
   public String processRegisterNewEmployee(@ModelAttribute("employeeModel") EmployeeModel employeeModel, RedirectAttributes redirectAttributes) {
-    employeeRepository.saveNewEmployee(employeeModel);
+    employeeService.saveNewEmployee(employeeModel);
     return "redirect:/employeeLogin";
   }
 

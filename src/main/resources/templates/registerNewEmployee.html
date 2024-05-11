@@ -4,30 +4,22 @@
   <meta charset="UTF-8">
   <title>Register Employee</title>
   <link th:href="@{/css/registerNewEmployee.css}" rel="stylesheet">
-
-
 </head>
 <body>
-
-
 <div class="content">
   <div class="container">
     <h2>Register new employee</h2>
     <form th:action="@{/registerNewEmployee}" th:object="${employeeModel}" method="post">
       <div class="form-group">
-
-
         <label for="firstname">First name:</label>
-        <input type="text" id="firstname" th:field="*{firstName}" required />
+        <input type="text" id="firstname" th:field="*{firstname}" required />
       </div>
       <div class="form-group">
         <label for="lastname">Last name:</label>
-        <input type="text" id="lastname" th:field="*{lastName}" required />
+        <input type="text" id="lastname" th:field="*{lastname}" required />
       </div>
-
       <div class="form-group">
         <label for="usertype">Usertype:</label>
-
         <select id="usertype" th:field="*{userType}" required>
           <option value="">Select Usertype</option>
           <option value="admin">Admin</option>
@@ -35,12 +27,10 @@
           <option value="ansat?">Chef</option>
           <option value="Mekaniker">Mechanic</option>
         </select>
-
-
       </div>
       <div class="form-group">
         <label for="email">Username:</label>
-        <input type="email" id="email" th:field="*{userName}" required />
+        <input type="email" id="email" th:field="*{username}" required />
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
@@ -50,7 +40,5 @@
     </form>
   </div>
 </div>
-
-
 </body>
 </html>

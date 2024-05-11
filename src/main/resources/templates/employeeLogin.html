@@ -4,40 +4,34 @@
   <meta charset="UTF-8">
   <title>Administration Login</title>
   <link th:href="@{/css/employeeLogin.css}" rel="stylesheet">
-
 </head>
 <body class="body">
-
-
 
 <div class="content">
   <div class="container">
 
-    <!-- Vis fejlmeddelelse -->
-    <div id="messageBox" class="message-box">
-      <p id="errorMessage" th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></p>
-    </div>
-
-
     <div class="login-page">
       <div class="login-container">
-        <form action="/employeeLogin" method="post">
+
+        <form action="/employeeLogin" method="post" th:object="${employeeModel}">
           <h2>Administration Login</h2>
+
           <div class="input-group">
             <label for="username">Employee name:</label>
-            <input type="text" id="username" placeholder="Employee name" name="navn" class="form-control my-3 p-4" required>
+            <input type="text" id="username" placeholder="Employee name" th:field="*{username}" class="form-control my-3 p-4" required>
           </div>
+
           <div class="input-group">
             <label for="password">Password:</label>
-            <input type="password" id="password" placeholder="*********" name="password" class="form-control my-3 p-4" required>
+            <input type="password" id="password" placeholder="*********" th:field="*{password}" class="form-control my-3 p-4" required>
           </div>
+
           <button type="submit" class="submit-button" data-qa="proceed-button">Login</button>
+          <p th:if="${errorMessage}" class="error-message" th:text="${errorMessage}">Forkert brugernavn eller adgangskode</p>
         </form>
       </div>
     </div>
   </div>
 </div>
-
-
 </body>
 </html>
