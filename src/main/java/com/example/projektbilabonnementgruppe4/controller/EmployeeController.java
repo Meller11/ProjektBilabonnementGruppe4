@@ -18,6 +18,7 @@ public class EmployeeController {
 
   private final EmployeeService employeeService;
 
+
   @Autowired
   public EmployeeController(EmployeeService employeeService){
     this.employeeService = employeeService;
@@ -32,17 +33,18 @@ public class EmployeeController {
 
   //Håndterer indsendelse af login-formular
   @PostMapping("/employeeLogin")
-  public String processEmployeeLogin(@RequestParam String username, @RequestParam String password, HttpSession session, Model model) {
+  public String processEmployeeLogin(@RequestParam String username, @RequestParam String password, HttpSession session, RedirectAttributes redirectAttributes) {
     EmployeeModel loggedInUser = employeeService.validateUser(username, password);
 
     if (loggedInUser != null){
       session.setAttribute("loggedInUser", loggedInUser);
       return "redirect:/registerNewEmployee";
     } else {
-      model.addAttribute("errorMessage","Forkert brugernavn eller adgangskode");
-      return "/employeeLogin";
+      redirectAttributes.addFlashAttribute("loginError", "Brugernavn eller Kodeord er forkert.");
+      return "redirect:/employeeLogin";
     }
   }
+
   //viser siden for registrering af ny medarbejder
   @GetMapping("/registerNewEmployee")
   public String showRegisterNewEmployee(Model model){
