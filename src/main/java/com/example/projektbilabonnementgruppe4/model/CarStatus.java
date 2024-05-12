@@ -3,17 +3,17 @@ package com.example.projektbilabonnementgruppe4.model;
 import java.time.LocalDate;
 
 public class CarStatus {
-    private int carStatusId;
-    private String status;
+    private Integer carStatusId;
+    private String carStatusType;
     private LocalDate statusDate;
-    private int carId;
+    private Integer carId;
 
     public CarStatus() {
     }
 
-    public CarStatus(int carStatusId, String status, LocalDate statusDate, int carId) {
+    public CarStatus(int carStatusId, String carStatusType, LocalDate statusDate, int carId) {
         this.carStatusId = carStatusId;
-        this.status = status;
+        this.carStatusType = carStatusType;
         this.statusDate = statusDate;
         this.carId = carId;
     }
@@ -27,12 +27,12 @@ public class CarStatus {
         this.carStatusId = carStatusId;
     }
 
-    public String getStatus() {
-        return status;
+    public String getCarStatusType() {
+        return carStatusType;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setCarStatusType(String carStatusType) {
+        this.carStatusType = carStatusType;
     }
 
     public LocalDate getStatusDate() {
@@ -55,7 +55,7 @@ public class CarStatus {
     public String toString() {
         return "CarStatus{" +
                 "carStatusId=" + carStatusId +
-                ", status='" + status + '\'' +
+                ", carStatusType='" + carStatusType + '\'' +
                 ", statusDate=" + statusDate +
                 ", carId=" + carId +
                 '}';

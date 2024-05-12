@@ -2,90 +2,123 @@ package com.example.projektbilabonnementgruppe4.model;
 import java.time.LocalDate;
 
 public class Car {
-    private int carId;
-    private int carStatusId;
+    private Integer carId;
     private String frameNumber;
     private String brand;
     private String model;
     private String colour;
     private String gearType;
+    private String fuelType;
     private double price;
     private double registrationFee;
     private double emission;
     private LocalDate acquisitionDate;
-    private Integer saleId;
 
     public Car() {
     }
 
-    public Car(int carId, int carStatusId, String frameNumber, String brand, String model, String colour,
-               String gearType, double price, double registrationFee, double emission,
-               LocalDate acquisitionDate, Integer saleId) {
-        this.carId = carId;
-        this.carStatusId = carStatusId;
-        this.frameNumber = frameNumber;
-        this.brand = brand;
-        this.model = model;
-        this.colour = colour;
-        this.gearType = gearType;
-        this.price = price;
-        this.registrationFee = registrationFee;
-        this.emission = emission;
-        this.acquisitionDate = acquisitionDate;
-        this.saleId = saleId;
+    public Integer getCarId() {
+        return carId;
     }
 
-    public int getCarId() { return carId; }
-    public void setCarId(int carId) { this.carId = carId; }
+    public void setCarId(Integer carId) {
+        this.carId = carId;
+    }
 
-    public int getCarStatusId() { return carStatusId; }
-    public void setCarStatusId(int carStatusId) { this.carStatusId = carStatusId; }
+    public String getFrameNumber() {
+        return frameNumber;
+    }
 
-    public String getFrameNumber() { return frameNumber; }
-    public void setFrameNumber(String frameNumber) { this.frameNumber = frameNumber; }
+    public void setFrameNumber(String frameNumber) {
+        this.frameNumber = frameNumber;
+    }
 
-    public String getBrand() { return brand; }
-    public void setBrand(String brand) { this.brand = brand; }
+    public String getBrand() {
+        return brand;
+    }
 
-    public String getModel() { return model; }
-    public void setModel(String model) { this.model = model; }
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
 
-    public String getColour() { return colour; }
-    public void setColour(String colour) { this.colour = colour; }
+    public String getModel() {
+        return model;
+    }
 
-    public String getGearType() { return gearType; }
-    public void setGearType(String gearType) { this.gearType = gearType; }
+    public void setModel(String model) {
+        this.model = model;
+    }
 
-    public double getPrice() { return price; }
-    public void setPrice(double price) { this.price = price; }
+    public String getColour() {
+        return colour;
+    }
 
-    public double getRegistrationFee() { return registrationFee; }
-    public void setRegistrationFee(double registrationFee) { this.registrationFee = registrationFee; }
+    public void setColour(String colour) {
+        this.colour = colour;
+    }
 
-    public double getEmission() { return emission; }
-    public void setEmission(double emission) { this.emission = emission; }
+    public String getGearType() {
+        return gearType;
+    }
 
-    public LocalDate getAcquisitionDate() { return acquisitionDate; }
-    public void setAcquisitionDate(LocalDate acquisitionDate) { this.acquisitionDate = acquisitionDate; }
+    public void setGearType(String gearType) {
+        this.gearType = gearType;
+    }
 
-    public Integer getSaleId() { return saleId; }
-    public void setSaleId(Integer saleId) { this.saleId = saleId; }
+    public String getFuelType() {
+        return fuelType;
+    }
+
+    public void setFuelType(String fuelType) {
+        this.fuelType = fuelType;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public double getRegistrationFee() {
+        return registrationFee;
+    }
+
+    public void setRegistrationFee(double registrationFee) {
+        this.registrationFee = registrationFee;
+    }
+
+    public double getEmission() {
+        return emission;
+    }
+
+    public void setEmission(double emission) {
+        this.emission = emission;
+    }
+
+    public LocalDate getAcquisitionDate() {
+        return acquisitionDate;
+    }
+
+    public void setAcquisitionDate(LocalDate acquisitionDate) {
+        this.acquisitionDate = acquisitionDate;
+    }
 
     @Override
     public String toString() {
         return "Car{" +
                 "carId=" + carId +
-                ", carStatusId=" + carStatusId +
                 ", frameNumber='" + frameNumber + '\'' +
                 ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", colour='" + colour + '\'' +
                 ", gearType='" + gearType + '\'' +
+                ", fuelType='" + fuelType + '\'' +
                 ", price=" + price +
                 ", registrationFee=" + registrationFee +
                 ", emission=" + emission +
                 ", acquisitionDate=" + acquisitionDate +
-                ", saleId=" + saleId +
                 '}';
     }
 }
