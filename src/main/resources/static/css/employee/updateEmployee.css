@@ -1,0 +1,96 @@
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #edeff2;
+  margin: 0;
+  padding: 20px;
+}
+
+.content {
+  margin-top: 70px;
+}
+
+.container {
+  background-color: white;
+  padding: 10px;
+  margin: auto;
+  width: 50vw;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2vw;
+  font-weight: bold;
+  margin-bottom: 2vw;
+  border-bottom: 0.1vw solid #ccc;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5vw;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="text"],
+input[type="text"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 0.8vw;
+  border: 0.1vw solid #ccc;
+  border-radius: 0.6vw;
+  box-sizing: border-box;
+}
+
+select {
+  width: 100%;
+  padding: 0.8vw;
+  border: 0.1vw solid #ccc;
+  border-radius: 0.6vw;
+  box-sizing: border-box;
+}
+
+input[type="date"] {
+  width: 17%;
+}
+
+button[type="submit"],
+.home-link,
+.button,
+.create-user-link {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  width: 50%;
+  font-size: 1vw;
+  margin: 20px;
+  padding: 0.5vw 1vw;
+  background: linear-gradient(to top, #4481eb 0%, #04befe 100%);
+  color: white;
+  border: none;
+  border-radius: 0.4vw;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none; /* Fjern understregningen som standard */
+  transition: text-decoration 0.3s; /* Tilføj en overgang for en jævn effekt */
+}
+
+.create-user-link:hover,
+.button:hover {
+  text-decoration: underline;
+}
+
+.button-container {
+  display: flex;
+  justify-content: normal;
+}
+
+.button {
+  width: 48%;
+}
+
+.button:first-child {
+  margin-right: 2%;
+}

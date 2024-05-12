@@ -39,11 +39,10 @@ label {
 }
 
 input[type="text"],
-input[type="number"],
-input[type="url"],
+input[type="text"],
+input[type="text"],
+input[type="username"],
 input[type="password"],
-input[type="email"],
-input[type="date"],
 textarea
 {
   width: 100%;
@@ -167,4 +166,22 @@ button[type="submit"],
   background-color: #0056b3;
   cursor: pointer;
   text-decoration: underline;
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Align buttons with space between */
+}
+
+.button {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  /* Other button styles */
+  width: 48%; /* Adjust width as needed */
+  /* Rest of the button styles */
+}
+
+.button:first-child {
+  margin-right: 5%; /* Add some space between buttons */
 }

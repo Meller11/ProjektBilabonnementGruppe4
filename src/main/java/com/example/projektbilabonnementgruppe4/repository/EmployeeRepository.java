@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class EmployeeRepository {
   private final JdbcTemplate jdbcTemplate;
@@ -31,4 +33,32 @@ public void saveNewEmployee(EmployeeModel employeeModel){
   }
 
 
+
+
+
+  public EmployeeModel getEmployeeByUsername(String username) {
+    String sql = "SELECT * FROM employee WHERE username = ?";
+    try {
+      return jdbcTemplate.queryForObject(sql, new Object[]{username}, new BeanPropertyRowMapper<>(EmployeeModel.class));
+    } catch (EmptyResultDataAccessException e) {
+      return null;
+    }
+  }
+
+  public List<EmployeeModel> getAllEmployees() {
+    String sql = "SELECT * FROM employee";
+    return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(EmployeeModel.class));
+  }
+
+
+
+  public void editEmployee(EmployeeModel employeeModel) {
+    String sql = "UPDATE employee SET firstname = ?, lastname = ?, user_type = ?, username = ?, password = ? WHERE username = ?";
+    jdbcTemplate.update(sql, employeeModel.getFirstname(), employeeModel.getLastname(), employeeModel.getUserType(), employeeModel.getUsername(), employeeModel.getPassword(), employeeModel.getUsername());
+  }
+
+  public void deleteEmployee(String username) {
+    String sql = "DELETE FROM employee WHERE username = ?";
+    jdbcTemplate.update(sql, username);
+  }
 }

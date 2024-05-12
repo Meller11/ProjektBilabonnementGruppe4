@@ -1,0 +1,88 @@
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #edeff2;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  background-color: white;
+  padding: 20px;
+  margin: auto;
+  width: 70vw;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.employee-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.employee-table th, .employee-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.employee-table th {
+  background-color: #f2f2f2;
+}
+
+.employee-row:nth-child(odd) {
+  background-color: mintcream;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.button-container .button,
+.button-container .home-link {
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: linear-gradient(to top, #4481eb 0%, #04befe 100%);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  width: 150px; /* Set the width for both buttons */
+}
+
+.button-container .button:hover, .button-container .home-link:hover {
+  background-color: #0056b3;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+
+/* Style for edit and delete buttons */
+.edit-button,
+.delete-button {
+  background-color: #4481eb;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-right: 10px; /* Add margin to separate buttons */
+  cursor: pointer;
+  margin-bottom: 5px; /* Add margin at the bottom for spacing */
+  width: 100px; /* Set a fixed width for both buttons */
+}
+

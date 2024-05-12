@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Employee</title>
+  <link th:href="@{/css/employee/employeeList.css}" rel="stylesheet">
+
+</head>
+<body>
+
+
+  <div class="container">
+    <h2>Employee List</h2>
+
+    <table class="employee-table">
+      <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>User Type</th>
+        <th>Username</th>
+        <th> </th>
+      </tr>
+      </thead>
+      <tbody>
+
+        <tr th:each="employee : ${employeeList}" class="employee-row">
+        <td th:text="${employee.firstname}"></td>
+        <td th:text="${employee.lastname}"></td>
+        <td th:text="${employee.userType}"></td>
+        <td th:text="${employee.username}"></td>
+        <td>
+
+
+          <form th:action="@{/editEmployee}" method="get">
+            <input type="hidden" name="username" th:value="${employee.username}" />
+            <button type="submit" class="edit-button">Edit</button>
+          </form>
+
+
+
+          <form th:action="@{/employee/deleteEmployee}" method="post">
+            <input type="hidden" name="username" th:value="${employee.username}" />
+            <button type="submit" class="delete-button">Delete</button>
+          </form>
+
+
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="button-container">
+      <a th:href="@{/registerNewEmployee}" class="button">New employee</a>
+      <a th:href="@{/menuEmployee}" class="button home-link">Return to Menu</a>
+    </div>
+  </div>
+
+
+
+</body>
+</html>
