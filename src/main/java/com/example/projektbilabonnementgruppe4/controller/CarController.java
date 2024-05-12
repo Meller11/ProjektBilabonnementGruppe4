@@ -23,8 +23,12 @@ public class CarController {
     }
 
     @PostMapping("/add")
-    public String addCar(Car car, Model model) {
+    public String addCar(Car car) {
         carService.addCar(car);
+        Car foundCar = carService.getCarByFrameNumber(car.getFrameNumber());
+        carService.addCarStatus(foundCar.getCarId());
         return "redirect:/";
     }
+
+
 }

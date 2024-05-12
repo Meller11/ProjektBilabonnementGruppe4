@@ -11,7 +11,6 @@ public class CarBuyer {
 
     public CarBuyer(int buyerId, String companyName, String companyNumber, String companyEmail) {
         this.buyerId = buyerId;
-
         this.companyName = companyName;
         this.companyNumber = companyNumber;
         this.companyEmail = companyEmail;
