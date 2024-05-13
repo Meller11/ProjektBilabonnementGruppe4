@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/employee/employeeList.css}" rel="stylesheet">
+    <head>
+<body>
+<div class="container">
+    <h2>Liste Over Fuldførte Skades Rapporter</h2>
+    <tr th:each="finalDamageReport : ${finalDamageReport}" class="employee-row">
+        <table class="employee-table">
+            <tr class="employee-row">
+                <th>Kontrakt Nummer</th>
+                <td th:text="${finalDamageReport.contractNumber}"></td>
+            </tr>
+            <tr class="employee-row">
+                <th>Oprettet Af</th>
+                <td th:text="${finalDamageReport.firstName} + ' ' + ${finalDamageReport.lastName}"></td>
+            </tr>
+            <tr class="employee-row">
+                <th>Stel Nummer</th>
+                <td th:text="${finalDamageReport.frameNumber}"></td>
+            </tr>
+            <tr class="employee-row">
+                <th>Bil</th>
+                <td th:text="${finalDamageReport.brand} + ' ' + ${finalDamageReport.model} + ', ' + ${finalDamageReport.colour}"></td>
+            </tr>
+            <tr class="employee-row">
+                <th>Start Dato Af Kontrakt</th>
+                <td th:text="${finalDamageReport.contractStartDate}"></td>
+            </tr>
+            <tr class="employee-row">
+            <th>Kontrakt Type</th>
+                <td th:text="${finalDamageReport.contractType}"></td>
+            </tr>
+            <tr class="employee-row">
+                <th>Ekstra Pris På Skader</th>
+                <th th:text="${priceForDamages}"></th>
+            </tr>
+        </table>
+        <div class="button-container">
+        <a th:href="@{/damageReport}" class="button">Tilbage Til Oversigt</a>
+        </div>
+    </tr>
+</div>
+
+</body>
+</html>

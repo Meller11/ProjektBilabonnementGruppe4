@@ -99,6 +99,21 @@ public class RentalAgreement {
     public void setContractType(String contractType) {
         this.contractType = contractType;
     }
+
+    @Override
+    public String toString() {
+        return "RentalAgreement{" +
+                "contractId=" + contractId +
+                ", employeeId=" + employeeId +
+                ", carId=" + carId +
+                ", contractNumber='" + contractNumber + '\'' +
+                ", pickupLocation='" + pickupLocation + '\'' +
+                ", contractStartDate=" + contractStartDate +
+                ", contractEndDate=" + contractEndDate +
+                ", contractType='" + contractType + '\'' +
+                ", contractMonthlyFee=" + contractMonthlyFee +
+                '}';
+    }
 }
 
 

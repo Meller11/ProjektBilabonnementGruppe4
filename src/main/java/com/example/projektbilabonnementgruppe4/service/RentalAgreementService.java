@@ -1,5 +1,6 @@
 package com.example.projektbilabonnementgruppe4.service;
 
+import com.example.projektbilabonnementgruppe4.model.DamageReport;
 import com.example.projektbilabonnementgruppe4.model.RentalAgreement;
 import com.example.projektbilabonnementgruppe4.repository.RentalAgreementRepository;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,6 @@ public class RentalAgreementService {
     public void deleteRentalAgreement(int rentalAgreementId) {
         rentalAgreementRepository.deleteRentalAgreement(rentalAgreementId);
     }
+
 
 }

@@ -44,4 +44,6 @@ public class RentalAgreementRepository {
         String sql = "DELETE FROM contract WHERE contract_id = ?";
         jdbcTemplate.update(sql, rentalAgreementId);
     }
+
+
 }

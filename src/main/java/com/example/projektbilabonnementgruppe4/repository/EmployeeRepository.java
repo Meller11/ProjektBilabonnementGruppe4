@@ -61,4 +61,13 @@ public void saveNewEmployee(EmployeeModel employeeModel){
     String sql = "DELETE FROM employee WHERE username = ?";
     jdbcTemplate.update(sql, username);
   }
+
+  public EmployeeModel getEmployeeById(int employeeId){
+    String sql = "SELECT * FROM employee WHERE employee_id = ?";
+    try {
+      return jdbcTemplate.queryForObject(sql, new Object[]{employeeId}, new BeanPropertyRowMapper<>(EmployeeModel.class));
+    } catch (EmptyResultDataAccessException e) {
+      return null;
+    }
+  }
 }
