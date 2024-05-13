@@ -49,5 +49,11 @@ public class RentalAgreementController {
         rentalAgreementService.createRentalAgreement(rentalAgreement);
         return "redirect:/rentalAgreements";
     }
+    @GetMapping("/rented")
+    public String showAllRentedCars(Model model) {
+        List<RentalAgreement> rentedCars = rentalAgreementService.getAllRentedCars();
+        model.addAttribute("rentedCars", rentedCars);
+        return "car/rentedCars";
+    }
 }
 

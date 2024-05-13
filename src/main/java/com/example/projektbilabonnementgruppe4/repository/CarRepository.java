@@ -6,6 +6,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 import java.time.LocalDate;
 
 @Repository
@@ -32,4 +34,8 @@ public class CarRepository {
         return jdbcTemplate.queryForObject(sql, new Object[]{frameNumber}, new BeanPropertyRowMapper<>(Car.class));
     }
 
+    public List<Car> getAllCars() {
+        String sql = "SELECT * FROM car";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Car.class));
+    }
 }

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/cars")
 public class CarController {
@@ -31,4 +33,16 @@ public class CarController {
     }
 
 
+    @GetMapping("/all")
+    public String showAllCars(Model model) {
+        List<Car> cars = carService.getAllCars();
+        model.addAttribute("cars", cars);
+        return "car/allCars";
+    }
+    @GetMapping("/unrented")
+    public String showAllUnrentedCars(Model model) {
+        List<Car> unrentedCars = carService.getAllUnrentedCars();
+        model.addAttribute("unrentedCars", unrentedCars);
+        return "car/unrentedCars";
+    }
 }
