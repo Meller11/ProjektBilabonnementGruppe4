@@ -33,5 +33,7 @@ public class RentalAgreementService {
     public void deleteRentalAgreement(int rentalAgreementId) {
         rentalAgreementRepository.deleteRentalAgreement(rentalAgreementId);
     }
-
+    public List<RentalAgreement> getAllRentedCars() {
+        return rentalAgreementRepository.getAllRentedCars();
+    }
 }

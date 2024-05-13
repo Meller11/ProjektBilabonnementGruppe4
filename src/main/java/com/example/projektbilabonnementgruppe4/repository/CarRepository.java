@@ -2,8 +2,11 @@ package com.example.projektbilabonnementgruppe4.repository;
 
 import com.example.projektbilabonnementgruppe4.model.Car;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class CarRepository {
@@ -18,5 +21,8 @@ public class CarRepository {
                 car.getColour(), car.getGearType(), car.getPrice(), car.getRegistrationFee(),
                 car.getEmission(), car.getAcquisitionDate());
     }
-
+    public List<Car> getAllCars() {
+        String sql = "SELECT * FROM car";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Car.class));
+    }
 }

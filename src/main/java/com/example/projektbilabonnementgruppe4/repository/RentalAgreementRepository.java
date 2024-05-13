@@ -44,4 +44,11 @@ public class RentalAgreementRepository {
         String sql = "DELETE FROM contract WHERE contract_id = ?";
         jdbcTemplate.update(sql, rentalAgreementId);
     }
+
+
+    public List<RentalAgreement> getAllRentedCars() {
+        String sql = "SELECT * FROM contract";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(RentalAgreement.class));
+    }
+
 }
