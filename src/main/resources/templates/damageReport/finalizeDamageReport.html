@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/employee/employeeList.css}" rel="stylesheet">
+    <head>
+<body>
+<div class="container">
+    <h2>Liste Over Fuldførte Skades Rapporter</h2>
+    <tr th:each="finalizeDamageReport : ${finalizeDamageReport}" class="employee-row">
+        <table class="employee-table">
+            <tr class="employee-row">
+                <th>Kontrakt Nummer</th>
+                <td th:text="${finalizeDamageReport.contractNumber}"></td>
+            </tr>
+            <tr class="employee-row">
+                <th>Oprettet Af</th>
+                <td th:text="${finalizeDamageReport.firstName} + ' ' + ${finalizeDamageReport.lastName}"></td>
+            </tr>
+            <tr class="employee-row">
+                <th>Stel Nummer</th>
+                <td th:text="${finalizeDamageReport.frameNumber}"></td>
+            </tr>
+            <tr class="employee-row">
+                <th>Bil</th>
+                <td th:text="${finalizeDamageReport.brand} + ' ' + ${finalizeDamageReport.model} + ', ' + ${finalizeDamageReport.colour}"></td>
+            </tr>
+            <tr class="employee-row">
+                <th>Start Dato Af Kontrakt</th>
+                <td th:text="${finalizeDamageReport.contractStartDate}"></td>
+            </tr>
+            <tr class="employee-row">
+                <th>Kontrakt Type</th>
+                <td th:text="${finalizeDamageReport.contractType}"></td>
+            </tr>
+
+            </tr>
+        </table>
+        <form  th:action="@{/damageReport/finalizeReport/{contract_id}(contract_id=${finalizeDamageReport.contractId})}" th:object="${damageReport}" method="post" >
+        <label for="rimDamage">Fælge Skader</label>
+        <input id="rimDamage" type="checkbox"  th:checked="${rimDamage}" th:value="true" th:field="*{rimDamage}" /><br>
+        <label for="paintDamage">Lak Skader</label>
+            <input id="paintDamage" type="checkbox"  th:checked="${paintDamage}" th:value="true" th:field="*{paintDamage}" /><br>
+        <label for="windshieldDamage">Forrude Skader</label>
+            <input id="windshieldDamage" type="checkbox"  th:checked="${windshieldDamage}" th:value="true" th:field="*{windshieldDamage}" /><br>
+            <label for="kilometers">Kilometers:</label>
+            <input type="text" id="kilometers" th:field="*{mileage}" /><br>
+        <button type="submit" class="submit-button">Færdiggør</button>
+    </form>
+
+</div>
+</body>
+</html>

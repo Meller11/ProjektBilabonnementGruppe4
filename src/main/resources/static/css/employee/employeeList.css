@@ -71,7 +71,8 @@ h2 {
 
 /* Style for edit and delete buttons */
 .edit-button,
-.delete-button {
+.delete-button,
+.submit-button{
   background-color: #4481eb;
   color: white;
   border: none;

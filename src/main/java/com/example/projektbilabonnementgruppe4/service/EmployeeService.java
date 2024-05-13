@@ -43,5 +43,9 @@ public class EmployeeService {
     employeeRepository.deleteEmployee(username);
   }
 
+  public EmployeeModel getEmployeeByID(int employeeId){
+    return employeeRepository.getEmployeeById(employeeId);
+  }
+
 }
 
