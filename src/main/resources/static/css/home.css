@@ -1,0 +1,28 @@
+.frontpage-background{
+    background-color: #aaaaaa;
+    background-image: url("../images/frontpage-background.jpg");
+    background-size: cover;
+}
+
+.links-container {
+    display: flex;
+    justify-content: center;
+}
+
+.frontpage-container {
+    margin-top: 15vw;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+a.button {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 1.5vw;
+}
+
+.frontpage-headline {
+    color: #000000;
+}
+
+

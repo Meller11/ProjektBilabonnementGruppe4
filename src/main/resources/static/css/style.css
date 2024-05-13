@@ -56,17 +56,34 @@ button[type="submit"], .button {
     font-size: 1vw;
     margin-top: 1vw;
     padding: 0.5vw 1vw;
-    background: linear-gradient(to bottom, #425bc5, #367ecf);
+    background: linear-gradient(to bottom, #1d8cfa, #1383ff);
     color: white;
     border: none;
     border-radius: 0.4vw;
     cursor: pointer;
 }
 
-
-
 button[type="submit"]:hover, .btn:hover, .home-link:hover .button:hover {
     background-color: #0a386e;
     cursor: pointer;
     text-decoration: underline;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) {
+    background-color: #efe6ff;
 }

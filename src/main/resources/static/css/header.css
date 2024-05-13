@@ -1,0 +1,52 @@
+a {
+    font-family: Arial, sans-serif;
+    font-palette: light;
+    color: #000000;
+    text-decoration: none;
+    margin-right: 2.5vw;
+    margin-left: 1vw;
+    font-size: 1vw;
+    font-weight: 700;
+}
+
+.header-container {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+}
+
+.header-text {
+    font-family: "Baskerville Old Face", sans-serif;
+    font-size: 30px;
+    margin-top: 0;
+    font-weight: bold;
+    color: #000000;
+}
+
+
+.left a{
+    margin:0.5vw;
+}
+
+.right {
+    text-decoration: none;
+    color: #000000;
+    margin-right: 2vw;
+}
+
+.right a:hover {
+    text-decoration: underline;
+}
+
+.logo img {
+    margin: 0.5vw;
+    width: 250px;
+    height: auto;
+}

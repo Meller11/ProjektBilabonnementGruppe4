@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Velkommen</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/home.css}" rel="stylesheet"/>
+</head>
+
+<body class="frontpage-background">
+
+<div th:replace="~{fragments/header.html :: header}"></div>
+
+<div class="content">
+    <div class="container frontpage-container">
+        <h1 class="frontpage-headline"> Bilabonnement - Medarbejderportal</h1>
+        <div class="links-container">
+            <a class="button" th:href="@{/employeeLogin}" >Login</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
