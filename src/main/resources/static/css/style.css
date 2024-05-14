@@ -4,6 +4,7 @@ body {
     margin: 0;
     padding: 10px;
     font-size: 0.8vw;
+
 }
 
 .content {
@@ -42,6 +43,8 @@ option,
 input[type="text"],
 input[type="number"],
 input[type="date"],
+input[type="password"],
+
 textarea {
     width: 100%;
     padding: 0.8vw;

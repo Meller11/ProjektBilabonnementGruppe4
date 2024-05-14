@@ -98,12 +98,12 @@ a {
 .right {
     display: flex;
     align-items: center;
+    height: auto;
     margin-right: 2vw;
 }
 
 .right .navbarButton {
-    margin-right: 1vw;
+    padding: 0 1.2vw 0 1.5vw;
     display: flex;
     align-items: center;
-    justify-content: center;
 }

@@ -37,7 +37,7 @@ public class EmployeeController {
 
     if (loggedInUser != null){
       session.setAttribute("loggedInUser", loggedInUser);
-      return "redirect:/employee/menu";
+      return "redirect:/";
     } else {
       redirectAttributes.addFlashAttribute("loginError", "Brugernavn eller Kodeord er forkert.");
       return "redirect:/employee/login";
@@ -48,30 +48,6 @@ public class EmployeeController {
   public String logout(HttpSession session) {
     session.removeAttribute("loggedInUser");
     return "redirect:/";
-  }
-
-  //Menu
-  @GetMapping("/menu")
-  public String showMenuEmployee(HttpSession session) {
-      EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
-
-      if (loggedInUser != null) {
-        return "employee/menuEmployee";
-      } else {
-        return "redirect:/";
-      }
-    }
-
-  @PostMapping("/menu")
-  public String chooseFromMenu(@RequestParam("action") String action) {
-    switch(action) {
-      case "registerNewEmployee":
-        return "redirect:/employee/register";
-      case "editEmployee":
-        return "redirect:/employee/list";
-      default:
-        return "redirect:/employee/menu";
-    }
   }
 
   //viser siden for registrering af ny medarbejder
