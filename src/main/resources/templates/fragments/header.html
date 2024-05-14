@@ -10,10 +10,70 @@
             <a class="logo" th:href="${session.loggedInUser != null ? '/welcome' : '/'}">
                 <img th:src="@{/images/Bilabonnementlogo.png}" alt="Home" class="logo">
             </a>
+        <div class="navbar">
+            <div class="dropdown">
+                <button class="navbarButton notSelectable">Biler</button>
+                <div class="dropdown-content">
+                    <a th:href="@{/cars/create}" class="a">
+                        <button class="navbarButton">Opret bil</button>
+                    </a>
+                    <a th:href="@{/cars/allCarsWithStatus}" class="a">
+                        <button class="navbarButton">Oversigt biler</button>
+                    </a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="navbarButton notSelectable">Lejekontrakter</button>
+                <div class="dropdown-content">
+                    <a th:href="@{/cars/unrented}" class="a">
+                        <button class="navbarButton">Klar til lejekontrakt</button>
+                    </a>
+                    <a th:href="@{/rentalAgreements}" class="a">
+                        <button class="navbarButton">Oversigt lejekontrakter</button>
+                    </a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="navbarButton notSelectable">Skadesrapport</button>
+                <div class="dropdown-content">
+                    <a th:href="@{/readyForDamageReport}" class="a">
+                        <button class="navbarButton">Klar til skadesrapport</button>
+                    </a>
+                    <a th:href="@{/listDamageReports}" class="a">
+                        <button class="navbarButton">Oversigt skadesrapporter</button>
+                    </a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="navbarButton notSelectable">Salg</button>
+                <div class="dropdown-content">
+                    <a th:href="@{/registerSale}" class="a">
+                        <button class="navbarButton">Registrer salg</button>
+                    </a>
+                    <a th:href="@{/soldCars}" class="a">
+                        <button class="navbarButton">Solgte biler</button>
+                    </a>
+                    <a th:href="@{/pendingBuyer}" class="a">
+                        <button class="navbarButton">Mangler opkøber</button>
+                    </a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="navbarButton notSelectable">Transport</button>
+                <div class="dropdown-content">
+                    <a th:href="@{/readyForTransport}" class="a">
+                        <button class="navbarButton">Klar til transport</button>
+                    </a>
+                    <a th:href="@{/transportOverview}" class="a">
+                        <button class="navbarButton">Transportoversigt</button>
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="right">
+            </div>
+        <div class="center right">
             <div th:if="${session.loggedInUser == null}">
-                <a th:href="@{/employeeLogin}">Login</a>
+                <a th:href="@{/employeeLogin}" class="navbarButton selectable">Login</a>
             </div>
             <div th:if="${session.loggedInUser != null}">
                 <a th:href="@{/editEmployee}">Min profil</a>

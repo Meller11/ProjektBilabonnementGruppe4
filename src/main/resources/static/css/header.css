@@ -1,52 +1,109 @@
 a {
     font-family: Arial, sans-serif;
-    font-palette: light;
     color: #000000;
     text-decoration: none;
-    margin-right: 2.5vw;
-    margin-left: 1vw;
     font-size: 1vw;
     font-weight: 700;
 }
 
 .header-container {
-
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 60px;
+    width: 100%;
+    height: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: white;
+    z-index: 1000;
+
 }
 
-.header-text {
-    font-family: "Baskerville Old Face", sans-serif;
-    font-size: 30px;
-    margin-top: 0;
-    font-weight: bold;
-    color: #000000;
-}
-
-
-.left a{
-    margin:0.5vw;
-}
-
-.right {
-    text-decoration: none;
-    color: #000000;
-    margin-right: 2vw;
-}
-
-.right a:hover {
-    text-decoration: underline;
+.left {
+    display: flex;
+    align-items: center;
+    color: white;
 }
 
 .logo img {
     margin: 0.5vw;
     width: 250px;
     height: auto;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    margin-left: 2vw;
+    padding: 0;
+}
+
+.navbarButton {
+    color: #000000;
+    border: none;
+    height: 40px;
+    width: auto;
+    font-size: 1vw;
+    font-weight: 700;
+    text-align: center;
+    background-color: transparent;
+    padding: 0 40px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.navbarButton.notSelectable {
+    cursor: default;
+}
+
+.navbarButton::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 0;
+    height: 4px;
+    background-color: #2b6cce;
+    transition: width 0.4s ease;
+}
+
+.navbarButton:hover::after {
+    width: 80%;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    text-align: left;
+    z-index: 1001;
+}
+
+.dropdown-content a {
+    color: black;
+    padding-top: 2vh;
+    padding-bottom: 1vh;
+    display: block;
+    text-align: left;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    margin-right: 2vw;
+}
+
+.right .navbarButton {
+    margin-right: 1vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

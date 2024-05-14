@@ -18,20 +18,25 @@ public class CarController {
     @Autowired
     private CarService carService;
 
-    @GetMapping("/add")
-    public String showAddCarForm(Model model) {
+    @GetMapping("/create")
+    public String showCreateCarForm(Model model) {
         model.addAttribute("car", new Car());
-        return "car/addCar";
+        return "/car/createCar";
     }
 
-    @PostMapping("/add")
-    public String addCar(Car car) {
+    @PostMapping("/create")
+    public String createCar(Car car) {
         carService.addCar(car);
         Car foundCar = carService.getCarByFrameNumber(car.getFrameNumber());
         carService.addCarStatus(foundCar.getCarId());
-        return "redirect:/";
+        return "redirect:/car/allCarsWithStatus";
     }
 
+    @GetMapping("/allCarsWithStatus")
+    public String showAllCarsWithStatus(Model model) {
+        model.addAttribute("carsWithStatus", carService.getAllCarsWithStatus());
+        return "car/allCarsWithStatus";
+    }
 
     @GetMapping("/all")
     public String showAllCars(Model model) {

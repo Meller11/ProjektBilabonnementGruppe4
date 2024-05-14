@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Status over flådens biler</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragments/header.html :: header}"></div>
+
+<div class="content">
+    <div class="container">
+        <h1>Status for flådens biler</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>Stelnummer</th>
+                <th>Mærke</th>
+                <th>Model</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="carInfo : ${carsWithStatus}">
+                <td th:text="${carInfo.car.frameNumber}">Stelnummer</td>
+                <td th:text="${carInfo.car.brand}">Mærke</td>
+                <td th:text="${carInfo.car.model}">Model</td>
+                <td th:text="${carInfo.status}">Status</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
