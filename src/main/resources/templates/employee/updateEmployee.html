@@ -13,40 +13,40 @@
 <div class="content">
   <div class="container">
     <div class="container-box">
-      <h2>Update Employee</h2>
-      <form th:action="@{/updateEmployee}" method="post" th:object="${employeeModel}">
+      <h2>Opdater medarbejder</h2>
+      <form th:action="@{/employee/saveUpdate}" method="post" th:object="${employeeModel}">
 
         <div class="form-group">
-          <label for="firstname">First name:</label>
+          <label for="firstname">Fornavn:</label>
           <input type="text" id="firstname" name="firstname" th:field="*{firstname}" th:required="required" />
         </div>
         <div class="form-group">
-          <label for="lastname">Last name:</label>
+          <label for="lastname">Efternavn:</label>
           <input type="text" id="lastname" name="lastname" th:field="*{lastname}" th:required="required" />
         </div>
         <div class="form-group">
-          <label for="usertype">Usertype:</label>
+          <label for="usertype">Stilling:</label>
           <select id="usertype" name="usertype" th:field="*{userType}" th:required="required">
-            <option value="">Select Usertype</option>
+            <option value="">Vælg stilling</option>
             <option value="admin">Admin</option>
-            <option value="employee">Employee</option>
-            <option value="chef">Chef</option>
-            <option value="mechanic">Mechanic</option>
+            <option value="employee">Lejeagent</option>
+            <option value="chef">Skadesinspektør</option>
+            <option value="mechanic">Forretningsudvikler</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="username">Username:</label>
+          <label for="username">Brugernavn:</label>
           <input type="text" id="username" name="username" th:field="*{username}" th:required="required" />
         </div>
         <div class="form-group">
-          <label for="password">Password:</label>
+          <label for="password">Adgangskode:</label>
           <input type="password" id="password" name="password" th:field="*{password}" th:required="required" />
         </div>
 
         <div class="button-container">
-          <button type="submit" class="create-user-link">Save update Employee</button>
-          <a th:href="@{/employeeList}" class="button">Return to Employee List</a>
+          <button type="submit" class="create-user-link">Gem ændringer</button>
+          <a th:href="@{/employee/list}" class="button">Tilbage til medarbejderoversigten</a>
         </div>
       </form>
     </div>

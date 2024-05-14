@@ -12,41 +12,41 @@
 <div class="content">
   <div class="container">
     <h2>Register new employee</h2>
-    <form th:action="@{/registerNewEmployee}" th:object="${employeeModel}" method="post">
+    <form th:action="@{/employee/register}" th:object="${employeeModel}" method="post">
 
       <div class="form-group">
-        <label for="firstname">First name:</label>
+        <label for="firstname">Fornavn:</label>
         <input type="text" id="firstname" th:field="*{firstname}" required />
       </div>
       <div class="form-group">
-        <label for="lastname">Last name:</label>
+        <label for="lastname">Efternavn:</label>
         <input type="text" id="lastname" th:field="*{lastname}" required />
       </div>
       <div class="form-group">
-        <label for="usertype">Usertype:</label>
+        <label for="usertype">Stilling:</label>
         <select id="usertype" th:field="*{userType}" required>
-          <option value="">Select Usertype</option>
+          <option value="">Vælg stilling:</option>
           <option value="admin">Admin</option>
-          <option value="employee">Employee</option>
-          <option value="ansat?">Chef</option>
-          <option value="Mekaniker">Mechanic</option>
+          <option value="employee">Lejeagent</option>
+          <option value="ansat?">Skadesinspektør</option>
+          <option value="Mekaniker">Forretningsudvikler</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label for="username">Username:</label>
+        <label for="username">Brugernavn:</label>
         <input type="text" id="username" th:field="*{username}" required />
       </div>
 
       <div class="form-group">
-        <label for="password">Password:</label>
+        <label for="password">Adgangskode:</label>
         <input type="password" id="password" th:field="*{password}" required />
       </div>
 
 
       <div class="button-container">
         <button type="submit" class="button">Opret Bruger</button>
-        <a href="/menuEmployee" class="button">Return to Menu</a>
+        <a th:href="@{/employee/menu}" class="button">Tilbage til menu</a>
       </div>
     </form>
 
