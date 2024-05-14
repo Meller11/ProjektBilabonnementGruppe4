@@ -1,13 +1,13 @@
 <div th:fragment="header">
     <head>
         <meta charset="UTF-8">
-        <title>Ønskelisten</title>
+        <title>Bilabonnement</title>
         <link th:href="@{/css/header.css}" rel="stylesheet">
     </head>
     <body>
     <div class="header-container">
         <div class="left">
-            <a class="logo" th:href="${session.loggedInUser != null ? '/welcome' : '/'}">
+            <a class="logo" th:href="${session.loggedInUser != null ? '/' : '/'}">
                 <img th:src="@{/images/Bilabonnementlogo.png}" alt="Home" class="logo">
             </a>
         <div class="navbar">

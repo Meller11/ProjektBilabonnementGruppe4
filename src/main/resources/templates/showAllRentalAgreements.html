@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div th:replace="~{fragments/header.html :: header}"></div>
+
+<div class="content">
+    <div class="container">
 <table>
     <tr>
         <th>Contract Number</th>
@@ -40,7 +38,7 @@
     </tr>
 </table>
 <a href="/createRentalAgreement">Opret ny kontrakt</a>
-</body>
-</html>
+    </div>
+</div>
 </body>
 </html>
