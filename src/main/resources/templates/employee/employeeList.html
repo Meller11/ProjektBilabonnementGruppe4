@@ -24,7 +24,7 @@
       </thead>
       <tbody>
 
-        <tr th:each="employee : ${List}" class="employee-row">
+        <tr th:each="employee : ${employeeList}" class="employee-row">
         <td th:text="${employee.firstname}"></td>
         <td th:text="${employee.lastname}"></td>
         <td th:text="${employee.userType}"></td>
@@ -32,7 +32,7 @@
         <td>
 
 
-          <form th:action="@{/employee/edit}" method="post">
+          <form th:action="@{/employee/edit}" method="get">
             <input type="hidden" name="username" th:value="${employee.username}" />
             <button type="submit" class="edit-button">Redigere</button>
           </form>
