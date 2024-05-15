@@ -1,14 +1,13 @@
 package com.example.projektbilabonnementgruppe4.repository;
 
 import com.example.projektbilabonnementgruppe4.model.Car;
+import com.example.projektbilabonnementgruppe4.viewModel.CarWithStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
-import java.time.LocalDate;
 
 @Repository
 public class CarRepository {
@@ -33,4 +32,18 @@ public class CarRepository {
         String sql = "SELECT * FROM car";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Car.class));
     }
+
+    public List<CarWithStatus> getAllCarsWithStatus() {
+        String sql = "SELECT c.car_id, c.frame_number, c.brand, c.model, c.colour, cs.car_status_type " +
+                "FROM car c JOIN car_status cs ON c.car_id = cs.car_id";
+        return jdbcTemplate.query(sql, (rs, rowNum) -> new CarWithStatus(
+                rs.getInt("car_id"),
+                rs.getString("frame_number"),
+                rs.getString("brand"),
+                rs.getString("model"),
+                rs.getString("colour"),
+                rs.getString("car_status_type")
+        ));
+    }
+
 }

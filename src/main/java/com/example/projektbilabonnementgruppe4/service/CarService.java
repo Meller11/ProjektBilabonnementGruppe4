@@ -1,16 +1,15 @@
 package com.example.projektbilabonnementgruppe4.service;
 
 import com.example.projektbilabonnementgruppe4.model.Car;
-import com.example.projektbilabonnementgruppe4.model.CarStatus;
 import com.example.projektbilabonnementgruppe4.model.RentalAgreement;
 import com.example.projektbilabonnementgruppe4.repository.CarRepository;
 import com.example.projektbilabonnementgruppe4.repository.CarStatusRepository;
 import com.example.projektbilabonnementgruppe4.repository.RentalAgreementRepository;
+import com.example.projektbilabonnementgruppe4.viewModel.CarWithStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 
 import java.util.*;
 
@@ -53,22 +52,7 @@ public class CarService {
         return allCars;
     }
 
-    public List<Map<String, Object>> getAllCarsWithStatus() {
-        List<Car> cars = carRepository.getAllCars();
-        List<CarStatus> statuses = carStatusRepository.getAllCarStatuses();
-        List<Map<String, Object>> carsWithStatus = new ArrayList<>();
-
-        Map<Integer, String> statusMap = new HashMap<>();
-        for (CarStatus status : statuses) {
-            statusMap.put(status.getCarId(), status.getCarStatusType());
-        }
-
-        for (Car car : cars) {
-            Map<String, Object> carInfo = new HashMap<>();
-            carInfo.put("car", car);
-            carInfo.put("status", statusMap.get(car.getCarId()));
-            carsWithStatus.add(carInfo);
-        }
-        return carsWithStatus;
+    public List<CarWithStatus> getAllCarsWithStatus() {
+        return carRepository.getAllCarsWithStatus();
     }
 }

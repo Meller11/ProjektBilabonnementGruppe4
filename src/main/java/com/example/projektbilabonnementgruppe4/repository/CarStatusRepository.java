@@ -21,11 +21,6 @@ public class CarStatusRepository {
         jdbcTemplate.update(sql, carId, status, java.sql.Date.valueOf(statusDate));
     }
 
-    public List<CarStatus> getAllCarStatuses() {
-        String sql = "SELECT * FROM car_status";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(CarStatus.class));
-    }
-
     public void updateCarStatus(Integer carId, String newStatus, LocalDate statusDate) {
         String sql = "UPDATE car_status SET car_status_type = ?, car_status_date = ? WHERE car_id = ?";
         jdbcTemplate.update(sql, newStatus, Date.valueOf(statusDate), carId);
