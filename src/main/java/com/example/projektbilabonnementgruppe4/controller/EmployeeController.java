@@ -83,16 +83,16 @@ public class EmployeeController {
     }
   }
 
-  // Viser siden for redigering af medarbejder
+  // Viser siden for redigering af medarbejder/vej til profile
   @GetMapping("/edit")
-  public String showEditEmployee(@RequestParam String username, Model model, HttpSession session) {
+  public String showEditEmployee( Model model, HttpSession session) {
     EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
 
-    EmployeeModel employeeModel = employeeService.getEmployeeByUsername(username);
+    EmployeeModel employeeModel = employeeService.getEmployeeByUsername(loggedInUser.getUsername());
 
     if (loggedInUser != null) {
-    model.addAttribute("employeeModel", employeeModel);
-    return "employee/updateEmployee";
+      model.addAttribute("employeeModel", employeeModel);
+      return "employee/updateEmployee";
     } else {
       return "redirect:/";
     }
