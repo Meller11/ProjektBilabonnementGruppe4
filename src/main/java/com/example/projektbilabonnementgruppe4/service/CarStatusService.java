@@ -16,8 +16,8 @@ public class CarStatusService {
     public void createCarStatus(Integer carId) {
         carStatusRepository.createCarStatus(carId, "Klar til udlejning", LocalDate.now());
     }
-    public void updateCarStatus(Integer carId) {
-        carStatusRepository.updateCarStatus(carId, "Udlejet", LocalDate.now());
+    public void updateCarStatus(Integer carId, String newStatus) {
+        carStatusRepository.updateCarStatus(carId, newStatus, LocalDate.now());
     }
 }
 
