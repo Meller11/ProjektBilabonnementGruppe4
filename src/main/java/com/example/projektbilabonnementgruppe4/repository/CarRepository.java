@@ -24,11 +24,6 @@ public class CarRepository {
                 car.getEmission(), car.getAcquisitionDate());
     }
 
-    public void createCarStatus(Integer carId, String status, LocalDate statusDate) {
-        String sql = "INSERT INTO car_status (car_id, car_status_type, car_status_date) VALUES (?, ?, ?)";
-        jdbcTemplate.update(sql, carId, status, java.sql.Date.valueOf(statusDate));
-    }
-
     public Car getCarByFrameNumber(String frameNumber) {
         String sql = "SELECT * FROM car WHERE frame_number = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{frameNumber}, new BeanPropertyRowMapper<>(Car.class));

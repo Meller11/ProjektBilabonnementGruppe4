@@ -30,10 +30,6 @@ public class CarService {
         carRepository.createCar(car);
     }
 
-    public void createCarStatus(Integer carId) {
-        carRepository.createCarStatus(carId, "Klar til udlejning", LocalDate.now());
-    }
-
     public Car getCarByFrameNumber(String frameNumber) {
         try {
             return carRepository.getCarByFrameNumber(frameNumber);
