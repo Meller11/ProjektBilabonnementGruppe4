@@ -32,9 +32,9 @@ public class CarController {
 
     @PostMapping("/create")
     public String createCar(Car car) {
-        carService.addCar(car);
+        carService.createCar(car);
         Car foundCar = carService.getCarByFrameNumber(car.getFrameNumber());
-        carService.addCarStatus(foundCar.getCarId());
+        carService.createCarStatus(foundCar.getCarId());
         return "redirect:/car/allCarsWithStatus";
     }
 

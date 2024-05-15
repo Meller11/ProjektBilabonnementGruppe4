@@ -15,7 +15,7 @@ body {
     background-color: white;
     padding: 10px;
     margin: auto;
-    width: 50vw;
+    width: 55vw;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
 }
@@ -67,9 +67,8 @@ textarea {
 button[type="submit"], .button {
     font-family: Arial, sans-serif;
     font-weight: bold;
-    min-width: 30%;
+    min-width: 40%;
     font-size: 1vw;
-    margin-top: 1vw;
     padding: 0.5vw 1vw;
     background: linear-gradient(to top, #4481eb 0%, #04befe 100%);
     color: white;
@@ -93,10 +92,16 @@ th, td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
     text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+td {
+    font-weight: 400;
 }
 
 th {
     background-color: #98c0ff;
+    font-weight: 1000;
 }
 
 tr:nth-child(odd) {

@@ -26,13 +26,12 @@ public class CarService {
     @Autowired
     private RentalAgreementRepository rentalAgreementRepository;
 
-    public void addCar(Car car) {
-        carRepository.addCar(car);
-
+    public void createCar(Car car) {
+        carRepository.createCar(car);
     }
 
-    public void addCarStatus(Integer carId) {
-        carRepository.addCarStatus(carId, "Klar til udlejning", LocalDate.now());
+    public void createCarStatus(Integer carId) {
+        carRepository.createCarStatus(carId, "Klar til udlejning", LocalDate.now());
     }
 
     public Car getCarByFrameNumber(String frameNumber) {

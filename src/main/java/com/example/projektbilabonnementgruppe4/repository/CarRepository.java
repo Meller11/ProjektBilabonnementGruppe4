@@ -16,7 +16,7 @@ public class CarRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public void addCar(Car car) {
+    public void createCar(Car car) {
         String sql = "INSERT INTO car (frame_number, brand, model, colour, gear_type, fuel_type, price, registration_fee, emission, acquisition_date) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, car.getFrameNumber(), car.getBrand(), car.getModel(),
@@ -24,7 +24,7 @@ public class CarRepository {
                 car.getEmission(), car.getAcquisitionDate());
     }
 
-    public void addCarStatus(Integer carId, String status, LocalDate statusDate) {
+    public void createCarStatus(Integer carId, String status, LocalDate statusDate) {
         String sql = "INSERT INTO car_status (car_id, car_status_type, car_status_date) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, carId, status, java.sql.Date.valueOf(statusDate));
     }
