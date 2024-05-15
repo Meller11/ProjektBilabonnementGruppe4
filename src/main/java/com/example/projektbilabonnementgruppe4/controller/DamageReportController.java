@@ -97,5 +97,4 @@ public class DamageReportController {
         return "damageReport/finalDamageReport";
     }
 
-
 }
