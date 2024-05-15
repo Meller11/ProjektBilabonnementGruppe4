@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class RentalAgreement {
     private int contractId;
     private int employeeId;
-    private int carId;
+    private Car car;
     private String contractNumber;
     private String pickupLocation;
     private LocalDate contractStartDate;
@@ -16,10 +16,10 @@ public class RentalAgreement {
     public RentalAgreement() {
     }
 
-    public RentalAgreement(int contractId, int employeeId, int carId, String contractNumber, String pickupLocation, LocalDate contractStartDate, LocalDate contractEndDate, String contractType, double contractMonthlyFee) {
+    public RentalAgreement(int contractId, int employeeId, Car car, String contractNumber, String pickupLocation, LocalDate contractStartDate, LocalDate contractEndDate, String contractType, double contractMonthlyFee) {
         this.contractId = contractId;
         this.employeeId = employeeId;
-        this.carId = carId;
+        this.car = car;
         this.contractNumber = contractNumber;
         this.pickupLocation = pickupLocation;
         this.contractStartDate = contractStartDate;
@@ -52,12 +52,11 @@ public class RentalAgreement {
         this.employeeId = employeeId;
     }
 
-    public int getCarId() {
-        return carId;
+   public Car getCar() {
+        return car;
     }
-
-    public void setCarId(int carId) {
-        this.carId = carId;
+    public void setCar(Car car) {
+        this.car = car;
     }
 
     public String getPickupLocation() {

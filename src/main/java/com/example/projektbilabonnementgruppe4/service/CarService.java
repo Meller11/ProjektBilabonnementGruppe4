@@ -21,14 +21,21 @@ public class CarService {
     @Autowired
     private RentalAgreementRepository rentalAgreementRepository;
 
-    public void addCar(Car car) {
+    /*public void addCar(Car car) {
         carRepository.addCar(car);
 
+    }*/
+    public void addCar(Car car) {
+        carRepository.addCar(car);
+        Car foundCar = carRepository.getCarByFrameNumber(car.getFrameNumber());
+        this.addCarStatus(foundCar.getCarId(), "Klar til udlejning");
     }
-
-    public void addCarStatus(Integer carId) {
+    public void addCarStatus(Integer carId, String status) {
+        carRepository.addCarStatus(carId, status, LocalDate.now());
+    }
+    /*public void addCarStatus(Integer carId) {
         carRepository.addCarStatus(carId, "Klar til udlejning", LocalDate.now());
-    }
+    }*/
 
     public Car getCarByFrameNumber(String frameNumber) {
         try {
@@ -41,14 +48,22 @@ public class CarService {
     public List<Car> getAllCars() {
         return carRepository.getAllCars();
     }
+
     public List<Car> getAllUnrentedCars() {
         List<Car> allCars = carRepository.getAllCars();
         List<RentalAgreement> rentedCars = rentalAgreementRepository.getAllRentedCars();
 
         for (RentalAgreement rentalAgreement : rentedCars) {
-            allCars.removeIf(car -> car.getCarId() == rentalAgreement.getCarId());
+            if (rentalAgreement.getCar() != null) {
+                allCars.removeIf(car -> car.getCarId() == rentalAgreement.getCar().getCarId());
+            }
         }
-
-        return allCars;
+            return allCars;
+        }
+        public Car getCarById ( int carId){
+            return carRepository.getCarById(carId);
+        }
+        public void updateCarStatus (CarStatus carStatus){
+            carRepository.updateCarStatus(carStatus);
+        }
     }
-}

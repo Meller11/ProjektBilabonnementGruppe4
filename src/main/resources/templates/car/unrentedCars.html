@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Unrented Cars</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
 <h1>Unrented Cars</h1>
@@ -11,16 +12,14 @@
         <th>Brand</th>
         <th>Model</th>
         <th>Colour</th>
-        <!-- Add more columns as needed -->
     </tr>
     <tr th:each="car : ${unrentedCars}">
         <td th:text="${car.brand}"></td>
         <td th:text="${car.model}"></td>
         <td th:text="${car.colour}"></td>
-        <!-- Add more data as needed -->
     </tr>
 </table>
 <a href="/cars/all">Show All Cars</a>
-<a href="/cars/rented">Show Rented Cars</a>
+<a href="rented">Show Rented Cars</a>
 </body>
 </html>

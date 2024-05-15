@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Rental Agreement</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+
+</head>
+<body>
+<h1>Opdater Lejekontrakt</h1>
+
+    <form th:action="@{/rentalAgreements/update}" th:object="${rentalAgreement}" method="post">
+        <input type="hidden" th:field="*{contractId}">
+
+        <select th:field="*{car.carId}">
+            <option th:each="car : ${allCars}" th:value="${car.carId}" th:text="${car.brand} + ' ' + ${car.model}"></option>
+        </select>
+        <input type="text" id="contractNumber" th:field="*{contractNumber}" placeholder="Contract Number" required>
+        <input type="text" id="pickupLocation" th:field="*{pickupLocation}" placeholder="Pickup Location" required>
+        <input type="date" id="contractStartDate" th:field="*{contractStartDate}" placeholder="Start Date" required>
+        <input type="date" id="contractEndDate" th:field="*{contractEndDate}" placeholder="End Date" required>
+        <select th:field="*{contractType}">
+            <option value="Limited">Limited</option>
+            <option value="Unlimited">Unlimited</option>
+        </select>
+        <input type="number" step="0.01" id="contractMonthlyFee" th:field="*{contractMonthlyFee}" placeholder="Monthly fee" required>
+        <button type="submit" value="Update" class="btn">Opdater lejeaftale</button>
+</form>
+</body>
+</html>

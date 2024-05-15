@@ -2,14 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Vis alle lejekontrakter</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
 <table>
@@ -20,6 +14,8 @@
         <th>End Date</th>
         <th>Contract Type</th>
         <th>Monthly Fee</th>
+        <th>Car Brand</th>
+        <th>Car Model</th>
         <th>Actions</th>
     </tr>
     <tr th:each="rentalAgreement : ${rentalAgreements}">
@@ -29,8 +25,11 @@
         <td th:text="${rentalAgreement.contractEndDate}"></td>
         <td th:text="${rentalAgreement.contractType}"></td>
         <td th:text="${rentalAgreement.contractMonthlyFee}"></td>
+        <td th:text="${rentalAgreement.car.brand}"></td>
+        <td th:text="${rentalAgreement.car.model}"></td>
         <td>
-            <form th:action="@{/rentalAgreements/update/{id}(id=${rentalAgreement.contractId})}" method="post">
+            <form th:action="@{/rentalAgreements/update/{id}(id=${rentalAgreement.contractId})}" method="get">
+                <input type="hidden" th:value="${rentalAgreement.car.carId}" name="carId">
                 <input type="submit" value="Update">
             </form>
             <form th:action="@{/rentalAgreements/delete/{id}(id=${rentalAgreement.contractId})}" method="post">
@@ -40,7 +39,5 @@
     </tr>
 </table>
 <a href="/createRentalAgreement">Opret ny kontrakt</a>
-</body>
-</html>
 </body>
 </html>

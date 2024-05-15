@@ -13,8 +13,17 @@ public class Car {
     private double registrationFee;
     private double emission;
     private LocalDate acquisitionDate;
+    private CarStatus carStatus;
 
     public Car() {
+    }
+
+    public CarStatus getCarStatus() {
+        return carStatus;
+    }
+
+    public void setCarStatus(CarStatus carStatus) {
+        this.carStatus = carStatus;
     }
 
     public Integer getCarId() {

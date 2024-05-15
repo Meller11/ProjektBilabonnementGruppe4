@@ -28,21 +28,14 @@ public class CarController {
     public String addCar(Car car) {
         carService.addCar(car);
         Car foundCar = carService.getCarByFrameNumber(car.getFrameNumber());
-        carService.addCarStatus(foundCar.getCarId());
+        carService.addCarStatus(foundCar.getCarId(), "Klar til udlejning");
         return "redirect:/";
     }
-
 
     @GetMapping("/all")
     public String showAllCars(Model model) {
         List<Car> cars = carService.getAllCars();
         model.addAttribute("cars", cars);
         return "car/allCars";
-    }
-    @GetMapping("/unrented")
-    public String showAllUnrentedCars(Model model) {
-        List<Car> unrentedCars = carService.getAllUnrentedCars();
-        model.addAttribute("unrentedCars", unrentedCars);
-        return "car/unrentedCars";
     }
 }
