@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Register Employee</title>
-  <link th:href="@{/css/employee/registerNewEmployee.css}" rel="stylesheet">
+  <link th:href="@{/css/style.css}" rel="stylesheet">
 
 </head>
 <body>
@@ -26,10 +26,10 @@
         <label for="usertype">Stilling:</label>
         <select id="usertype" th:field="*{userType}" required>
           <option value="">Vælg stilling:</option>
-          <option value="admin">Admin</option>
-          <option value="employee">Lejeagent</option>
-          <option value="ansat?">Skadesinspektør</option>
-          <option value="Mekaniker">Forretningsudvikler</option>
+          <option value="Admin">Admin</option>
+          <option value="Lejeagent">Lejeagent</option>
+          <option value="Skadesinspektør">Skadesinspektør</option>
+          <option value="Forretningsudvikler">Forretningsudvikler</option>
         </select>
       </div>
 
