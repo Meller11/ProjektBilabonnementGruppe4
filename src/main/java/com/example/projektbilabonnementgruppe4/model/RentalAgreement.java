@@ -1,5 +1,7 @@
 package com.example.projektbilabonnementgruppe4.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class RentalAgreement {
@@ -8,7 +10,9 @@ public class RentalAgreement {
     private int carId;
     private String contractNumber;
     private String pickupLocation;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate contractStartDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate contractEndDate;
     private String contractType;
     private double contractMonthlyFee;
