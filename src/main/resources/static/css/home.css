@@ -15,14 +15,21 @@
     box-shadow: none;
 }
 
-a.button {
-    text-align: center;
-    font-family: Arial, sans-serif;
-    font-size: 1.5vw;
-}
-
 .frontpage-headline {
     color: #000000;
 }
 
+.search-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 5px; /* Juster denne værdi for at få den ønskede afstand */
+    width: 18vw;
+}
+
+.btn-primary {
+    margin-top: 5px; /* Afstand mellem input og knappen */
+    width: 10vw;
+}
 

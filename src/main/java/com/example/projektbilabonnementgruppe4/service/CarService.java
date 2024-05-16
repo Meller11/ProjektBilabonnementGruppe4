@@ -3,15 +3,11 @@ package com.example.projektbilabonnementgruppe4.service;
 import com.example.projektbilabonnementgruppe4.model.Car;
 import com.example.projektbilabonnementgruppe4.model.RentalAgreement;
 import com.example.projektbilabonnementgruppe4.repository.CarRepository;
-import com.example.projektbilabonnementgruppe4.repository.CarStatusRepository;
 import com.example.projektbilabonnementgruppe4.repository.RentalAgreementRepository;
 import com.example.projektbilabonnementgruppe4.viewModel.CarWithStatus;
-import com.example.projektbilabonnementgruppe4.viewModel.RentedCar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
-
-
 import java.util.*;
 
 @Service
@@ -21,10 +17,8 @@ public class CarService {
     private CarRepository carRepository;
 
     @Autowired
-    private CarStatusRepository carStatusRepository;
-
-    @Autowired
     private RentalAgreementRepository rentalAgreementRepository;
+
 
     public void createCar(Car car) {
         carRepository.createCar(car);
@@ -63,6 +57,10 @@ public class CarService {
 
     public List<CarWithStatus> getAllCarsWithStatus() {
         return carRepository.getAllCarsWithStatus();
+    }
+
+    public List<CarWithStatus> searchCarsWithStatus(String query) {
+        return carRepository.searchCarsWithStatus(query);
     }
 
     public double getAveragePriceOfAllCars(){

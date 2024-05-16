@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Søgeresultater</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+
+<body>
+<div th:replace="~{fragments/header.html :: header}"></div>
+
+<div class="content">
+    <div class="container">
+        <h1>Søgeresultater</h1>
+
+        <div th:if="${searchResults}">
+            <table>
+                <thead>
+                <tr>
+                    <th>Stelnummer</th>
+                    <th>Mærke</th>
+                    <th>Model</th>
+                    <th>Farve</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="car : ${searchResults}">
+                    <td th:text="${car.frameNumber}">Stelnummer</td>
+                    <td th:text="${car.brand}">Mærke</td>
+                    <td th:text="${car.model}">Model</td>
+                    <td th:text="${car.colour}">Farve</td>
+                    <td th:text="${car.statusType}">Status</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

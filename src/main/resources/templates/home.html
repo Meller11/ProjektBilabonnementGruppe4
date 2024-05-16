@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Velkommen</title>
@@ -16,7 +16,14 @@
         <h1 class="frontpage-headline"> Bilabonnement - Medarbejderportal</h1>
         <div class="links-container">
             <div th:if="${session.loggedInUser == null}">
-            <a class="button" th:href="@{/employee/login}" >Login</a>
+                <a class="button" th:href="@{/employee/login}">Login</a>
+            </div>
+            <div th:if="${session.loggedInUser != null}">
+                <form th:action="@{/cars/search}" method="get" class="search-form">
+                    <label for="query"></label>
+                    <input type="text" id="query" name="query" placeholder="Søg efter stelnummer, bilmærke eller model" class="form-control">
+                    <button type="submit" class="btn btn-primary">Søg</button>
+                </form>
             </div>
         </div>
     </div>
