@@ -1,22 +1,27 @@
 package com.example.projektbilabonnementgruppe4.controller;
 
+import com.example.projektbilabonnementgruppe4.model.Car;
 import com.example.projektbilabonnementgruppe4.model.RentalAgreement;
+import com.example.projektbilabonnementgruppe4.service.CarService;
+import com.example.projektbilabonnementgruppe4.service.CarStatusService;
 import com.example.projektbilabonnementgruppe4.service.RentalAgreementService;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
 @Controller
 public class RentalAgreementController {
 
-    private final RentalAgreementService rentalAgreementService;
+    @Autowired
+    private RentalAgreementService rentalAgreementService;
 
-    public RentalAgreementController(RentalAgreementService rentalAgreementService) {
-        this.rentalAgreementService = rentalAgreementService;
-    }
-
+    @Autowired
+    private CarStatusService carStatusService;
 
     @GetMapping("/rentalAgreements")
     public String showAllForm(Model model) {
@@ -39,14 +44,16 @@ public class RentalAgreementController {
     }
 
     @GetMapping("/createRentalAgreement")
-    public String showCreateForm(Model model) {
+    public String showCreateForm(Model model, @RequestParam("carId") int carId, HttpSession session){
+        model.addAttribute("loggedInUser", session.getAttribute("loggedInUser"));
         model.addAttribute("rentalAgreement", new RentalAgreement());
+        model.addAttribute("carId", carId);
         return "createRentalAgreement";
     }
-
     @PostMapping("/rentalAgreements")
-    public String createRentalAgreement(RentalAgreement rentalAgreement) {
+    public String createRentalAgreement(RentalAgreement rentalAgreement, @RequestParam("carId") int carId) {
         rentalAgreementService.createRentalAgreement(rentalAgreement);
+        carStatusService.updateCarStatus(carId, "Udlejet");
         return "redirect:/rentalAgreements";
     }
     @GetMapping("/rented")

@@ -2,7 +2,9 @@ package com.example.projektbilabonnementgruppe4.controller;
 
 import com.example.projektbilabonnementgruppe4.model.Car;
 import com.example.projektbilabonnementgruppe4.model.EmployeeModel;
+import com.example.projektbilabonnementgruppe4.repository.CarRepository;
 import com.example.projektbilabonnementgruppe4.service.CarService;
+import com.example.projektbilabonnementgruppe4.service.CarStatusService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,9 @@ public class CarController {
 
     @Autowired
     private CarService carService;
+
+    @Autowired
+    private CarStatusService carStatusService;
 
     @GetMapping("/create")
     public String showCreateCarForm(Model model, HttpSession session) {
@@ -34,8 +39,8 @@ public class CarController {
     public String createCar(Car car) {
         carService.createCar(car);
         Car foundCar = carService.getCarByFrameNumber(car.getFrameNumber());
-        carService.createCarStatus(foundCar.getCarId());
-        return "redirect:/car/allCarsWithStatus";
+        carStatusService.createCarStatus(foundCar.getCarId());
+        return "redirect:allCarsWithStatus";
     }
 
     @GetMapping("/allCarsWithStatus")
@@ -67,7 +72,7 @@ public class CarController {
         EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
 
         if (loggedInUser != null) {
-            model.addAttribute("unrentedCars", carService.getAllUnrentedCars());
+            model.addAttribute("carsWithStatus", carService.getAllCarsWithStatus());
             return "car/unrentedCars";
         } else {
             return "redirect:/";

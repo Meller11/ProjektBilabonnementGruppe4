@@ -17,23 +17,25 @@
                 <th>Stelnummer</th>
                 <th>Mærke</th>
                 <th>Model</th>
+                <th>Farve</th>
                 <th>Status</th>
-                <th>Handling</th>
+                <th>Rediger/Slet Bil</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="carInfo : ${carsWithStatus}">
-                <td th:text="${carInfo.car.frameNumber}">Stelnummer</td>
-                <td th:text="${carInfo.car.brand}">Mærke</td>
-                <td th:text="${carInfo.car.model}">Model</td>
-                <td th:text="${carInfo.status}">Status</td>
+                <td th:text="${carInfo.frameNumber}">Stelnummer</td>
+                <td th:text="${carInfo.brand}">Mærke</td>
+                <td th:text="${carInfo.model}">Model</td>
+                <td th:text="${carInfo.colour}">Model</td>
+                <td th:text="${carInfo.statusType}">Status</td>
                 <td>
                     <form th:action="@{/cars/edit}" method="post" style="display: inline;">
-                        <input type="hidden" name="carId" th:value="${carInfo.car.carId}" />
+                        <input type="hidden" name="carId" th:value="${carInfo.carId}" />
                         <button type="submit" class="btn btn-primary">Rediger</button>
                     </form>
                     <form th:action="@{/cars/delete}" method="post" style="display: inline;" onsubmit="return confirm('Er du sikker på, at du vil slette denne bil?');">
-                        <input type="hidden" name="carId" th:value="${carInfo.car.carId}" />
+                        <input type="hidden" name="carId" th:value="${carInfo.carId}" />
                         <button type="submit" class="btn btn-danger">Slet</button>
                     </form>
                 </td>
