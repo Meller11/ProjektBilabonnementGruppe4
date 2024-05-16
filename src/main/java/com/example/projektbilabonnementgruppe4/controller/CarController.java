@@ -2,16 +2,13 @@ package com.example.projektbilabonnementgruppe4.controller;
 
 import com.example.projektbilabonnementgruppe4.model.Car;
 import com.example.projektbilabonnementgruppe4.model.EmployeeModel;
-import com.example.projektbilabonnementgruppe4.repository.CarRepository;
 import com.example.projektbilabonnementgruppe4.service.CarService;
 import com.example.projektbilabonnementgruppe4.service.CarStatusService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/cars")
@@ -41,6 +38,33 @@ public class CarController {
         Car foundCar = carService.getCarByFrameNumber(car.getFrameNumber());
         carStatusService.createCarStatus(foundCar.getCarId());
         return "redirect:allCarsWithStatus";
+    }
+
+    @GetMapping("/showEditCarForm")
+    public String showEditCarForm(@RequestParam("frameNumber") String frameNumber, Model model, HttpSession session) {
+        EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+
+        if (loggedInUser != null) {
+            Car car = carService.getCarByFrameNumber(frameNumber);
+            model.addAttribute("car", car);
+            System.out.println(car.getAcquisitionDate());
+            return "/car/updateCar";
+        } else {
+            return "redirect:/";
+        }
+    }
+
+    @PostMapping("/updateCar")
+    public String updateCar(@ModelAttribute("car") Car car) {
+        carService.updateCar(car);
+        return "redirect:/cars/allCarsWithStatus";
+    }
+
+    @PostMapping("/deleteCar")
+    public String deleteCar(@RequestParam("frameNumber") String frameNumber) {
+        Car foundCar = carService.getCarByFrameNumber(frameNumber);
+        carService.deleteCarById(foundCar.getCarId());
+        return "redirect:/cars/allCarsWithStatus";
     }
 
     @GetMapping("/allCarsWithStatus")

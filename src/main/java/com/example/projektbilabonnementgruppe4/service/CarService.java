@@ -29,6 +29,14 @@ public class CarService {
         carRepository.createCar(car);
     }
 
+    public void updateCar(Car car) {
+        carRepository.updateCar(car);
+    }
+
+    public void deleteCarById(Integer carId) {
+        carRepository.deleteCarById(carId);
+    }
+
     public Car getCarByFrameNumber(String frameNumber) {
         try {
             return carRepository.getCarByFrameNumber(frameNumber);

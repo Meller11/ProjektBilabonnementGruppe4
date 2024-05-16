@@ -30,12 +30,12 @@
                 <td th:text="${carInfo.colour}">Model</td>
                 <td th:text="${carInfo.statusType}">Status</td>
                 <td>
-                    <form th:action="@{/cars/edit}" method="post" style="display: inline;">
-                        <input type="hidden" name="carId" th:value="${carInfo.carId}" />
+                    <form th:action="@{/cars/showEditCarForm}" method="get" style="display: inline;">
+                        <input type="hidden" name="frameNumber" th:value="${carInfo.frameNumber}" />
                         <button type="submit" class="btn btn-primary">Rediger</button>
                     </form>
-                    <form th:action="@{/cars/delete}" method="post" style="display: inline;" onsubmit="return confirm('Er du sikker på, at du vil slette denne bil?');">
-                        <input type="hidden" name="carId" th:value="${carInfo.carId}" />
+                    <form th:action="@{/cars/deleteCar}" method="post" style="display: inline;" onsubmit="return confirm('Er du sikker på, at du vil slette denne bil?');">
+                        <input type="hidden" name="frameNumber" th:value="${carInfo.frameNumber}" />
                         <button type="submit" class="btn btn-danger">Slet</button>
                     </form>
                 </td>
