@@ -32,10 +32,6 @@ public void saveNewEmployee(EmployeeModel employeeModel){
   jdbcTemplate.update(sql, employeeModel.getFirstname(), employeeModel.getLastname(), employeeModel.getUserType(), employeeModel.getUsername(), employeeModel.getPassword());
   }
 
-
-
-
-
   public EmployeeModel getEmployeeByUsername(String username) {
     String sql = "SELECT * FROM employee WHERE username = ?";
     try {
@@ -44,13 +40,10 @@ public void saveNewEmployee(EmployeeModel employeeModel){
       return null;
     }
   }
-
   public List<EmployeeModel> getAllEmployees() {
     String sql = "SELECT * FROM employee";
     return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(EmployeeModel.class));
   }
-
-
 
   public void editEmployee(EmployeeModel employeeModel) {
     String sql = "UPDATE employee SET firstname = ?, lastname = ?, user_type = ?, username = ?, password = ? WHERE username = ?";
