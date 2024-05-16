@@ -19,10 +19,9 @@ public class RentalAgreementRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public RentalAgreement createRentalAgreement(RentalAgreement rentalAgreement) {
-        String sql = "INSERT INTO contract (employee_id, car_id, contract_number, pickup_location, contract_start_date, contract_end_date, contract_type, contract_monthly_fee, milage_per_month) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public void createRentalAgreement(RentalAgreement rentalAgreement) {
+        String sql = "INSERT INTO contract (employee_id, car_id, contract_number, pickup_location, contract_start_date, contract_end_date, contract_type, contract_monthly_fee, mileage_per_month) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, rentalAgreement.getEmployeeId(), rentalAgreement.getCarId(), rentalAgreement.getContractNumber(), rentalAgreement.getPickupLocation(), rentalAgreement.getContractStartDate(), rentalAgreement.getContractEndDate(), rentalAgreement.getContractType(), rentalAgreement.getContractMonthlyFee(),rentalAgreement.getMileagePerMonth());
-        return rentalAgreement;
     }
 
     public RentalAgreement getRentalAgreement(int rentalAgreementId) {
@@ -35,10 +34,9 @@ public class RentalAgreementRepository {
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(RentalAgreement.class));
     }
 
-    public RentalAgreement updateRentalAgreement(RentalAgreement rentalAgreement) {
-        String sql = "UPDATE contract SET employee_id = ?, car_id = ?, contract_number = ?, pickup_location = ?, contract_start_date = ?, contract_end_date = ?, contract_type = ?, contract_monthly_fee = ?, milage_per_month = ? WHERE contract_id = ?";
-        jdbcTemplate.update(sql, rentalAgreement.getEmployeeId(), rentalAgreement.getCarId(), rentalAgreement.getContractNumber(), rentalAgreement.getPickupLocation(), rentalAgreement.getContractStartDate(), rentalAgreement.getContractEndDate(), rentalAgreement.getContractType(), rentalAgreement.getContractId(),rentalAgreement.getContractMonthlyFee(), rentalAgreement.getMileagePerMonth());
-        return rentalAgreement;
+    public void updateRentalAgreement(RentalAgreement rentalAgreement) {
+        String sql = "UPDATE contract SET employee_id = ?, contract_number = ?, pickup_location = ?, contract_start_date = ?, contract_end_date = ?, contract_type = ?, contract_monthly_fee = ?, mileage_per_month = ? WHERE contract_id = ?";
+        jdbcTemplate.update(sql, rentalAgreement.getEmployeeId(), rentalAgreement.getContractNumber(), rentalAgreement.getPickupLocation(), rentalAgreement.getContractStartDate(), rentalAgreement.getContractEndDate(), rentalAgreement.getContractType(),rentalAgreement.getContractMonthlyFee(), rentalAgreement.getMileagePerMonth(), rentalAgreement.getContractId());
     }
 
     public void deleteRentalAgreement(int rentalAgreementId) {
