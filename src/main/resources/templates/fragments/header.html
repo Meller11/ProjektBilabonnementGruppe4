@@ -98,7 +98,7 @@
                 <a class="navbarButton selectable" th:href="@{/employee/login}">Login</a>
             </div>
             <div th:if="${session.loggedInUser != null}">
-                <a class="navbarButton selectable" th:href="@{/employee/edit}">Profil</a>
+                <a class="navbarButton selectable" th:href="@{/employee/edit(username=${session.loggedInUser.username})}">Profil</a>
             </div>
             <div th:if="${session.loggedInUser != null}">
                 <a class="navbarButton selectable" th:href="@{/employee/logout}">Log ud</a>
