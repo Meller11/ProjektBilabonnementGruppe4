@@ -1,6 +1,7 @@
 package com.example.projektbilabonnementgruppe4.repository;
 
 import com.example.projektbilabonnementgruppe4.model.RentalAgreement;
+import com.example.projektbilabonnementgruppe4.viewModel.RentedCar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -46,9 +47,10 @@ public class RentalAgreementRepository {
     }
 
 
-    public List<RentalAgreement> getAllRentedCars() {
-        String sql = "SELECT * FROM contract";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(RentalAgreement.class));
+    public List<RentedCar> getAllRentedCars() {
+        String sql = "SELECT c.car_id, c.frame_number, c.brand, c.model, co.contract_number, co.pickup_location, co.contract_start_date, co.contract_end_date " +
+                "FROM contract co " +
+                "JOIN car c ON co.car_id = c.car_id";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(RentedCar.class));
     }
-
 }

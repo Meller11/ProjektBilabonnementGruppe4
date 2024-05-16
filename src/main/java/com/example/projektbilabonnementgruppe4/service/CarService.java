@@ -6,6 +6,7 @@ import com.example.projektbilabonnementgruppe4.repository.CarRepository;
 import com.example.projektbilabonnementgruppe4.repository.CarStatusRepository;
 import com.example.projektbilabonnementgruppe4.repository.RentalAgreementRepository;
 import com.example.projektbilabonnementgruppe4.viewModel.CarWithStatus;
+import com.example.projektbilabonnementgruppe4.viewModel.RentedCar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -43,10 +44,10 @@ public class CarService {
 
     public List<Car> getAllUnrentedCars() {
         List<Car> allCars = carRepository.getAllCars();
-        List<RentalAgreement> rentedCars = rentalAgreementRepository.getAllRentedCars();
+        List<RentalAgreement> rentedCars = rentalAgreementRepository.getAllRentalAgreements();
 
         for (RentalAgreement rentalAgreement : rentedCars) {
-            allCars.removeIf(car -> car.getCarId() == rentalAgreement.getCarId());
+            allCars.removeIf(car -> car.getCarId().equals(rentalAgreement.getCarId()));
         }
 
         return allCars;

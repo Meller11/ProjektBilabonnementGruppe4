@@ -1,17 +1,14 @@
 package com.example.projektbilabonnementgruppe4.controller;
 
-import com.example.projektbilabonnementgruppe4.model.Car;
 import com.example.projektbilabonnementgruppe4.model.RentalAgreement;
-import com.example.projektbilabonnementgruppe4.service.CarService;
 import com.example.projektbilabonnementgruppe4.service.CarStatusService;
 import com.example.projektbilabonnementgruppe4.service.RentalAgreementService;
+import com.example.projektbilabonnementgruppe4.viewModel.RentedCar;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import java.util.List;
 
 @Controller
@@ -30,17 +27,25 @@ public class RentalAgreementController {
         return "showAllRentalAgreements";
     }
 
-    @PostMapping("/rentalAgreements/update/{id}")
+    @GetMapping("/update/{id}")
+    public String showUpdateForm(@PathVariable("id") int id, Model model) {
+        RentalAgreement rentalAgreement = rentalAgreementService.getRentalAgreement(id);
+        model.addAttribute("rentalAgreement", rentalAgreement);
+        model.addAttribute("contractId", rentalAgreement.getContractId());
+        return "updateRentalAgreement";
+    }
+
+    @PostMapping("/update/{id}")
     public String updateRentalAgreement(@PathVariable("id") int id, RentalAgreement rentalAgreement) {
         rentalAgreement.setContractId(id);
         rentalAgreementService.updateRentalAgreement(rentalAgreement);
-        return "redirect:/showAllRentalAgreements";
+        return "redirect:/rented";
     }
 
-    @PostMapping("/rentalAgreements/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String deleteRentalAgreement(@PathVariable("id") int id) {
         rentalAgreementService.deleteRentalAgreement(id);
-        return "redirect:/showAllRentalAgreements";
+        return "redirect:/rented";
     }
 
     @GetMapping("/createRentalAgreement")
@@ -58,7 +63,7 @@ public class RentalAgreementController {
     }
     @GetMapping("/rented")
     public String showAllRentedCars(Model model) {
-        List<RentalAgreement> rentedCars = rentalAgreementService.getAllRentedCars();
+        List<RentedCar> rentedCars = rentalAgreementService.getAllRentedCars();
         model.addAttribute("rentedCars", rentedCars);
         return "car/rentedCars";
     }

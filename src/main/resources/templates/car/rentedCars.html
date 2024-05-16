@@ -1,29 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Status over flådens biler</title>
+    <title>Rented Cars</title>
     <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
 <div th:replace="~{fragments/header.html :: header}"></div>
 
-<h1>Rented Cars</h1>
-<table>
-    <tr>
-        <th>Brand</th>
-        <th>Model</th>
-        <th>Colour</th>
-        <!-- Add more columns as needed -->
-    </tr>
-    <tr th:each="car : ${rentedCars}">
-        <td th:text="${car.brand}"></td>
-        <td th:text="${car.model}"></td>
-        <td th:text="${car.colour}"></td>
-        <!-- Add more data as needed -->
-    </tr>
-</table>
-<a href="/cars/all">Show All Cars</a>
-<a href="/cars/unrented">Show Unrented Cars</a>
+<div class="content">
+    <div class="container">
+        <h1>Rented Cars</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>Frame Number</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Contract Number</th>
+                <th>Pickup Location</th>
+                <th>Contract Start Date</th>
+                <th>Contract End Date</th>
+                <th>Rediger/Slet lejekontrakt</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="car : ${rentedCars}">
+                <td th:text="${car.frameNumber}">Frame Number</td>
+                <td th:text="${car.brand}">Brand</td>
+                <td th:text="${car.model}">Model</td>
+                <td th:text="${car.contractNumber}">Contract Number</td>
+                <td th:text="${car.pickupLocation}">Pickup Location</td>
+                <td th:text="${car.contractStartDate}">Contract Start Date</td>
+                <td th:text="${car.contractEndDate}">Contract End Date</td>
+                <td>
+                    <!--form th:action="@{/update/{id}(id=${car.contractId})}" method="get"-->
+                        <form th:action="@{/update/{id}(id=${contractId})}" th:object="${rentalAgreement}" method="get">
+                        <input type="hidden" name="contractId" th:value="${car.contractId}" />
+                        <input type="hidden" name="carId" th:value="${car.carId}" />
+                        <input type="submit" value="Rediger">
+                    </form>
+                    <form th:action="@{/delete/{id}(id=${car.contractId})}" method="post">
+                        <input type="submit" value="Slet">
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>
