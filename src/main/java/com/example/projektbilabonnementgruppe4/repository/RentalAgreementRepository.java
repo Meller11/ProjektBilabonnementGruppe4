@@ -59,4 +59,9 @@ public class RentalAgreementRepository {
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 
+    public double getTotalMileageOfContracts(){
+        String sql = "SELECT SUM(mileage_per_month) FROM contract;";
+        return jdbcTemplate.queryForObject(sql, Double.class);
+    }
+
 }

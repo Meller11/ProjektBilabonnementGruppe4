@@ -40,6 +40,7 @@ public class FinanceController {
             model.addAttribute("totalPriceOfAllCars", carService.getTotalPriceOfAllCars());
             model.addAttribute("averageMonthsLeft", rentalAgreementService.getDifferenceInMonthsAverageRemaining());
             model.addAttribute("averageMonthsTotal", rentalAgreementService.getDifferenceInMonthsAverageTotal());
+            model.addAttribute("averageMilagePerContract", rentalAgreementService.getAverageOfMileageOfContracts());
             return "/finance/financeOverview";
        // } else {
        //     return "redirect:/";

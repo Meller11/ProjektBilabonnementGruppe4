@@ -71,4 +71,10 @@ public class RentalAgreementService {
         monthDifferenceAverage = totalMonths / getAllRentalAgreements().size();
         return monthDifferenceAverage;
     }
+
+    public double getAverageOfMileageOfContracts(){
+        double averageMileagePerContract = rentalAgreementRepository.getTotalMileageOfContracts() / getAllRentalAgreements().size();
+        return averageMileagePerContract;
+    }
+
 }
