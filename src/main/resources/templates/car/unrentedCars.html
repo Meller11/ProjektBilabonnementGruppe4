@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Status over flådens biler</title>
@@ -8,22 +8,37 @@
 <body>
 <div th:replace="~{fragments/header.html :: header}"></div>
 
-<h1>Unrented Cars</h1>
-<table>
-    <tr>
-        <th>Brand</th>
-        <th>Model</th>
-        <th>Colour</th>
-        <!-- Add more columns as needed -->
-    </tr>
-    <tr th:each="car : ${unrentedCars}">
-        <td th:text="${car.brand}"></td>
-        <td th:text="${car.model}"></td>
-        <td th:text="${car.colour}"></td>
-        <!-- Add more data as needed -->
-    </tr>
-</table>
-<a href="/cars/all">Show All Cars</a>
-<a href="/cars/rented">Show Rented Cars</a>
+<div class="content">
+    <div class="container">
+        <h1>Status for flådens biler</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>Stelnummer</th>
+                <th>Mærke</th>
+                <th>Model</th>
+                <th>Farve</th>
+                <th>Status</th>
+                <th>Opret lejekontrakt</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="carInfo : ${carsWithStatus}" th:if="${carInfo?.statusType=='Klar til udlejning'}">
+                <td th:text="${carInfo.frameNumber}">Stelnummer</td>
+                <td th:text="${carInfo.brand}">Mærke</td>
+                <td th:text="${carInfo.model}">Model</td>
+                <td th:text="${carInfo.colour}">Model</td>
+                <td th:text="${carInfo.statusType}">Status</td>
+                <td>
+                    <form th:action="@{/createRentalAgreement}" method="get" style="display: inline;">
+                        <input type="hidden" name="carId" th:value="${carInfo.carId}" />
+                        <button type="submit" class="btn btn-primary">Opret lejekontrakt</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>

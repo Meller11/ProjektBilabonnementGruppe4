@@ -72,7 +72,7 @@ public class CarController {
         EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
 
         if (loggedInUser != null) {
-            model.addAttribute("unrentedCars", carService.getAllUnrentedCars());
+            model.addAttribute("carsWithStatus", carService.getAllCarsWithStatus());
             return "car/unrentedCars";
         } else {
             return "redirect:/";
