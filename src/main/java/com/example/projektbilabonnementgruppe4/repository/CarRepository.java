@@ -46,4 +46,9 @@ public class CarRepository {
         ));
     }
 
+    public double getAveragePriceOfAllCars(){
+        String sql = "SELECT avg(price) FROM car";
+        return jdbcTemplate.queryForObject(sql, Double.class);
+    }
+
 }

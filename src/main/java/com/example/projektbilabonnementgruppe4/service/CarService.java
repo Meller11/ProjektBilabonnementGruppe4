@@ -55,4 +55,16 @@ public class CarService {
     public List<CarWithStatus> getAllCarsWithStatus() {
         return carRepository.getAllCarsWithStatus();
     }
+
+    public double getAveragePriceOfAllCars(){
+        return carRepository.getAveragePriceOfAllCars();
+    }
+
+    public double getTotalPriceOfAllCars(){
+        double totalCarPrice=0;
+        for (int i = 0; getAllCars().size()>i; i++){
+            totalCarPrice += getAllCars().get(i).getPrice();
+        }
+        return totalCarPrice;
+    }
 }

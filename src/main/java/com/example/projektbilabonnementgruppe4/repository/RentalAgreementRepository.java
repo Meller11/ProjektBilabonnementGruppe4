@@ -51,4 +51,9 @@ public class RentalAgreementRepository {
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(RentalAgreement.class));
     }
 
+    public int getAverageMonthlyFee(){
+        String sql = "SELECT AVG(contract_monthly_fee) FROM contract;";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
 }

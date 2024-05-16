@@ -12,15 +12,25 @@
 <div th:replace="~{fragments/header.html :: header}"></div>
 
 <div class="content">
-    <div th:if="${cars.size()<10}">
+   <!-- <div th:if="${cars.size()<10}">
         <div class="carsAlertDiv" th:if="${user.getUserType() == 'Forretningsudvikler'}">
             <span class="closebutton" onclick="this.parentElement.style.display='none';" th:value="${warning}">&times;</span>
             Der er færrere end 10 biler på lager!
-        </div>
+        </div> -->
     <div class="container">
         <h1>Økonomisk Oversigt</h1>
-
-        </div>
+        <p>Herunder finder du forskellige former af økonomiske oversigter</p>
+        <h4>Gennemsnitlig Månedelig Leje Kontrakt Betaling</h4>
+        <p th:text="${averageContractMonthlyFee}"></p>
+        <h4>Gennemsnitlig Pris Af Alle Biler I Flåden</h4>
+        <p th:text="${averageCostOfCars}"></p>
+        <h4>Total Pris Af Alle Biler I Flåden</h4>
+        <p th:text="${totalPriceOfAllCars}"></p>
+        <h4>Gennemsnitlig Mængde Måneder Af Leje Kontrakter</h4>
+        <p th:text="${averageMonthsTotal}"></p>
+        <h4>Gennemsnitlig Mængde Måneder Tilbage Af Leje Kontrakter</h4>
+        <p th:text="${averageMonthsLeft}"></p>
+    </div>
 
 
 </div>
