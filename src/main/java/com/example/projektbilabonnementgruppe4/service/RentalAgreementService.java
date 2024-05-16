@@ -16,8 +16,8 @@ public class RentalAgreementService {
    @Autowired
    private RentalAgreementRepository rentalAgreementRepository;
 
-    public RentalAgreement createRentalAgreement(RentalAgreement rentalAgreement) {
-        return rentalAgreementRepository.createRentalAgreement(rentalAgreement);
+    public void createRentalAgreement(RentalAgreement rentalAgreement) {
+         rentalAgreementRepository.createRentalAgreement(rentalAgreement);
     }
     public List<RentalAgreement> getAllRentalAgreements() {
         return rentalAgreementRepository.getAllRentalAgreements();
@@ -27,8 +27,8 @@ public class RentalAgreementService {
         return rentalAgreementRepository.getRentalAgreement(rentalAgreementId);
     }
 
-    public RentalAgreement updateRentalAgreement(RentalAgreement rentalAgreement) {
-        return rentalAgreementRepository.updateRentalAgreement(rentalAgreement);
+    public void updateRentalAgreement(RentalAgreement rentalAgreement) {
+        rentalAgreementRepository.updateRentalAgreement(rentalAgreement);
     }
 
     public void deleteRentalAgreement(int rentalAgreementId) {

@@ -31,13 +31,11 @@ public class RentalAgreementController {
     public String showUpdateForm(@RequestParam("contractId") int contractId, Model model) {
         RentalAgreement rentalAgreement = rentalAgreementService.getRentalAgreement(contractId);
         model.addAttribute("rentalAgreement", rentalAgreement);
-        model.addAttribute("contractId", rentalAgreement.getContractId());
         return "updateRentalAgreement";
     }
 
     @PostMapping("/update")
-    public String updateRentalAgreement(@RequestParam("contractId") int contractId, RentalAgreement rentalAgreement) {
-        rentalAgreement.setContractId(contractId);
+    public String updateRentalAgreement(@ModelAttribute ("rentalAgreement") RentalAgreement rentalAgreement){
         rentalAgreementService.updateRentalAgreement(rentalAgreement);
         return "redirect:/rented";
     }
