@@ -10,17 +10,17 @@
 
 <div class="content">
     <div class="container">
-        <h1>Rented Cars</h1>
+        <h1>Udlejede biler</h1>
         <table>
             <thead>
             <tr>
-                <th>Frame Number</th>
-                <th>Brand</th>
+                <th>Stelnummer</th>
+                <th>Mærke</th>
                 <th>Model</th>
-                <th>Contract Number</th>
-                <th>Pickup Location</th>
-                <th>Contract Start Date</th>
-                <th>Contract End Date</th>
+                <th>Kontrakt nummer</th>
+                <th>Afhentningssted</th>
+                <th>Kontrakt start dato</th>
+                <th>Kontrakt slut dato</th>
                 <th>Rediger/Slet lejekontrakt</th>
             </tr>
             </thead>
@@ -34,7 +34,6 @@
                 <td th:text="${car.contractStartDate}">Contract Start Date</td>
                 <td th:text="${car.contractEndDate}">Contract End Date</td>
                 <td>
-                    <!--form th:action="@{/update/{id}(id=${car.contractId})}" method="get"-->
                     <form th:action="@{/update}" method="get" style="display: inline;">
                         <input type="hidden" name="contractId" th:value="${car.contractId}" />
                         <button type="submit" class="btn btn-primary">Rediger</button>
