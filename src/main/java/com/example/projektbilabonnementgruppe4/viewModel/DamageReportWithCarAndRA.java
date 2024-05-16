@@ -1,8 +1,8 @@
-package com.example.projektbilabonnementgruppe4.model;
+package com.example.projektbilabonnementgruppe4.viewModel;
 
 import java.time.LocalDate;
 
-public class DamageReportInformation {
+public class DamageReportWithCarAndRA {
 
     private Integer carId;
     private String frameNumber;
@@ -28,10 +28,10 @@ public class DamageReportInformation {
     private boolean damageReportDone;
 
 
-    public DamageReportInformation() {
+    public DamageReportWithCarAndRA() {
     }
 
-    public DamageReportInformation(Integer carId, String frameNumber, String brand, String model, String colour, double price, int employeeId, String firstName, String lastName, String username, int contractId, String contractNumber, LocalDate contractStartDate, LocalDate contractEndDate, String contractType, int damageReportId, boolean paintDamage, boolean rimDamage, boolean windshieldDamage, int mileage, LocalDate reportDate, boolean damageReportDone) {
+    public DamageReportWithCarAndRA(Integer carId, String frameNumber, String brand, String model, String colour, double price, int employeeId, String firstName, String lastName, String username, int contractId, String contractNumber, LocalDate contractStartDate, LocalDate contractEndDate, String contractType, int damageReportId, boolean paintDamage, boolean rimDamage, boolean windshieldDamage, int mileage, LocalDate reportDate, boolean damageReportDone) {
         this.carId = carId;
         this.frameNumber = frameNumber;
         this.brand = brand;

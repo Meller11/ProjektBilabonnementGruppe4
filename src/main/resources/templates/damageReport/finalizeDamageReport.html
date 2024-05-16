@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link th:href="@{/css/employee/employeeList.css}" rel="stylesheet">
+    <<link th:href="@{/css/style.css}" rel="stylesheet">
     <head>
 <body>
+<div th:replace="~{fragments/header.html :: header}"></div>
 <div class="container">
     <h2>Liste Over Fuldførte Skades Rapporter</h2>
     <tr th:each="finalizeDamageReport : ${finalizeDamageReport}" class="employee-row">

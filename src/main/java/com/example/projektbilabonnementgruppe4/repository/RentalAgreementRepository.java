@@ -53,4 +53,10 @@ public class RentalAgreementRepository {
                 "JOIN car c ON co.car_id = c.car_id";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(RentedCar.class));
     }
+
+    public int getAverageMonthlyFee(){
+        String sql = "SELECT AVG(contract_monthly_fee) FROM contract;";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
 }

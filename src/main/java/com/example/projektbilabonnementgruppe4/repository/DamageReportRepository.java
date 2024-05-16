@@ -1,9 +1,7 @@
 package com.example.projektbilabonnementgruppe4.repository;
 
 import com.example.projektbilabonnementgruppe4.model.DamageReport;
-import com.example.projektbilabonnementgruppe4.model.DamageReportInformation;
-import com.example.projektbilabonnementgruppe4.model.EmployeeModel;
-import com.example.projektbilabonnementgruppe4.model.RentalAgreement;
+import com.example.projektbilabonnementgruppe4.viewModel.DamageReportWithCarAndRA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -31,7 +29,7 @@ public class DamageReportRepository {
         jdbcTemplate.update(sql, contract_id);
     }
 
-    public List<DamageReportInformation> damageReportOverview (){
+    public List<DamageReportWithCarAndRA> damageReportOverview (){
         String sql = "SELECT *" +
                 "FROM contract\n" +
                 "INNER JOIN car\n" +
@@ -40,10 +38,10 @@ public class DamageReportRepository {
                 "ON employee.employee_id = contract.employee_id\n" +
                 "INNER JOIN damage_report\n" +
                 "ON contract.contract_id = damage_report.contract_id;";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(DamageReportInformation.class));
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(DamageReportWithCarAndRA.class));
     }
 
-    public DamageReportInformation damageReportByID(int contract_id){
+    public DamageReportWithCarAndRA damageReportByID(int contract_id){
         String sql = "SELECT *" +
                 "FROM contract\n" +
                 "INNER JOIN car\n" +
@@ -54,7 +52,7 @@ public class DamageReportRepository {
                 "ON contract.contract_id = damage_report.contract_id\n" +
                 "WHERE contract.contract_id = ?;";
         try {
-            return jdbcTemplate.queryForObject(sql, new Object[]{contract_id}, new BeanPropertyRowMapper<>(DamageReportInformation.class));
+            return jdbcTemplate.queryForObject(sql, new Object[]{contract_id}, new BeanPropertyRowMapper<>(DamageReportWithCarAndRA.class));
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

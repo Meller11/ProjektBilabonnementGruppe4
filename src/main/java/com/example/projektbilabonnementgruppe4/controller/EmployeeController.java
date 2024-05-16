@@ -19,13 +19,13 @@ public class EmployeeController {
   private final EmployeeService employeeService;
 
   @Autowired
-  public EmployeeController(EmployeeService employeeService){
+  public EmployeeController(EmployeeService employeeService) {
     this.employeeService = employeeService;
   }
 
   //Viser siden for medarbejder login
   @GetMapping("/login")
-  public String showEmployeeLogin(Model model){
+  public String showEmployeeLogin(Model model) {
     model.addAttribute("employeeModel", new EmployeeModel());
     return "employee/employeeLogin";
   }
@@ -35,7 +35,7 @@ public class EmployeeController {
   public String processEmployeeLogin(@RequestParam String username, @RequestParam String password, HttpSession session, RedirectAttributes redirectAttributes) {
     EmployeeModel loggedInUser = employeeService.validateUser(username, password);
 
-    if (loggedInUser != null){
+    if (loggedInUser != null) {
       session.setAttribute("loggedInUser", loggedInUser);
       return "redirect:/";
     } else {
@@ -52,7 +52,7 @@ public class EmployeeController {
 
   //viser siden for registrering af ny medarbejder
   @GetMapping("/register")
-  public String showRegisterNewEmployee( Model model, HttpSession session) {
+  public String showRegisterNewEmployee(Model model, HttpSession session) {
     EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
 
     if (loggedInUser != null) {
@@ -83,12 +83,13 @@ public class EmployeeController {
     }
   }
 
-  // Viser siden for redigering af medarbejder/vej til profile
+
+  //
   @GetMapping("/edit")
-  public String showEditEmployee( Model model, HttpSession session) {
+  public String showEditEmployee(@RequestParam String username, Model model, HttpSession session) {
     EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
 
-    EmployeeModel employeeModel = employeeService.getEmployeeByUsername(loggedInUser.getUsername());
+    EmployeeModel employeeModel = employeeService.getEmployeeByUsername(username);
 
     if (loggedInUser != null) {
       model.addAttribute("employeeModel", employeeModel);
@@ -120,3 +121,4 @@ public class EmployeeController {
     return "redirect:/employee/list";
   }
 }
+

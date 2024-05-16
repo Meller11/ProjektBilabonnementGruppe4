@@ -107,3 +107,28 @@ th {
 tr:nth-child(odd) {
     background-color: #e8e8e8;
 }
+
+
+.carsAlertDiv {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.closebutton {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}

@@ -23,6 +23,16 @@ public class CarRepository {
                 car.getEmission(), car.getAcquisitionDate());
     }
 
+    public void updateCar(Car car) {
+        String sql = "UPDATE car SET frame_number = ?, brand = ?, model = ?, colour = ?, gear_type = ?, fuel_type = ?, price = ?, registration_fee = ?, emission = ?, acquisition_date = ? WHERE car_id = ?";
+        jdbcTemplate.update(sql, car.getFrameNumber(), car.getBrand(), car.getModel(), car.getColour(), car.getGearType(), car.getFuelType(), car.getPrice(), car.getRegistrationFee(), car.getEmission(), car.getAcquisitionDate(), car.getCarId());
+    }
+
+    public void deleteCarById(Integer carId) {
+        String sql = "DELETE FROM car WHERE car_id = ?";
+        jdbcTemplate.update(sql, carId);
+    }
+
     public Car getCarByFrameNumber(String frameNumber) {
         String sql = "SELECT * FROM car WHERE frame_number = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{frameNumber}, new BeanPropertyRowMapper<>(Car.class));
@@ -44,6 +54,11 @@ public class CarRepository {
                 rs.getString("colour"),
                 rs.getString("car_status_type")
         ));
+    }
+
+    public double getAveragePriceOfAllCars(){
+        String sql = "SELECT avg(price) FROM car";
+        return jdbcTemplate.queryForObject(sql, Double.class);
     }
 
 }

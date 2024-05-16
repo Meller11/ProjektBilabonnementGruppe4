@@ -30,6 +30,14 @@ public class CarService {
         carRepository.createCar(car);
     }
 
+    public void updateCar(Car car) {
+        carRepository.updateCar(car);
+    }
+
+    public void deleteCarById(Integer carId) {
+        carRepository.deleteCarById(carId);
+    }
+
     public Car getCarByFrameNumber(String frameNumber) {
         try {
             return carRepository.getCarByFrameNumber(frameNumber);
@@ -55,5 +63,17 @@ public class CarService {
 
     public List<CarWithStatus> getAllCarsWithStatus() {
         return carRepository.getAllCarsWithStatus();
+    }
+
+    public double getAveragePriceOfAllCars(){
+        return carRepository.getAveragePriceOfAllCars();
+    }
+
+    public double getTotalPriceOfAllCars(){
+        double totalCarPrice=0;
+        for (int i = 0; getAllCars().size()>i; i++){
+            totalCarPrice += getAllCars().get(i).getPrice();
+        }
+        return totalCarPrice;
     }
 }
