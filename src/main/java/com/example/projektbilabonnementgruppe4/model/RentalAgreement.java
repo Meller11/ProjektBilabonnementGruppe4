@@ -12,11 +12,12 @@ public class RentalAgreement {
     private LocalDate contractEndDate;
     private String contractType;
     private double contractMonthlyFee;
+    private double mileagePerMonth;
 
     public RentalAgreement() {
     }
 
-    public RentalAgreement(int contractId, int employeeId, int carId, String contractNumber, String pickupLocation, LocalDate contractStartDate, LocalDate contractEndDate, String contractType, double contractMonthlyFee) {
+    public RentalAgreement(int contractId, int employeeId, int carId, String contractNumber, String pickupLocation, LocalDate contractStartDate, LocalDate contractEndDate, String contractType, double contractMonthlyFee, double mileagePerMonth) {
         this.contractId = contractId;
         this.employeeId = employeeId;
         this.carId = carId;
@@ -26,6 +27,7 @@ public class RentalAgreement {
         this.contractEndDate = contractEndDate;
         this.contractType = contractType;
         this.contractMonthlyFee = contractMonthlyFee;
+        this.mileagePerMonth = mileagePerMonth;
     }
 
     public double getContractMonthlyFee() {
@@ -98,6 +100,14 @@ public class RentalAgreement {
 
     public void setContractType(String contractType) {
         this.contractType = contractType;
+    }
+
+    public double getMileagePerMonth() {
+        return mileagePerMonth;
+    }
+
+    public void setMileagePerMonth(double mileagePerMonth) {
+        this.mileagePerMonth = mileagePerMonth;
     }
 
     @Override

@@ -42,6 +42,19 @@
                 <label for="contractMonthlyFee">Monthly fee:</label>
                 <input type="number" step="0.01" id="contractMonthlyFee" th:field="*{contractMonthlyFee}" placeholder="Monthly fee" required>
             </div>
+            <div class="form-group">
+                <label for="milagePerMonth">Milage Per Month:</label>
+                <select id="milagePerMonth" name="milagePerMonth" th:field="*{mileagePerMonth}" required>
+                    <option value="1500">1.500 km</option>
+                    <option value="1750">1.750 km</option>
+                    <option value="2000">2.000 km</option>
+                    <option value="2500">2.500 km</option>
+                    <option value="3000">3.000 km</option>
+                    <option value="3500">3.500 km</option>
+                    <option value="4000">4.000 km</option>
+                    <option value="4500">4.500 km</option>
+                </select>
+            </div>
             <button type="submit" class="button">Submit</button>
         </form>
     </div>

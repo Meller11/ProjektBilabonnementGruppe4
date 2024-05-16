@@ -35,13 +35,14 @@
                 <td th:text="${car.contractEndDate}">Contract End Date</td>
                 <td>
                     <!--form th:action="@{/update/{id}(id=${car.contractId})}" method="get"-->
-                        <form th:action="@{/update/{id}(id=${contractId})}" th:object="${rentalAgreement}" method="get">
+                    <form th:action="@{/update}" method="get" style="display: inline;">
+                        <input type="hidden" name="contractId" th:value="${car.contractId}" />
+                        <button type="submit" class="btn btn-primary">Rediger</button>
+                    </form>
+                    <form th:action="@{/delete}" method="post" style="display: inline;" onsubmit="return confirm('Er du sikker på, at du vil slette denne kontrakt?');">
                         <input type="hidden" name="contractId" th:value="${car.contractId}" />
                         <input type="hidden" name="carId" th:value="${car.carId}" />
-                        <input type="submit" value="Rediger">
-                    </form>
-                    <form th:action="@{/delete/{id}(id=${car.contractId})}" method="post">
-                        <input type="submit" value="Slet">
+                        <button type="submit" class="btn btn-danger">Slet</button>
                     </form>
                 </td>
             </tr>

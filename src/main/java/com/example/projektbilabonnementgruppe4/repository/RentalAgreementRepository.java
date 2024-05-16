@@ -20,8 +20,8 @@ public class RentalAgreementRepository {
     }
 
     public RentalAgreement createRentalAgreement(RentalAgreement rentalAgreement) {
-        String sql = "INSERT INTO contract (employee_id, car_id, contract_number, pickup_location, contract_start_date, contract_end_date, contract_type, contract_monthly_fee) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, rentalAgreement.getEmployeeId(), rentalAgreement.getCarId(), rentalAgreement.getContractNumber(), rentalAgreement.getPickupLocation(), rentalAgreement.getContractStartDate(), rentalAgreement.getContractEndDate(), rentalAgreement.getContractType(), rentalAgreement.getContractMonthlyFee());
+        String sql = "INSERT INTO contract (employee_id, car_id, contract_number, pickup_location, contract_start_date, contract_end_date, contract_type, contract_monthly_fee, milage_per_month) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, rentalAgreement.getEmployeeId(), rentalAgreement.getCarId(), rentalAgreement.getContractNumber(), rentalAgreement.getPickupLocation(), rentalAgreement.getContractStartDate(), rentalAgreement.getContractEndDate(), rentalAgreement.getContractType(), rentalAgreement.getContractMonthlyFee(),rentalAgreement.getMileagePerMonth());
         return rentalAgreement;
     }
 
@@ -36,8 +36,8 @@ public class RentalAgreementRepository {
     }
 
     public RentalAgreement updateRentalAgreement(RentalAgreement rentalAgreement) {
-        String sql = "UPDATE contract SET employee_id = ?, car_id = ?, contract_number = ?, pickup_location = ?, contract_start_date = ?, contract_end_date = ?, contract_type = ?, contract_monthly_fee = ? WHERE contract_id = ?";
-        jdbcTemplate.update(sql, rentalAgreement.getEmployeeId(), rentalAgreement.getCarId(), rentalAgreement.getContractNumber(), rentalAgreement.getPickupLocation(), rentalAgreement.getContractStartDate(), rentalAgreement.getContractEndDate(), rentalAgreement.getContractType(), rentalAgreement.getContractId());
+        String sql = "UPDATE contract SET employee_id = ?, car_id = ?, contract_number = ?, pickup_location = ?, contract_start_date = ?, contract_end_date = ?, contract_type = ?, contract_monthly_fee = ?, milage_per_month = ? WHERE contract_id = ?";
+        jdbcTemplate.update(sql, rentalAgreement.getEmployeeId(), rentalAgreement.getCarId(), rentalAgreement.getContractNumber(), rentalAgreement.getPickupLocation(), rentalAgreement.getContractStartDate(), rentalAgreement.getContractEndDate(), rentalAgreement.getContractType(), rentalAgreement.getContractId(),rentalAgreement.getContractMonthlyFee(), rentalAgreement.getMileagePerMonth());
         return rentalAgreement;
     }
 
@@ -48,7 +48,7 @@ public class RentalAgreementRepository {
 
 
     public List<RentedCar> getAllRentedCars() {
-        String sql = "SELECT c.car_id, c.frame_number, c.brand, c.model, co.contract_number, co.pickup_location, co.contract_start_date, co.contract_end_date " +
+        String sql = "SELECT c.car_id, c.frame_number, c.brand, c.model, co.contract_id, co.contract_number, co.pickup_location, co.contract_start_date, co.contract_end_date " +
                 "FROM contract co " +
                 "JOIN car c ON co.car_id = c.car_id";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(RentedCar.class));

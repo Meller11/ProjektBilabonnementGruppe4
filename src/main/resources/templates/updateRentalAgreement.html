@@ -12,7 +12,7 @@
     <div class="container">
         <h1>Update Rental Agreement</h1>
 
-        <form th:action="@{/update/{id}(id=${rentalAgreement.contractId})}" th:object="${rentalAgreement}" method="post">
+        <form th:action="@{update}" method="post" th:object="${rentalAgreement}">
             <input type="hidden" th:field="*{contractId}" />
             <div class="form-group">
                 <label for="contractNumber">Contract Number</label>
@@ -31,12 +31,28 @@
                 <input type="date" th:field="*{contractEndDate}" id="contractEndDate" required>
             </div>
             <div class="form-group">
-                <label for="contractType">Contract Type</label>
-                <input type="text" th:field="*{contractType}" id="contractType" required>
+                <label for="contractType">Contract Type:</label>
+                <select id="contractType" th:field="*{contractType}">
+                    <option value="Limited">Limited</option>
+                    <option value="Unlimited">Unlimited</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="contractMonthlyFee">Contract Monthly Fee</label>
                 <input type="number" th:field="*{contractMonthlyFee}" id="contractMonthlyFee" required>
+            </div>
+            <div class="form-group">
+                <label for="milagePerMonth">Milage Per Month:</label>
+                <select id="milagePerMonth" name="milagePerMonth" th:field="*{mileagePerMonth}" required>
+                    <option value="1500">1.500 km</option>
+                    <option value="1750">1.750 km</option>
+                    <option value="2000">2.000 km</option>
+                    <option value="2500">2.500 km</option>
+                    <option value="3000">3.000 km</option>
+                    <option value="3500">3.500 km</option>
+                    <option value="4000">4.000 km</option>
+                    <option value="4500">4.500 km</option>
+                </select>
             </div>
             <button type="submit">Update</button>
         </form>

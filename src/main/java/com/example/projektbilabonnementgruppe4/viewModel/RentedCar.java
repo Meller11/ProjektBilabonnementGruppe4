@@ -12,12 +12,13 @@ public class RentedCar {
     private String pickupLocation;
     private LocalDate contractStartDate;
     private LocalDate contractEndDate;
+    private double milagePerMonth;
 
 
     public RentedCar() {
     }
 
-    public RentedCar(Integer carId,Integer contractId,String frameNumber, String brand, String model, String contractNumber, String pickupLocation, LocalDate contractStartDate, LocalDate contractEndDate) {
+    public RentedCar(Integer carId,Integer contractId,String frameNumber, String brand, String model, String contractNumber, String pickupLocation, LocalDate contractStartDate, LocalDate contractEndDate, double milagePerMonth) {
         this.carId = carId;
         this.contractId = contractId;
         this.frameNumber = frameNumber;
@@ -27,6 +28,7 @@ public class RentedCar {
         this.pickupLocation = pickupLocation;
         this.contractStartDate = contractStartDate;
         this.contractEndDate = contractEndDate;
+        this.milagePerMonth = milagePerMonth;
     }
 
     public Integer getCarId() {
@@ -99,5 +101,13 @@ public class RentedCar {
 
     public void setContractEndDate(LocalDate contractEndDate) {
         this.contractEndDate = contractEndDate;
+    }
+
+    public double getMilagePerMonth() {
+        return milagePerMonth;
+    }
+
+    public void setMilagePerMonth(double milagePerMonth) {
+        this.milagePerMonth = milagePerMonth;
     }
 }
