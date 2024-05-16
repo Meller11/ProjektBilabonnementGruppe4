@@ -69,7 +69,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="dropdown" th:if="${session?.loggedInUser?.userType == 'chef'}">
+                <div class="dropdown" th:if="${session?.loggedInUser?.userType == 'Forretningsudvikler'}">
                 <button class="navbarButton notSelectable">Økonomi og Statistik</button>
                     <div class="dropdown-content">
                         <a th:href="@{/business/economy}" class="a">
@@ -80,7 +80,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="dropdown" th:if="${session?.loggedInUser?.userType == 'admin'}">
+                <div class="dropdown" th:if="${session?.loggedInUser?.userType == 'Admin'}">
                     <button class="navbarButton notSelectable">Administrator</button>
                     <div class="dropdown-content">
                         <a th:href="@{/employee/register}">
