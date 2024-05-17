@@ -76,7 +76,7 @@ public class DamageReportController {
     @PostMapping("/deleteDamageReport/{contract_id}")
     public String deleteDamageReport(@PathVariable int contract_id){
         damageReportService.deleteDamageReport(contract_id);
-        return "redirect:/damageReport";
+        return "redirect:/damageReport/";
     }
 
     @GetMapping("/FinalReport/{contract_id}")
@@ -100,10 +100,10 @@ public class DamageReportController {
         if (mileageOfContract >= 0){
             priceOfTooManyMiles = 0;
         } else {
-            priceOfTooManyMiles = (rentalAgreementService.getTotalMilesPerContract(contract_id) - damageReportService.damageReportByID(contract_id).getMileage())*0.75;
+            priceOfTooManyMiles = -((rentalAgreementService.getTotalMilesPerContract(contract_id) - damageReportService.damageReportByID(contract_id).getMileage())*0.75);
         }
-        double totalPriceOfContract = priceForDamages + -priceOfTooManyMiles + rentalAgreementService.getTotalPriceOfMileageInContract(contract_id);
-        model.addAttribute("priceForMileageTotal", -priceOfTooManyMiles);
+        double totalPriceOfContract = priceForDamages + priceOfTooManyMiles + rentalAgreementService.getTotalPriceOfMileageInContract(contract_id);
+        model.addAttribute("priceForMileageTotal", priceOfTooManyMiles);
         model.addAttribute("totalPriceOfContract", totalPriceOfContract);
         model.addAttribute("priceForDamages", priceForDamages);
         model.addAttribute("finalDamageReport", finalDamageReport);

@@ -123,7 +123,7 @@ public class RentalAgreementService {
 
     public double getTotalPriceOfMileageInContract(int contractID){
         double totalMileageForContract = 0;
-        switch ((int)rentalAgreementRepository.getTotalMileageOfContracts()){
+        switch ((int)rentalAgreementRepository.getMileageOfContract(contractID)){
             case 1500:
                 break;
             case 1750:
@@ -151,6 +151,7 @@ public class RentalAgreementService {
                 break;
 
         }
+        System.out.println(totalMileageForContract);
         return totalMileageForContract;
     }
 
