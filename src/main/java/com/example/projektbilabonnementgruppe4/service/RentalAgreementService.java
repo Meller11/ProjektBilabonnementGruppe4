@@ -4,6 +4,7 @@ import com.example.projektbilabonnementgruppe4.model.RentalAgreement;
 import com.example.projektbilabonnementgruppe4.repository.RentalAgreementRepository;
 import com.example.projektbilabonnementgruppe4.viewModel.RentedCar;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -89,70 +90,91 @@ public class RentalAgreementService {
 
     public int getTotalMilesPerContract(int contractID){
         int totalMileageForContract = 0;
-        switch ((int)rentalAgreementRepository.getMileageOfContract(contractID)){
-            case 1500:
-                totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 1500;
-                break;
-            case 1750:
-                totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 1750;
-                break;
-            case 2000:
-                totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 2000;
-                break;
-            case 2500:
-                totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 2500;
-                break;
-            case 3000:
-                totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 3000;
-                break;
-            case 3500:
-                totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 3500;
-                break;
-            case 4000:
-                totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 4000;
-                break;
-            case 4500:
-                totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 4500;
-                break;
-            default:
-                break;
-
+        switch ((int) rentalAgreementRepository.getMileageOfContract(contractID)) {
+            case 1500 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 1500;
+            case 1750 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 1750;
+            case 2000 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 2000;
+            case 2500 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 2500;
+            case 3000 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 3000;
+            case 3500 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 3500;
+            case 4000 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 4000;
+            case 4500 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 4500;
+            default -> {
+            }
         }
         return totalMileageForContract;
     }
 
     public double getTotalPriceOfMileageInContract(int contractID){
         double totalMileageForContract = 0;
-        switch ((int)rentalAgreementRepository.getMileageOfContract(contractID)){
-            case 1500:
-                break;
-            case 1750:
-                totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 300;
-                break;
-            case 2000:
-                totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 590;
-                break;
-            case 2500:
-                totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 1160;
-                break;
-            case 3000:
-                totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 1710;
-                break;
-            case 3500:
-                totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 2240;
-                break;
-            case 4000:
-                totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 2750;
-                break;
-            case 4500:
-                totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 3240;
-                break;
-            default:
-                break;
-
+        switch ((int) rentalAgreementRepository.getMileageOfContract(contractID)) {
+            case 1750 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 300;
+            case 2000 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 590;
+            case 2500 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 1160;
+            case 3000 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 1710;
+            case 3500 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 2240;
+            case 4000 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 2750;
+            case 4500 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 3240;
+            default -> {
+            }
         }
         System.out.println(totalMileageForContract);
         return totalMileageForContract;
+    }
+
+    public double totalPriceOfAllMileageInAllContracts(){
+        double totalPrice = 0;
+        for (int i = 0; getAllRentalAgreements().size()>i; i++){
+            totalPrice += getTotalMilesPerContract(getAllRentalAgreements().get(i).getContractId());
+        }
+        return totalPrice;
+    }
+
+    public int getMonthsRemainingOnContract(int contractID){
+        LocalDate today = LocalDate.now();
+        RentalAgreement rentalAgreement = getRentalAgreement(contractID);
+        Period period = null;
+        int monthsRemaining = 0;
+        int totalYears = 0;
+        period = Period.between(today, rentalAgreement.getContractEndDate());
+        totalYears += period.getYears();
+        monthsRemaining += (totalYears*12);
+        monthsRemaining += period.getMonths();
+        return monthsRemaining;
+    }
+
+    public double getTotalPriceOfAllMileageFromCurrentDateToEndDateOfContracts(){
+        double totalPrice = 0;
+        for (int i = 0; getAllRentalAgreements().size()>i; i++){
+            int contractID = getAllRentalAgreements().get(i).getContractId();
+            switch ((int)getAllRentalAgreements().get(i).getMileagePerMonth()){
+                case 1750:
+                    totalPrice += getMonthsRemainingOnContract(contractID) * 300;
+                    break;
+                case 2000:
+                    totalPrice += getMonthsRemainingOnContract(contractID) * 590;
+                    break;
+                case 2500:
+                    totalPrice += getMonthsRemainingOnContract(contractID) * 1160;
+                    break;
+                case 3000:
+                    totalPrice += getMonthsRemainingOnContract(contractID) * 1710;
+                    break;
+                case 3500:
+                    totalPrice += getMonthsRemainingOnContract(contractID) * 2240;
+                    break;
+                case 4000:
+                    totalPrice += getMonthsRemainingOnContract(contractID) * 2750;
+                    break;
+                case 4500:
+                    totalPrice += getMonthsRemainingOnContract(contractID) * 3240;
+                    break;
+                default: totalPrice += 0;
+                    break;
+
+            }
+        }
+        return totalPrice;
     }
 
 }

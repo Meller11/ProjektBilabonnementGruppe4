@@ -1,5 +1,6 @@
 package com.example.projektbilabonnementgruppe4.controller;
 import com.example.projektbilabonnementgruppe4.model.DamageReport;
+import com.example.projektbilabonnementgruppe4.service.CarStatusService;
 import com.example.projektbilabonnementgruppe4.viewModel.DamageReportWithCarAndRA;
 import com.example.projektbilabonnementgruppe4.service.DamageReportService;
 import com.example.projektbilabonnementgruppe4.service.RentalAgreementService;
@@ -18,11 +19,13 @@ public class DamageReportController {
 
     private final DamageReportService damageReportService;
     private final RentalAgreementService rentalAgreementService;
+    private final CarStatusService carStatusService;
 
     @Autowired
-    public DamageReportController(DamageReportService damageReportService, RentalAgreementService rentalAgreementService){
+    public DamageReportController(DamageReportService damageReportService, RentalAgreementService rentalAgreementService, CarStatusService carStatusService){
         this.damageReportService = damageReportService;
         this.rentalAgreementService = rentalAgreementService;
+        this.carStatusService = carStatusService;
     }
 
     @GetMapping("/")
@@ -70,11 +73,13 @@ public class DamageReportController {
     @PostMapping("/finalizeReport/{contract_id}")
     public String finalizeDamageReport(@ModelAttribute("damageReport") DamageReport updateDamageReport, @PathVariable int contract_id){
         damageReportService.updateDamageReport(updateDamageReport, contract_id);
+        carStatusService.updateCarStatus(damageReportService.damageReportByID(contract_id).getCarId(), "Klar Til Salg");
         return "redirect:/damageReport/FinalReport/{contract_id}";
     }
 
     @PostMapping("/deleteDamageReport/{contract_id}")
     public String deleteDamageReport(@PathVariable int contract_id){
+        carStatusService.updateCarStatus(damageReportService.damageReportByID(contract_id).getCarId(), "Udlejet");
         damageReportService.deleteDamageReport(contract_id);
         return "redirect:/damageReport/";
     }
@@ -94,15 +99,13 @@ public class DamageReportController {
         }
 
         int mileageOfContract = rentalAgreementService.getTotalMilesPerContract(contract_id) - damageReportService.damageReportByID(contract_id).getMileage();
-        double priceOfTooManyMiles = 0;
-        System.out.println(rentalAgreementService.getTotalMilesPerContract(contract_id));
-        System.out.println(damageReportService.damageReportByID(contract_id).getMileage());
+        double priceOfTooManyMiles;
         if (mileageOfContract >= 0){
             priceOfTooManyMiles = 0;
         } else {
             priceOfTooManyMiles = -((rentalAgreementService.getTotalMilesPerContract(contract_id) - damageReportService.damageReportByID(contract_id).getMileage())*0.75);
         }
-        double totalPriceOfContract = priceForDamages + priceOfTooManyMiles + rentalAgreementService.getTotalPriceOfMileageInContract(contract_id);
+        double totalPriceOfContract = priceForDamages + priceOfTooManyMiles;
         model.addAttribute("priceForMileageTotal", priceOfTooManyMiles);
         model.addAttribute("totalPriceOfContract", totalPriceOfContract);
         model.addAttribute("priceForDamages", priceForDamages);

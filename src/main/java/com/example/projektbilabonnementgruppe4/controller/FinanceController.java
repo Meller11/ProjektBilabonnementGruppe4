@@ -41,6 +41,8 @@ public class FinanceController {
             model.addAttribute("averageMonthsLeft", rentalAgreementService.getDifferenceInMonthsAverageRemaining());
             model.addAttribute("averageMonthsTotal", rentalAgreementService.getDifferenceInMonthsAverageTotal());
             model.addAttribute("averageMilagePerContract", rentalAgreementService.getAverageOfMileageOfContracts());
+            model.addAttribute("totalPriceOfMileageFromToday", rentalAgreementService.getTotalPriceOfAllMileageFromCurrentDateToEndDateOfContracts());
+            model.addAttribute("totalPriceOfAllContractsMilage", rentalAgreementService.totalPriceOfAllMileageInAllContracts());
             return "/finance/financeOverview";
        // } else {
        //     return "redirect:/";

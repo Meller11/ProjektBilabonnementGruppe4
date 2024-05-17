@@ -5,7 +5,7 @@
     <title>Title</title>
     <link th:href="@{/css/style.css}" rel="stylesheet">
     <head>
-<body>
+<body class="frontpage-background">
 
 <div th:replace="~{fragments/header.html :: header}"></div>
 <div class="container">
@@ -45,12 +45,12 @@
                 <th th:text="${priceForMileageTotal}"></th>
             </tr>
             <tr class="employee-row">
-                <th>Total Pris For Leasing</th>
+                <th>Total Pris For Kilometer Pakke, <br>Skader Og Overkørte Kilometer</th>
                 <th th:text="${totalPriceOfContract}"></th>
             </tr>
         </table>
         <div class="button-container">
-        <a th:href="@{/damageReport}" class="button">Tilbage Til Oversigt</a>
+        <a th:href="@{/damageReport/}" class="button">Tilbage Til Oversigt</a>
         </div>
     </tr>
 </div>
