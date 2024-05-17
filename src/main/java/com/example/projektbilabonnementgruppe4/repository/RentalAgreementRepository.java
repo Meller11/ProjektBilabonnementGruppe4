@@ -62,4 +62,9 @@ public class RentalAgreementRepository {
         return jdbcTemplate.queryForObject(sql, Double.class);
     }
 
+    public double getMileageOfContract(int contractID){
+        String sql = "SELECT mileage_per_month FROM contract WHERE contract_id = ?";
+        return jdbcTemplate.queryForObject(sql, Double.class, contractID);
+    }
+
 }

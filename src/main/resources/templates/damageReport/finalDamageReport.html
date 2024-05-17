@@ -40,6 +40,14 @@
                 <th>Ekstra Pris På Skader</th>
                 <th th:text="${priceForDamages}"></th>
             </tr>
+            <tr class="employee-row">
+                <th>Ekstra Pris For Overkørte Kilometer</th>
+                <th th:text="${priceForMileageTotal}"></th>
+            </tr>
+            <tr class="employee-row">
+                <th>Total Pris For Leasing</th>
+                <th th:text="${totalPriceOfContract}"></th>
+            </tr>
         </table>
         <div class="button-container">
         <a th:href="@{/damageReport}" class="button">Tilbage Til Oversigt</a>
