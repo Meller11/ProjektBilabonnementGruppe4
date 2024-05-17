@@ -16,12 +16,9 @@ import java.util.List;
 @RequestMapping("employee")
 public class EmployeeController {
 
-  private final EmployeeService employeeService;
-
   @Autowired
-  public EmployeeController(EmployeeService employeeService) {
-    this.employeeService = employeeService;
-  }
+  private EmployeeService employeeService;
+
 
   //Viser siden for medarbejder login
   @GetMapping("/login")
@@ -50,6 +47,10 @@ public class EmployeeController {
     return "redirect:/";
   }
 
+
+
+
+
   //viser siden for registrering af ny medarbejder
   @GetMapping("/register")
   public String showRegisterNewEmployee(Model model, HttpSession session) {
@@ -66,7 +67,19 @@ public class EmployeeController {
   @PostMapping("/register")
   public String processRegisterNewEmployee(@ModelAttribute("employeeModel") EmployeeModel employeeModel, RedirectAttributes redirectAttributes) {
     employeeService.saveNewEmployee(employeeModel);
-    return "redirect:/employee/menu";
+    return "redirect:/employee/list";
+  }
+
+
+  @GetMapping("/menu")
+  public String showMenu(HttpSession session) {
+    EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+
+    if (loggedInUser != null) {
+      return "redirect:/employee/list";
+    } else {
+      return "redirect:/";
+    }
   }
 
   // Viser listen over medarbejdere
@@ -82,8 +95,6 @@ public class EmployeeController {
       return "redirect:/";
     }
   }
-
-
   //
   @GetMapping("/edit")
   public String showEditEmployee(@RequestParam String username, Model model, HttpSession session) {
@@ -105,15 +116,12 @@ public class EmployeeController {
     employeeService.editEmployee(updatedEmployeeModel);
     return "redirect:/employee/list";
   }
-
   //gemmer nye opdateringer
   @PostMapping("/saveUpdate")
   public String saveUpdatedEmployee(@ModelAttribute("employeeModel") EmployeeModel updatedEmployeeModel) {
     employeeService.editEmployee(updatedEmployeeModel);
     return "redirect:/employee/list";
   }
-
-
   // Sletter en medarbejder ud fra brugernavn
   @PostMapping("/delete")
   public String deleteEmployee(@RequestParam String username) {
