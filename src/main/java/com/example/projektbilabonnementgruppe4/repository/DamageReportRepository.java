@@ -31,11 +31,11 @@ public class DamageReportRepository {
 
     public List<DamageReportWithCarAndRA> damageReportOverview (){
         String sql = "SELECT *" +
-                "FROM contract\n" +
+                "FROM rental_agreement\n" +
                 "INNER JOIN car\n" +
-                "ON car.car_id = contract.car_id\n" +
+                "ON car.car_id = rental_agreement.car_id\n" +
                 "INNER JOIN employee\n" +
-                "ON employee.employee_id = contract.employee_id\n" +
+                "ON employee.employee_id = rental_agreement.employee_id\n" +
                 "INNER JOIN damage_report\n" +
                 "ON contract.contract_id = damage_report.contract_id;";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(DamageReportWithCarAndRA.class));
@@ -43,14 +43,14 @@ public class DamageReportRepository {
 
     public DamageReportWithCarAndRA damageReportByID(int contract_id){
         String sql = "SELECT *" +
-                "FROM contract\n" +
+                "FROM rental_agreement\n" +
                 "INNER JOIN car\n" +
-                "ON car.car_id = contract.car_id\n" +
+                "ON car.car_id = rental_agreement.car_id\n" +
                 "INNER JOIN employee\n" +
-                "ON employee.employee_id = contract.employee_id\n" +
+                "ON employee.employee_id = rental_agreement.employee_id\n" +
                 "INNER JOIN damage_report\n" +
-                "ON contract.contract_id = damage_report.contract_id\n" +
-                "WHERE contract.contract_id = ?;";
+                "ON rental_agreement.contract_id = damage_report.contract_id\n" +
+                "WHERE rental_agreement.contract_id = ?;";
         try {
             return jdbcTemplate.queryForObject(sql, new Object[]{contract_id}, new BeanPropertyRowMapper<>(DamageReportWithCarAndRA.class));
         } catch (EmptyResultDataAccessException e) {
