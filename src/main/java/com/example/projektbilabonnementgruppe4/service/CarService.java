@@ -16,9 +16,6 @@ public class CarService {
     @Autowired
     private CarRepository carRepository;
 
-    @Autowired
-    private RentalAgreementRepository rentalAgreementRepository;
-
 
     public void createCar(Car car) {
         carRepository.createCar(car);
@@ -44,16 +41,6 @@ public class CarService {
         return carRepository.getAllCars();
     }
 
-    public List<Car> getAllUnrentedCars() {
-        List<Car> allCars = carRepository.getAllCars();
-        List<RentalAgreement> rentedCars = rentalAgreementRepository.getAllRentalAgreements();
-
-        for (RentalAgreement rentalAgreement : rentedCars) {
-            allCars.removeIf(car -> car.getCarId().equals(rentalAgreement.getCarId()));
-        }
-
-        return allCars;
-    }
 
     public List<CarWithStatus> getAllCarsWithStatus() {
         return carRepository.getAllCarsWithStatus();
