@@ -1,9 +1,11 @@
 package com.example.projektbilabonnementgruppe4.controller;
 import com.example.projektbilabonnementgruppe4.model.DamageReport;
+import com.example.projektbilabonnementgruppe4.model.EmployeeModel;
 import com.example.projektbilabonnementgruppe4.service.CarStatusService;
 import com.example.projektbilabonnementgruppe4.viewModel.DamageReportWithCarAndRA;
 import com.example.projektbilabonnementgruppe4.service.DamageReportService;
 import com.example.projektbilabonnementgruppe4.service.RentalAgreementService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,19 +19,20 @@ import java.util.List;
 @RequestMapping("damageReport")
 public class DamageReportController {
 
-    private final DamageReportService damageReportService;
-    private final RentalAgreementService rentalAgreementService;
-    private final CarStatusService carStatusService;
-
     @Autowired
-    public DamageReportController(DamageReportService damageReportService, RentalAgreementService rentalAgreementService, CarStatusService carStatusService){
-        this.damageReportService = damageReportService;
-        this.rentalAgreementService = rentalAgreementService;
-        this.carStatusService = carStatusService;
-    }
+    private  DamageReportService damageReportService;
+    @Autowired
+    private  RentalAgreementService rentalAgreementService;
+    @Autowired
+    private  CarStatusService carStatusService;
+
+    // Forside for damageReport, finder og indlæser alle kontrakter der er klar til skadesrapporter
+    // samt opretter ny skadesrapport hvis der ikke er en for en kontrakt.
 
     @GetMapping("/")
-    public String damageReport(Model model) {
+    public String damageReport(Model model, HttpSession session) {
+        EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+        if (loggedInUser != null){
         List<DamageReportWithCarAndRA> damageReportNotDone = new ArrayList<>();
         List<DamageReportWithCarAndRA> damageReportDone = new ArrayList<>();
         List <Integer> rentalAgreementIDs = new ArrayList<>();
@@ -59,33 +62,58 @@ public class DamageReportController {
         model.addAttribute("damageReportNotDone", damageReportNotDone);
         model.addAttribute("damageReportDone", damageReportDone);
         return "damageReport/damageReport";
+    } else {
+        return "redirect:/";
+    }
     }
 
-
-
-    @GetMapping("/FinalizeReport/{contract_id}")
-    public String finalizeDamageReport(@ModelAttribute("damageReport") DamageReport updateDamageReport, @PathVariable int contract_id, Model model){
-        DamageReportWithCarAndRA finalizeDamageReport = damageReportService.damageReportByID(contract_id);
-        model.addAttribute("finalizeDamageReport", finalizeDamageReport);
-        return "damageReport/finalizeDamageReport";
-    }
-
-    @PostMapping("/finalizeReport/{contract_id}")
-    public String finalizeDamageReport(@ModelAttribute("damageReport") DamageReport updateDamageReport, @PathVariable int contract_id){
-        damageReportService.updateDamageReport(updateDamageReport, contract_id);
-        carStatusService.updateCarStatus(damageReportService.damageReportByID(contract_id).getCarId(), "Klar Til Salg");
-        return "redirect:/damageReport/FinalReport/{contract_id}";
-    }
+    //Sletning af skaderapport, opretter en nye skadesrapport efter genindlæsning af /damageReport
+    //Sætter også bilstatus tilbage til "udlejet"
 
     @PostMapping("/deleteDamageReport/{contract_id}")
-    public String deleteDamageReport(@PathVariable int contract_id){
+    public String deleteDamageReport(@PathVariable int contract_id, HttpSession session){
+        EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+        if (loggedInUser != null){
         carStatusService.updateCarStatus(damageReportService.damageReportByID(contract_id).getCarId(), "Udlejet");
         damageReportService.deleteDamageReport(contract_id);
         return "redirect:/damageReport/";
+    } else {
+        return "redirect:/";
+        }
     }
 
+    //Visning til færdiggøring af skade rapport.
+
+    @GetMapping("/FinalizeReport/{contract_id}")
+    public String finalizeDamageReport(@ModelAttribute("damageReport") DamageReport updateDamageReport, @PathVariable int contract_id, Model model, HttpSession session){
+        EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+        if (loggedInUser != null){
+        DamageReportWithCarAndRA finalizeDamageReport = damageReportService.damageReportByID(contract_id);
+        model.addAttribute("finalizeDamageReport", finalizeDamageReport);
+        return "damageReport/finalizeDamageReport";
+        } else {
+        return "redirect:/";
+        }
+    }
+
+    //Indsendelse af skade rapport samt opdatering af bil status til "Klar Til Salg"
+    @PostMapping("/finalizeReport/{contract_id}")
+    public String finalizeDamageReport(@ModelAttribute("damageReport") DamageReport updateDamageReport, @PathVariable int contract_id, HttpSession session){
+        EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+        if (loggedInUser != null){
+        damageReportService.updateDamageReport(updateDamageReport, contract_id);
+        carStatusService.updateCarStatus(damageReportService.damageReportByID(contract_id).getCarId(), "Klar Til Salg");
+        return "redirect:/damageReport/FinalReport/{contract_id}";
+        } else {
+        return "redirect:/";
+        }
+    }
+
+    //Visning af færdiggjort skade rapport samt udregning af skade + overkørte kilometer.
     @GetMapping("/FinalReport/{contract_id}")
-    public String finalDamageReport(@PathVariable int contract_id, Model model){
+    public String finalDamageReport(@PathVariable int contract_id, Model model, HttpSession session){
+        EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+        if (loggedInUser != null){
         DamageReportWithCarAndRA finalDamageReport = damageReportService.damageReportByID(contract_id);
         int priceForDamages = 0;
         if (finalDamageReport.isWindshieldDamage()){
@@ -111,6 +139,9 @@ public class DamageReportController {
         model.addAttribute("priceForDamages", priceForDamages);
         model.addAttribute("finalDamageReport", finalDamageReport);
         return "damageReport/finalDamageReport";
+        } else {
+        return "redirect:/";
+        }
     }
 
 }

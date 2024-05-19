@@ -46,7 +46,7 @@
         <label for="windshieldDamage">Forrude Skader</label>
             <input id="windshieldDamage" type="checkbox"  th:checked="${windshieldDamage}" th:value="true" th:field="*{windshieldDamage}" /><br>
             <label for="kilometers">Kilometers:</label>
-            <input type="text" id="kilometers" th:field="*{mileage}" /><br>
+            <input type="text" id="kilometers" th:field="*{mileage}" type="number"/><br>
         <button type="submit" class="submit-button">Færdiggør</button>
     </form>
 

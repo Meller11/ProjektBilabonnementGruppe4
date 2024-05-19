@@ -27,10 +27,11 @@ public class FinanceController {
     }
 
 
+    //Økonomisk oversigt over forskellige KPI'er
     @GetMapping("/")
     public String financeOverview(HttpSession session, Model model){
         EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
-        //if (loggedInUser != null){
+        if (loggedInUser != null){
             session.setAttribute("loggedInUser", loggedInUser);
             List<CarWithStatus> carWithStatus = carService.getAllCarsWithStatus();
             model.addAttribute("user", loggedInUser);
@@ -44,9 +45,9 @@ public class FinanceController {
             model.addAttribute("totalPriceOfMileageFromToday", rentalAgreementService.getTotalPriceOfAllMileageFromCurrentDateToEndDateOfContracts());
             model.addAttribute("totalPriceOfAllContractsMilage", rentalAgreementService.totalPriceOfAllMileageInAllContracts());
             return "/finance/financeOverview";
-       // } else {
-       //     return "redirect:/";
-       // }
+       } else {
+           return "redirect:/";
+       }
     }
 
 }

@@ -118,7 +118,6 @@ public class RentalAgreementService {
             default -> {
             }
         }
-        System.out.println(totalMileageForContract);
         return totalMileageForContract;
     }
 
