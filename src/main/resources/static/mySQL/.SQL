@@ -46,22 +46,21 @@ CREATE TABLE `car_status` (
                               CONSTRAINT `fk_carstatus_car` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
-CREATE TABLE `contract` (
-                            `contract_id` int NOT NULL AUTO_INCREMENT,
-                            `employee_id` int DEFAULT NULL,
-                            `car_id` int DEFAULT NULL,
-                            `contract_number` varchar(255) NOT NULL,
-                            `pickup_location` varchar(255) NOT NULL,
-                            `contract_start_date` date NOT NULL,
-                            `contract_end_date` date NOT NULL,
-                            `contract_type` varchar(255) NOT NULL,
-                            `contract_monthly_fee` double NOT NULL,
-                            PRIMARY KEY (`contract_id`),
-                            KEY `EmployeeID` (`employee_id`),
-                            KEY `car_id` (`car_id`),
-                            CONSTRAINT `car_id` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
-
+CREATE TABLE `rental_agreement` (
+                                    `contract_id` int NOT NULL AUTO_INCREMENT,
+                                    `employee_id` int DEFAULT NULL,
+                                    `car_id` int DEFAULT NULL,
+                                    `contract_number` varchar(255) NOT NULL,
+                                    `pickup_location` varchar(255) NOT NULL,
+                                    `contract_start_date` date NOT NULL,
+                                    `contract_end_date` date NOT NULL,
+                                    `contract_type` varchar(255) NOT NULL,
+                                    `contract_monthly_fee` double NOT NULL,
+                                    `mileage_per_month` double NOT NULL,
+                                    PRIMARY KEY (`contract_id`),
+                                    UNIQUE KEY `car_id_UNIQUE` (`car_id`),
+                                    KEY `EmployeeID` (`employee_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 CREATE TABLE `damage_report` (
                                  `damage_report_id` int NOT NULL AUTO_INCREMENT,
                                  `contract_id` int NOT NULL,

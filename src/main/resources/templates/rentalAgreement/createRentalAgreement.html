@@ -10,7 +10,7 @@
 <div class="content">
     <div class="container">
         <h1>Opret Lejekontrakt</h1>
-        <form action="#" th:action="@{/rentalAgreements}" th:object="${rentalAgreement}" method="post">
+        <form action="#" th:action="@{/rentalAgreements/create}" th:object="${rentalAgreement}" method="post">
             <input type="hidden" th:field="*{contractId}">
             <input type="hidden" name="employeeId" th:value="${loggedInUser.employeeId}">
             <input type="hidden" name="carId" th:value="${carId}">

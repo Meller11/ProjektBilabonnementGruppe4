@@ -30,7 +30,7 @@
                 <td th:text="${carInfo.colour}">Model</td>
                 <td th:text="${carInfo.statusType}">Status</td>
                 <td>
-                    <form th:action="@{/createRentalAgreement}" method="get" style="display: inline;">
+                    <form th:action="@{/rentalAgreements/create}" method="get" style="display: inline;">
                         <input type="hidden" name="carId" th:value="${carInfo.carId}" />
                         <button type="submit" class="btn btn-primary">Opret lejekontrakt</button>
                     </form>

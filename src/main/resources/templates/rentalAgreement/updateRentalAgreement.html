@@ -12,7 +12,7 @@
     <div class="container">
         <h1>Opdater lejekontrakt</h1>
 
-        <form th:action="@{/update}" th:object="${rentalAgreement}" method="post" >
+        <form th:action="@{/rentalAgreements/update}" th:object="${rentalAgreement}" method="post" >
             <input type="hidden" th:field="*{contractId}" />
 
 
