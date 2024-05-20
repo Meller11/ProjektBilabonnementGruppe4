@@ -16,11 +16,11 @@ import java.util.List;
 @RequestMapping("employee")
 public class EmployeeController {
 
+//Autowire indsætter EmployeService-instansen i EmployeeController
   @Autowired
   private EmployeeService employeeService;
 
-
-  //Viser siden for medarbejder login
+  // Viser medarbejderloginsiden
   @GetMapping("/login")
   public String showEmployeeLogin(Model model) {
     model.addAttribute("employeeModel", new EmployeeModel());
@@ -30,6 +30,7 @@ public class EmployeeController {
   //Håndterer indsendelse af login-formular
   @PostMapping("/login")
   public String processEmployeeLogin(@RequestParam String username, @RequestParam String password, HttpSession session, RedirectAttributes redirectAttributes) {
+    // Validerer brugernavn og kodeord og returnerer den indloggede bruger.
     EmployeeModel loggedInUser = employeeService.validateUser(username, password);
 
     if (loggedInUser != null) {
@@ -41,17 +42,14 @@ public class EmployeeController {
     }
   }
 
+  //Når brugeren logger ud fjernes loggedInUser fra session og sendes tilbage til startsiden.
   @GetMapping("/logout")
   public String logout(HttpSession session) {
     session.removeAttribute("loggedInUser");
     return "redirect:/";
   }
 
-
-
-
-
-  //viser siden for registrering af ny medarbejder
+  //Viser registreringssiden for nye medarbejdere
   @GetMapping("/register")
   public String showRegisterNewEmployee(Model model, HttpSession session) {
     EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
@@ -64,13 +62,14 @@ public class EmployeeController {
     }
   }
 
+  //Behandler indsendelse af registreringsformular og gemmer den nye medarbejder i DB.
   @PostMapping("/register")
   public String processRegisterNewEmployee(@ModelAttribute("employeeModel") EmployeeModel employeeModel, RedirectAttributes redirectAttributes) {
     employeeService.saveNewEmployee(employeeModel);
     return "redirect:/employee/list";
   }
 
-
+  // Sendes til listen over medarbejdere, når "tilbage til menu" knappen trykkes.
   @GetMapping("/menu")
   public String showMenu(HttpSession session) {
     EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
@@ -82,7 +81,7 @@ public class EmployeeController {
     }
   }
 
-  // Viser listen over medarbejdere
+  //Viser listen over medarbejdere
   @GetMapping("/list")
   public String showEmployeeList(Model model, HttpSession session) {
     EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
@@ -95,7 +94,8 @@ public class EmployeeController {
       return "redirect:/";
     }
   }
-  //
+
+  //Viser siden til redigering af en medarbejder, hvis en bruger er logget ind
   @GetMapping("/edit")
   public String showEditEmployee(@RequestParam String username, Model model, HttpSession session) {
     EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
@@ -110,19 +110,21 @@ public class EmployeeController {
     }
   }
 
-  // Håndterer redigering af medarbejderoplysninger
+  //Behandler redigering af medarbejderoplysninger.
   @PostMapping("/update")
   public String processEditEmployee(@ModelAttribute("employeeModel") EmployeeModel updatedEmployeeModel) {
     employeeService.editEmployee(updatedEmployeeModel);
     return "redirect:/employee/list";
   }
-  //gemmer nye opdateringer
+
+  //gemmer opdateringerede medarb.oplysninger
   @PostMapping("/saveUpdate")
   public String saveUpdatedEmployee(@ModelAttribute("employeeModel") EmployeeModel updatedEmployeeModel) {
     employeeService.editEmployee(updatedEmployeeModel);
     return "redirect:/employee/list";
   }
-  // Sletter en medarbejder ud fra brugernavn
+
+  // Sletter en medarbejder baseret brugernavn
   @PostMapping("/delete")
   public String deleteEmployee(@RequestParam String username) {
     employeeService.deleteEmployee(username);
