@@ -64,7 +64,7 @@ public class EmployeeController {
 
     //Behandler indsendelse af registreringsformular og gemmer den nye medarbejder i DB.
     @PostMapping("/register")
-    public String processRegisterNewEmployee(@ModelAttribute("employeeModel") Employee employee, RedirectAttributes redirectAttributes) {
+    public String processRegisterNewEmployee(@ModelAttribute("employee") Employee employee, RedirectAttributes redirectAttributes) {
         employeeService.saveNewEmployee(employee);
         return "redirect:/employee/list";
     }
