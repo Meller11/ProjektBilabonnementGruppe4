@@ -34,6 +34,8 @@ public class RentalAgreementController {
             return "redirect:/";
         }
     }*/
+
+    // Viser alle udlejningsaftaler fra viwemodel RentedCar, henter alle udlejningsaftaler fra service layer og adder dem til modellen
     @GetMapping("/rented")
     public String showAllRentedCars(Model model, HttpSession session) {
         EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
@@ -46,6 +48,7 @@ public class RentalAgreementController {
         }
     }
 
+    // Viser formen for at oprette en ny udlejningsaftale, henter carId fra URL og adder den til modellen.
     @GetMapping("/create")
     public String showCreateForm(Model model, @RequestParam("carId") int carId, HttpSession session){
         EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
