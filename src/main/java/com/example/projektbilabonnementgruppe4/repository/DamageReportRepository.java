@@ -37,7 +37,7 @@ public class DamageReportRepository {
                 "INNER JOIN employee\n" +
                 "ON employee.employee_id = rental_agreement.employee_id\n" +
                 "INNER JOIN damage_report\n" +
-                "ON contract.contract_id = damage_report.contract_id;";
+                "ON rental_agreement.contract_id = damage_report.contract_id;";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(DamageReportWithCarAndRA.class));
     }
 

@@ -36,11 +36,8 @@
                 <div class="dropdown">
                     <button class="navbarButton notSelectable">Skadesrapport</button>
                     <div class="dropdown-content">
-                        <a th:href="@{/readyForDamageReport}" class="a">
-                            <button class="navbarButton">Klar til skadesrapport</button>
-                        </a>
-                        <a th:href="@{/listDamageReports}" class="a">
-                            <button class="navbarButton">Oversigt skadesrapporter</button>
+                        <a th:href="@{/damageReport/}" class="a">
+                            <button class="navbarButton">Klar til Skadesrapport</button>
                         </a>
                     </div>
                 </div>
@@ -72,11 +69,8 @@
                 <div class="dropdown" th:if="${session?.loggedInUser?.userType == 'Forretningsudvikler'}">
                 <button class="navbarButton notSelectable">Økonomi og Statistik</button>
                     <div class="dropdown-content">
-                        <a th:href="@{/business/economy}" class="a">
+                        <a th:href="@{/finance/}" class="a">
                             <button class="navbarButton">Økonomi</button>
-                        </a>
-                        <a th:href="@{/business/statistics}" class="a">
-                            <button class="navbarButton">Statistik (KPI) </button>
                         </a>
                     </div>
                 </div>

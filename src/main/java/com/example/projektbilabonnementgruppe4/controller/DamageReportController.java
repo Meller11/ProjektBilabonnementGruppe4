@@ -63,7 +63,7 @@ public class DamageReportController {
         model.addAttribute("damageReportDone", damageReportDone);
         return "damageReport/damageReport";
     } else {
-        return "redirect:/";
+            return "redirect:/";
     }
     }
 

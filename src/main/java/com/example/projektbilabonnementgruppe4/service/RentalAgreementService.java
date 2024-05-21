@@ -108,18 +108,18 @@ public class RentalAgreementService {
     public double getTotalPriceOfMileageInContract(int contractID){
         double totalMileageForContract = 0;
         switch ((int) rentalAgreementRepository.getMileageOfContract(contractID)) {
-            case 1750 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 300;
-            case 2000 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 590;
-            case 2500 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 1160;
-            case 3000 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 1710;
-            case 3500 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 2240;
-            case 4000 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 2750;
-            case 4500 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 3240;
-            default -> {
+                case 1750 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 300;
+                case 2000 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 590;
+                case 2500 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 1160;
+                case 3000 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 1710;
+                case 3500 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 2240;
+                case 4000 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 2750;
+                case 4500 -> totalMileageForContract = getDifferenceInMonthsForContractID(contractID) * 3240;
+                default -> {
+                }
             }
+            return totalMileageForContract;
         }
-        return totalMileageForContract;
-    }
 
     public double totalPriceOfAllMileageInAllContracts(){
         double totalPrice = 0;
