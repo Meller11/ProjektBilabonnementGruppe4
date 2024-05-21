@@ -26,59 +26,63 @@
             <td th:text="${damageReportNotDone.frameNumber}"></td>
             <td th:text="${damageReportNotDone.firstName} + ' ' + ${damageReportNotDone.lastName}"></td>
             <td>
-                <form th:action="@{/damageReport/FinalizeReport/{contract_id}(contract_id=${damageReportNotDone.contractId})}" method="get">
+                <form th:action="@{/damageReport/FinalizeReport/{contract_id}(contract_id=${damageReportNotDone.contractId})}"
+                      method="get">
                     <button type="submit" class="edit-button">Færdiggør Rapport</button>
                 </form>
             </td>
-         <!--   <td>
-                <form th:action="@{/damageReport/deleteDamageReport/{contract_id}(contract_id=${damageReportNotDone.contractId})}" th:object="${damageReport}" method="post">
-                    <input type="hidden" name="username" th:value="${damageReportNotDone.username}" />
-                    <button type="submit" class="delete-button">Slet</button>
-                </form>
-            </td> -->
+            <!--   <td>
+                   <form th:action="@{/damageReport/deleteDamageReport/{contract_id}(contract_id=${damageReportNotDone.contractId})}" th:object="${damageReport}" method="post">
+                       <input type="hidden" name="username" th:value="${damageReportNotDone.username}" />
+                       <button type="submit" class="delete-button">Slet</button>
+                   </form>
+               </td> -->
         </tr>
         </tbody>
     </table>
 </div>
 <div class="container">
-<h2>Liste Over Fuldførte Skades Rapporter</h2>
+    <h2>Liste Over Fuldførte Skades Rapporter</h2>
 
-<table class="employee-table">
-    <thead>
-    <tr>
-        <th>Kontrakt Nummer</th>
-        <th>Stel Nummer</th>
-        <th>Oprettet af</th>
-        <th></th>
-        <th></th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
+    <table class="employee-table">
+        <thead>
+        <tr>
+            <th>Kontrakt Nummer</th>
+            <th>Stel Nummer</th>
+            <th>Oprettet af</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
 
-    <tr th:each="damageReportDone : ${damageReportDone}" class="employee-row">
-        <td th:text="${damageReportDone.contractNumber}"></td>
-        <td th:text="${damageReportDone.frameNumber}"></td>
-        <td th:text="${damageReportDone.firstName} + ' ' + ${damageReportDone.lastName}"></td>
-        <td>
-            <form th:action="@{/damageReport/FinalizeReport/{contract_id}(contract_id=${damageReportDone.contractId})}" method="get">
-                <button type="submit" class="edit-button">Rediger Skader</button>
-            </form>
-        </td>
-        <td>
-            <form th:action="@{/damageReport/deleteDamageReport/{contract_id}(contract_id=${damageReportDone.contractId})}" th:object="${damageReport}" method="post">
-                <input type="hidden" name="username" th:value="${damageReportDone.username}" />
-                <button type="submit" class="delete-button">Slet</button>
-            </form>
-        </td>
-        <td>
-            <form th:action="@{/damageReport/FinalReport/{contract_id}(contract_id=${damageReportDone.contractId})}" method="get">
-                <button type="submit" class="delete-button">Udskrift Af Rapport</button>
-            </form>
-        </td>
-    </tr>
-    </tbody>
-</table>
+        <tr th:each="damageReportDone : ${damageReportDone}" class="employee-row">
+            <td th:text="${damageReportDone.contractNumber}"></td>
+            <td th:text="${damageReportDone.frameNumber}"></td>
+            <td th:text="${damageReportDone.firstName} + ' ' + ${damageReportDone.lastName}"></td>
+            <td>
+                <form th:action="@{/damageReport/FinalizeReport/{contract_id}(contract_id=${damageReportDone.contractId})}"
+                      method="get">
+                    <button type="submit" class="edit-button">Rediger Skader</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/damageReport/deleteDamageReport/{contract_id}(contract_id=${damageReportDone.contractId})}"
+                      th:object="${damageReport}" method="post">
+                    <input type="hidden" name="username" th:value="${damageReportDone.username}"/>
+                    <button type="submit" class="delete-button">Slet</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/damageReport/FinalReport/{contract_id}(contract_id=${damageReportDone.contractId})}"
+                      method="get">
+                    <button type="submit" class="delete-button">Udskrift Af Rapport</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

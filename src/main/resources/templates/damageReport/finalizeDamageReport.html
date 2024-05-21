@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <<link th:href="@{/css/style.css}" rel="stylesheet">
+    <
+    <link th:href="@{/css/style.css}" rel="stylesheet">
     <head>
 <body class="frontpage-background">
 <div th:replace="~{fragments/header.html :: header}"></div>
@@ -38,17 +39,21 @@
 
             </tr>
         </table>
-        <form  th:action="@{/damageReport/finalizeReport/{contract_id}(contract_id=${finalizeDamageReport.contractId})}" th:object="${damageReport}" method="post" >
-        <label for="rimDamage">Fælge Skader</label>
-        <input id="rimDamage" type="checkbox"  th:checked="${rimDamage}" th:value="true" th:field="*{rimDamage}" /><br>
-        <label for="paintDamage">Lak Skader</label>
-            <input id="paintDamage" type="checkbox"  th:checked="${paintDamage}" th:value="true" th:field="*{paintDamage}" /><br>
-        <label for="windshieldDamage">Forrude Skader</label>
-            <input id="windshieldDamage" type="checkbox"  th:checked="${windshieldDamage}" th:value="true" th:field="*{windshieldDamage}" /><br>
+        <form th:action="@{/damageReport/finalizeReport/{contract_id}(contract_id=${finalizeDamageReport.contractId})}"
+              th:object="${damageReport}" method="post">
+            <label for="rimDamage">Fælge Skader</label>
+            <input id="rimDamage" type="checkbox" th:checked="${rimDamage}" th:value="true"
+                   th:field="*{rimDamage}"/><br>
+            <label for="paintDamage">Lak Skader</label>
+            <input id="paintDamage" type="checkbox" th:checked="${paintDamage}" th:value="true"
+                   th:field="*{paintDamage}"/><br>
+            <label for="windshieldDamage">Forrude Skader</label>
+            <input id="windshieldDamage" type="checkbox" th:checked="${windshieldDamage}" th:value="true"
+                   th:field="*{windshieldDamage}"/><br>
             <label for="kilometers">Kilometers:</label>
             <input id="kilometers" th:field="*{mileage}" type="number"/><br>
-        <button type="submit" class="submit-button">Færdiggør</button>
-    </form>
+            <button type="submit" class="submit-button">Færdiggør</button>
+        </form>
 
 </div>
 </body>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Update Employee</title>
-  <link th:href="@{/css/style.css}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Update Employee</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
 
 </head>
 <body>
@@ -11,46 +11,46 @@
 
 
 <div class="content">
-  <div class="container">
-    <div class="container-box">
-      <h2>Opdater medarbejder</h2>
-      <form th:action="@{/employee/saveUpdate}" method="post" th:object="${employee}">
+    <div class="container">
+        <div class="container-box">
+            <h2>Opdater medarbejder</h2>
+            <form th:action="@{/employee/saveUpdate}" method="post" th:object="${employee}">
 
-        <div class="form-group">
-          <label for="firstname">Fornavn:</label>
-          <input type="text" id="firstname" name="firstname" th:field="*{firstname}" th:required="required" />
-        </div>
-        <div class="form-group">
-          <label for="lastname">Efternavn:</label>
-          <input type="text" id="lastname" name="lastname" th:field="*{lastname}" th:required="required" />
-        </div>
-        <div class="form-group">
-          <label for="usertype">Stilling:</label>
-          <select id="usertype" name="usertype" th:field="*{userType}" th:required="required">
-            <option value="">Vælg stilling</option>
-            <option value="Admin">Admin</option>
-            <option value="Lejeagent">Lejeagent</option>
-            <option value="Skadesinspektør">Skadesinspektør</option>
-            <option value="Forretningsudvikler">Forretningsudvikler</option>
-          </select>
-        </div>
+                <div class="form-group">
+                    <label for="firstname">Fornavn:</label>
+                    <input type="text" id="firstname" name="firstname" th:field="*{firstname}" th:required="required"/>
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Efternavn:</label>
+                    <input type="text" id="lastname" name="lastname" th:field="*{lastname}" th:required="required"/>
+                </div>
+                <div class="form-group">
+                    <label for="usertype">Stilling:</label>
+                    <select id="usertype" name="usertype" th:field="*{userType}" th:required="required">
+                        <option value="">Vælg stilling</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Lejeagent">Lejeagent</option>
+                        <option value="Skadesinspektør">Skadesinspektør</option>
+                        <option value="Forretningsudvikler">Forretningsudvikler</option>
+                    </select>
+                </div>
 
-        <div class="form-group">
-          <label for="username">Brugernavn:</label>
-          <input type="text" id="username" name="username" th:field="*{username}" th:required="required" />
-        </div>
-        <div class="form-group">
-          <label for="password">Adgangskode:</label>
-          <input type="password" id="password" name="password" th:field="*{password}" th:required="required" />
-        </div>
+                <div class="form-group">
+                    <label for="username">Brugernavn:</label>
+                    <input type="text" id="username" name="username" th:field="*{username}" th:required="required"/>
+                </div>
+                <div class="form-group">
+                    <label for="password">Adgangskode:</label>
+                    <input type="password" id="password" name="password" th:field="*{password}" th:required="required"/>
+                </div>
 
-        <div class="button-container">
-          <button type="submit" class="create-user-link">Gem ændringer</button>
-          <a th:href="@{/employee/list}" class="button">Tilbage til medarbejderoversigten</a>
+                <div class="button-container">
+                    <button type="submit" class="create-user-link">Gem ændringer</button>
+                    <a th:href="@{/employee/list}" class="button">Tilbage til medarbejderoversigten</a>
+                </div>
+            </form>
         </div>
-      </form>
     </div>
-  </div>
 </div>
 
 </body>
