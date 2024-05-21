@@ -1,7 +1,7 @@
 package com.example.projektbilabonnementgruppe4.controller;
 
 import com.example.projektbilabonnementgruppe4.model.Car;
-import com.example.projektbilabonnementgruppe4.model.EmployeeModel;
+import com.example.projektbilabonnementgruppe4.model.Employee;
 import com.example.projektbilabonnementgruppe4.service.CarService;
 import com.example.projektbilabonnementgruppe4.service.CarStatusService;
 import com.example.projektbilabonnementgruppe4.viewModel.CarWithStatus;
@@ -24,7 +24,7 @@ public class CarController {
 
     @GetMapping("/create")
     public String showCreateCarForm(Model model, HttpSession session) {
-        EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+        Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
 
         if (loggedInUser != null) {
             model.addAttribute("car", new Car());
@@ -44,7 +44,7 @@ public class CarController {
 
     @GetMapping("/showEditCarForm")
     public String showEditCarForm(@RequestParam("frameNumber") String frameNumber, Model model, HttpSession session) {
-        EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+        Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
 
         if (loggedInUser != null) {
             Car car = carService.getCarByFrameNumber(frameNumber);
@@ -71,7 +71,7 @@ public class CarController {
 
     @GetMapping("/allCarsWithStatus")
     public String showAllCarsWithStatus(Model model, HttpSession session) {
-        EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+        Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
 
         if (loggedInUser != null) {
             model.addAttribute("carsWithStatus", carService.getAllCarsWithStatus());
@@ -83,7 +83,7 @@ public class CarController {
 
     @GetMapping("/all")
     public String showAllCars(Model model, HttpSession session) {
-        EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+        Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
 
         if (loggedInUser != null) {
             model.addAttribute("cars", carService.getAllCars());
@@ -95,7 +95,7 @@ public class CarController {
 
     @GetMapping("/unrented")
     public String showAllUnrentedCars(Model model, HttpSession session) {
-        EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+        Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
 
         if (loggedInUser != null) {
             model.addAttribute("carsWithStatus", carService.getAllCarsWithStatus());

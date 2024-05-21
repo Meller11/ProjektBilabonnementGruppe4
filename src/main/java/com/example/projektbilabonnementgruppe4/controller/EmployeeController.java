@@ -1,6 +1,6 @@
 package com.example.projektbilabonnementgruppe4.controller;
 
-import com.example.projektbilabonnementgruppe4.model.EmployeeModel;
+import com.example.projektbilabonnementgruppe4.model.Employee;
 import com.example.projektbilabonnementgruppe4.service.EmployeeService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class EmployeeController {
   // Viser medarbejderloginsiden
   @GetMapping("/login")
   public String showEmployeeLogin(Model model) {
-    model.addAttribute("employeeModel", new EmployeeModel());
+    model.addAttribute("employeeModel", new Employee());
     return "employee/employeeLogin";
   }
 
@@ -31,7 +31,7 @@ public class EmployeeController {
   @PostMapping("/login")
   public String processEmployeeLogin(@RequestParam String username, @RequestParam String password, HttpSession session, RedirectAttributes redirectAttributes) {
     // Validerer brugernavn og kodeord og returnerer den indloggede bruger.
-    EmployeeModel loggedInUser = employeeService.validateUser(username, password);
+    Employee loggedInUser = employeeService.validateUser(username, password);
 
     if (loggedInUser != null) {
       session.setAttribute("loggedInUser", loggedInUser);
@@ -41,38 +41,34 @@ public class EmployeeController {
       return "redirect:/employee/login";
     }
   }
-
   //Når brugeren logger ud fjernes loggedInUser fra session og sendes tilbage til startsiden.
   @GetMapping("/logout")
   public String logout(HttpSession session) {
     session.removeAttribute("loggedInUser");
     return "redirect:/";
   }
-
   //Viser registreringssiden for nye medarbejdere
   @GetMapping("/register")
   public String showRegisterNewEmployee(Model model, HttpSession session) {
-    EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+    Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
 
     if (loggedInUser != null) {
-      model.addAttribute("employeeModel", new EmployeeModel());
+      model.addAttribute("employeeModel", new Employee());
       return "employee/registerNewEmployee";
     } else {
       return "redirect:/";
     }
   }
-
   //Behandler indsendelse af registreringsformular og gemmer den nye medarbejder i DB.
   @PostMapping("/register")
-  public String processRegisterNewEmployee(@ModelAttribute("employeeModel") EmployeeModel employeeModel, RedirectAttributes redirectAttributes) {
-    employeeService.saveNewEmployee(employeeModel);
+  public String processRegisterNewEmployee(@ModelAttribute("employeeModel") Employee employee, RedirectAttributes redirectAttributes) {
+    employeeService.saveNewEmployee(employee);
     return "redirect:/employee/list";
   }
-
   // Sendes til listen over medarbejdere, når "tilbage til menu" knappen trykkes.
   @GetMapping("/menu")
   public String showMenu(HttpSession session) {
-    EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+    Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
 
     if (loggedInUser != null) {
       return "redirect:/employee/list";
@@ -80,50 +76,45 @@ public class EmployeeController {
       return "redirect:/";
     }
   }
-
   //Viser listen over medarbejdere
   @GetMapping("/list")
   public String showEmployeeList(Model model, HttpSession session) {
-    EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+    Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
 
     if (loggedInUser != null) {
-      List<EmployeeModel> employeeList = employeeService.getAllEmployees();
+      List<Employee> employeeList = employeeService.getAllEmployees();
       model.addAttribute("employeeList", employeeList);
       return "employee/employeeList";
     } else {
       return "redirect:/";
     }
   }
-
   //Viser siden til redigering af en medarbejder, hvis en bruger er logget ind
   @GetMapping("/edit")
   public String showEditEmployee(@RequestParam String username, Model model, HttpSession session) {
-    EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+    Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
 
-    EmployeeModel employeeModel = employeeService.getEmployeeByUsername(username);
+    Employee employee = employeeService.getEmployeeByUsername(username);
 
     if (loggedInUser != null) {
-      model.addAttribute("employeeModel", employeeModel);
+      model.addAttribute("employeeModel", employee);
       return "employee/updateEmployee";
     } else {
       return "redirect:/";
     }
   }
-
   //Behandler redigering af medarbejderoplysninger.
   @PostMapping("/update")
-  public String processEditEmployee(@ModelAttribute("employeeModel") EmployeeModel updatedEmployeeModel) {
-    employeeService.editEmployee(updatedEmployeeModel);
+  public String processEditEmployee(@ModelAttribute("employeeModel") Employee updatedEmployee) {
+    employeeService.editEmployee(updatedEmployee);
     return "redirect:/employee/list";
   }
-
   //gemmer opdateringerede medarb.oplysninger
   @PostMapping("/saveUpdate")
-  public String saveUpdatedEmployee(@ModelAttribute("employeeModel") EmployeeModel updatedEmployeeModel) {
-    employeeService.editEmployee(updatedEmployeeModel);
+  public String saveUpdatedEmployee(@ModelAttribute("employeeModel") Employee updatedEmployee) {
+    employeeService.editEmployee(updatedEmployee);
     return "redirect:/employee/list";
   }
-
   // Sletter en medarbejder baseret brugernavn
   @PostMapping("/delete")
   public String deleteEmployee(@RequestParam String username) {
