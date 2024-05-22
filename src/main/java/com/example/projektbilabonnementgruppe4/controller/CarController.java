@@ -81,6 +81,7 @@ public class CarController {
         }
     }
 
+    // Viser alle biler, henter bilerne igennem service layer og adder dem til modellen.
     @GetMapping("/all")
     public String showAllCars(Model model, HttpSession session) {
         EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
@@ -93,6 +94,7 @@ public class CarController {
         }
     }
 
+    // Viser alle ikke udlejede biler, henter bilerne igennem service layer og adder dem til modellen.
     @GetMapping("/unrented")
     public String showAllUnrentedCars(Model model, HttpSession session) {
         EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");

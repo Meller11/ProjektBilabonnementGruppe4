@@ -43,6 +43,7 @@ public class RentalAgreementService {
         return rentalAgreementRepository.getAverageMonthlyFee();
     }
 
+
     public int getDifferenceInMonthsForContractID(int contractID){
         Period period = Period.between(getRentalAgreement(contractID).getContractStartDate(), getRentalAgreement(contractID).getContractEndDate());
         int totalYears = 0;
