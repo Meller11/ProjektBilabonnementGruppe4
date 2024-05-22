@@ -1,9 +1,11 @@
 package com.example.projektbilabonnementgruppe4.viewModel;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
-import java.time.LocalDate;
 import java.util.Date;
+
+/* Klassen er skrevet af Lasse Fosgaard.
+   Klassen indeholder et viewModel objekt (CarWithStatus), med tilsvarende attributter fra Car og CarStatus.
+   Det bruges til relevante visninger, hvor man gerne vil have info fra forskellige objekter/tabeller */
 
 public class CarWithStatus {
     private Integer carId;

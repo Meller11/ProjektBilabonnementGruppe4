@@ -1,5 +1,8 @@
 package com.example.projektbilabonnementgruppe4.model;
 
+/* Klassen er skrevet af Lasse Fosgaard
+   Klassen indeholder et objekt af en bilkøber. Vi nåede ikke at få implementeret logik der benytter carBuyer */
+
 public class CarBuyer {
     private int buyerId;
     private String companyName;

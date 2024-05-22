@@ -2,6 +2,10 @@ package com.example.projektbilabonnementgruppe4.model;
 
 import java.time.LocalDate;
 
+/* Klassen er skrevet af Lasse Fosgaard
+    Klassen indeholder et objekt af en bilstatus. Én bil har Én bilstatus forbundet.
+    Den kan så ændre sig i carStatusType og carStatusDate, så man kan se dens nuværende status samt liggetid */
+
 public class CarStatus {
     private Integer carStatusId;
     private String carStatusType;
