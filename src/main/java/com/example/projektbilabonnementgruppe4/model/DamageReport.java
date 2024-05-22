@@ -36,19 +36,20 @@ public class DamageReport {
         this.reportDate = reportDate;
         this.damageReportDone = damageReportDone;
     }
-    public int getDamageReportId(){
+
+    public int getDamageReportId() {
         return damageReportId;
     }
 
-    public void setDamageReportId(int damageReportId){
+    public void setDamageReportId(int damageReportId) {
         this.damageReportId = damageReportId;
     }
 
-    public int getContractId(){
+    public int getContractId() {
         return contractId;
     }
 
-    public void setContractId(int contractId){
+    public void setContractId(int contractId) {
         this.contractId = contractId;
     }
 

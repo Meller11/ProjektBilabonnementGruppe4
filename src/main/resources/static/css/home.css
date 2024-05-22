@@ -24,12 +24,12 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-top: 5px; /* Juster denne værdi for at få den ønskede afstand */
+    margin-top: 5px;
     width: 18vw;
 }
 
 .btn-primary {
-    margin-top: 5px; /* Afstand mellem input og knappen */
+    margin-top: 5px;
     width: 10vw;
 }
 

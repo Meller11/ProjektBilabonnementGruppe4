@@ -19,7 +19,8 @@
                 <th>Model</th>
                 <th>Farve</th>
                 <th>Status</th>
-                <th>Rediger/Slet Bil</th>
+                <th>Liggetid (dage)</th>
+                <th>Handling</th>
             </tr>
             </thead>
             <tbody>
@@ -27,8 +28,9 @@
                 <td th:text="${carInfo.frameNumber}">Stelnummer</td>
                 <td th:text="${carInfo.brand}">Mærke</td>
                 <td th:text="${carInfo.model}">Model</td>
-                <td th:text="${carInfo.colour}">Model</td>
-                <td th:text="${carInfo.statusType}">Status</td>
+                <td th:text="${carInfo.colour}">Farve</td>
+                <td th:text="${carInfo.carStatusType}">Status</td>
+                <td th:text="${T(java.time.temporal.ChronoUnit).DAYS.between(carInfo.carStatusDate.toInstant().atZone(T(java.time.ZoneId).systemDefault()).toLocalDate(), T(java.time.LocalDate).now())}">Liggetid</td>
                 <td>
                     <form th:action="@{/cars/showEditCarForm}" method="get" style="display: inline;">
                         <input type="hidden" name="frameNumber" th:value="${carInfo.frameNumber}" />

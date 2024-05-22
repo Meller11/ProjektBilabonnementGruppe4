@@ -1,6 +1,6 @@
 package com.example.projektbilabonnementgruppe4.controller;
 
-import com.example.projektbilabonnementgruppe4.model.EmployeeModel;
+import com.example.projektbilabonnementgruppe4.model.Employee;
 import com.example.projektbilabonnementgruppe4.service.CarService;
 import com.example.projektbilabonnementgruppe4.service.RentalAgreementService;
 import com.example.projektbilabonnementgruppe4.viewModel.CarWithStatus;
@@ -30,7 +30,7 @@ public class FinanceController {
     //Økonomisk oversigt over forskellige KPI'er
     @GetMapping("/")
     public String financeOverview(HttpSession session, Model model){
-        EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+        Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
         if (loggedInUser != null){
             session.setAttribute("loggedInUser", loggedInUser);
             List<CarWithStatus> carWithStatus = carService.getAllCarsWithStatus();

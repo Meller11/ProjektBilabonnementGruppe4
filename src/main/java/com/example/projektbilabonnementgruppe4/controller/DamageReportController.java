@@ -1,6 +1,6 @@
 package com.example.projektbilabonnementgruppe4.controller;
 import com.example.projektbilabonnementgruppe4.model.DamageReport;
-import com.example.projektbilabonnementgruppe4.model.EmployeeModel;
+import com.example.projektbilabonnementgruppe4.model.Employee;
 import com.example.projektbilabonnementgruppe4.service.CarStatusService;
 import com.example.projektbilabonnementgruppe4.viewModel.DamageReportWithCarAndRA;
 import com.example.projektbilabonnementgruppe4.service.DamageReportService;
@@ -31,7 +31,7 @@ public class DamageReportController {
 
     @GetMapping("/")
     public String damageReport(Model model, HttpSession session) {
-        EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+        Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
         if (loggedInUser != null){
         List<DamageReportWithCarAndRA> damageReportNotDone = new ArrayList<>();
         List<DamageReportWithCarAndRA> damageReportDone = new ArrayList<>();
@@ -72,7 +72,7 @@ public class DamageReportController {
 
     @PostMapping("/deleteDamageReport/{contract_id}")
     public String deleteDamageReport(@PathVariable int contract_id, HttpSession session){
-        EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+        Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
         if (loggedInUser != null){
         carStatusService.updateCarStatus(damageReportService.damageReportByID(contract_id).getCarId(), "Udlejet");
         damageReportService.deleteDamageReport(contract_id);
@@ -86,7 +86,7 @@ public class DamageReportController {
 
     @GetMapping("/FinalizeReport/{contract_id}")
     public String finalizeDamageReport(@ModelAttribute("damageReport") DamageReport updateDamageReport, @PathVariable int contract_id, Model model, HttpSession session){
-        EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+        Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
         if (loggedInUser != null){
         DamageReportWithCarAndRA finalizeDamageReport = damageReportService.damageReportByID(contract_id);
         model.addAttribute("finalizeDamageReport", finalizeDamageReport);
@@ -99,7 +99,7 @@ public class DamageReportController {
     //Indsendelse af skade rapport samt opdatering af bil status til "Klar Til Salg"
     @PostMapping("/finalizeReport/{contract_id}")
     public String finalizeDamageReport(@ModelAttribute("damageReport") DamageReport updateDamageReport, @PathVariable int contract_id, HttpSession session){
-        EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+        Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
         if (loggedInUser != null){
         damageReportService.updateDamageReport(updateDamageReport, contract_id);
         carStatusService.updateCarStatus(damageReportService.damageReportByID(contract_id).getCarId(), "Klar Til Salg");
@@ -112,7 +112,7 @@ public class DamageReportController {
     //Visning af færdiggjort skade rapport samt udregning af skade + overkørte kilometer.
     @GetMapping("/FinalReport/{contract_id}")
     public String finalDamageReport(@PathVariable int contract_id, Model model, HttpSession session){
-        EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+        Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
         if (loggedInUser != null){
         DamageReportWithCarAndRA finalDamageReport = damageReportService.damageReportByID(contract_id);
         int priceForDamages = 0;

@@ -1,24 +1,32 @@
 package com.example.projektbilabonnementgruppe4.viewModel;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
+import java.util.Date;
+
 public class CarWithStatus {
     private Integer carId;
     private String frameNumber;
     private String brand;
     private String model;
     private String colour;
-    private String statusType; // Status fra CarStatus
+    private String carStatusType;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date carStatusDate;
 
     // Constructors, getters, and setters
     public CarWithStatus() {
     }
 
-    public CarWithStatus(Integer carId, String frameNumber, String brand, String model, String colour, String statusType) {
+    public CarWithStatus(Integer carId, String frameNumber, String brand, String model, String colour, String carStatusType, Date carStatusDate) {
         this.carId = carId;
         this.frameNumber = frameNumber;
         this.brand = brand;
         this.model = model;
         this.colour = colour;
-        this.statusType = statusType;
+        this.carStatusType = carStatusType;
+        this.carStatusDate = carStatusDate;
     }
 
     public Integer getCarId() {
@@ -61,11 +69,19 @@ public class CarWithStatus {
         this.colour = colour;
     }
 
-    public String getStatusType() {
-        return statusType;
+    public String getCarStatusType() {
+        return carStatusType;
     }
 
-    public void setStatusType(String statusType) {
-        this.statusType = statusType;
+    public void setCarStatusType(String carStatusType) {
+        this.carStatusType = carStatusType;
+    }
+
+    public Date getCarStatusDate() {
+        return carStatusDate;
+    }
+
+    public void setCarStatusDate(Date carStatusDate) {
+        this.carStatusDate = carStatusDate;
     }
 }

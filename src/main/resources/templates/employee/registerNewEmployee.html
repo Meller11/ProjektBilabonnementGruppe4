@@ -1,57 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Register Employee</title>
-  <link th:href="@{/css/style.css}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Register Employee</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
 
 </head>
 <body>
 <div th:replace="~{fragments/header.html :: header}"></div>
 
 <div class="content">
-  <div class="container">
-    <h2>Registrer ny bruger</h2>
-    <form th:action="@{/employee/register}" th:object="${employeeModel}" method="post">
+    <div class="container">
+        <h2>Registrer ny bruger</h2>
+        <form th:action="@{/employee/register}" th:object="${employee}" method="post">
 
-      <div class="form-group">
-        <label for="firstname">Fornavn:</label>
-        <input type="text" id="firstname" th:field="*{firstname}" required />
-      </div>
-      <div class="form-group">
-        <label for="lastname">Efternavn:</label>
-        <input type="text" id="lastname" th:field="*{lastname}" required />
-      </div>
-      <div class="form-group">
-        <label for="usertype">Stilling:</label>
-        <select id="usertype" th:field="*{userType}" required>
-          <option value="">Vælg stilling:</option>
-          <option value="Admin">Admin</option>
-          <option value="Lejeagent">Lejeagent</option>
-          <option value="Skadesinspektør">Skadesinspektør</option>
-          <option value="Forretningsudvikler">Forretningsudvikler</option>
-        </select>
-      </div>
+            <div class="form-group">
+                <label for="firstname">Fornavn:</label>
+                <input type="text" id="firstname" th:field="*{firstname}" required/>
+            </div>
+            <div class="form-group">
+                <label for="lastname">Efternavn:</label>
+                <input type="text" id="lastname" th:field="*{lastname}" required/>
+            </div>
+            <div class="form-group">
+                <label for="usertype">Stilling:</label>
+                <select id="usertype" th:field="*{userType}" required>
+                    <option value="">Vælg stilling:</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Lejeagent">Lejeagent</option>
+                    <option value="Skadesinspektør">Skadesinspektør</option>
+                    <option value="Forretningsudvikler">Forretningsudvikler</option>
+                </select>
+            </div>
 
-      <div class="form-group">
-        <label for="username">Brugernavn:</label>
-        <input type="text" id="username" th:field="*{username}" required />
-      </div>
+            <div class="form-group">
+                <label for="username">Brugernavn:</label>
+                <input type="text" id="username" th:field="*{username}" required/>
+            </div>
 
-      <div class="form-group">
-        <label for="password">Adgangskode:</label>
-        <input type="password" id="password" th:field="*{password}" required />
-      </div>
-
-
-      <div class="button-container">
-        <button type="submit" class="button">Opret Bruger</button>
-        <a th:href="@{/employee/menu}" class="button">Tilbage til menu</a>
-      </div>
-    </form>
+            <div class="form-group">
+                <label for="password">Adgangskode:</label>
+                <input type="password" id="password" th:field="*{password}" required/>
+            </div>
 
 
-  </div>
+            <div class="button-container">
+                <button type="submit" class="button">Opret Bruger</button>
+                <a th:href="@{/employee/menu}" class="button">Tilbage til menu</a>
+            </div>
+        </form>
+
+
+    </div>
 </div>
 </body>
 </html>

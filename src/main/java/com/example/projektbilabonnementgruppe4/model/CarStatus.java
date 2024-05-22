@@ -5,16 +5,16 @@ import java.time.LocalDate;
 public class CarStatus {
     private Integer carStatusId;
     private String carStatusType;
-    private LocalDate statusDate;
+    private LocalDate carStatusDate;
     private Integer carId;
 
     public CarStatus() {
     }
 
-    public CarStatus(int carStatusId, String carStatusType, LocalDate statusDate, int carId) {
+    public CarStatus(int carStatusId, String carStatusType, LocalDate carStatusDate, int carId) {
         this.carStatusId = carStatusId;
         this.carStatusType = carStatusType;
-        this.statusDate = statusDate;
+        this.carStatusDate = carStatusDate;
         this.carId = carId;
     }
 
@@ -35,12 +35,12 @@ public class CarStatus {
         this.carStatusType = carStatusType;
     }
 
-    public LocalDate getStatusDate() {
-        return statusDate;
+    public LocalDate getCarStatusDate() {
+        return carStatusDate;
     }
 
-    public void setStatusDate(LocalDate statusDate) {
-        this.statusDate = statusDate;
+    public void setCarStatusDate(LocalDate carStatusDate) {
+        this.carStatusDate = carStatusDate;
     }
 
     public int getCarId() {
@@ -56,7 +56,7 @@ public class CarStatus {
         return "CarStatus{" +
                 "carStatusId=" + carStatusId +
                 ", carStatusType='" + carStatusType + '\'' +
-                ", statusDate=" + statusDate +
+                ", carStatusDate=" + carStatusDate +
                 ", carId=" + carId +
                 '}';
     }

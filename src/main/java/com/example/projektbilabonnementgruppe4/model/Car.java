@@ -1,4 +1,6 @@
 package com.example.projektbilabonnementgruppe4.model;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class Car {
@@ -12,7 +14,9 @@ public class Car {
     private double price;
     private double registrationFee;
     private double emission;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate acquisitionDate;
+
 
     public Car() {
     }

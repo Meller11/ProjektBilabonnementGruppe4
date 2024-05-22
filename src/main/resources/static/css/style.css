@@ -13,11 +13,15 @@ body {
 
 .container {
     background-color: white;
-    padding: 10px;
+    padding: 10px;;
     margin: auto;
-    width: 55vw;
+    width: 80vw;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
+}
+
+.small {
+    width: 50vw; /* Denne klasse bruger vi til at gøre containere med færre elementer mindre */
 }
 
 h1 {
@@ -44,7 +48,6 @@ input[type="text"],
 input[type="number"],
 input[type="date"],
 input[type="password"],
-
 textarea {
     width: 100%;
     padding: 0.8vw;
@@ -56,6 +59,7 @@ textarea {
 .row {
     display: flex;
     align-items: center;
+    text-align: center;
     justify-content: space-between;
 }
 
@@ -67,7 +71,7 @@ textarea {
 button[type="submit"], .button {
     font-family: Arial, sans-serif;
     font-weight: bold;
-    min-width: 40%;
+    min-width: 6vw;
     font-size: 1vw;
     padding: 0.5vw 1vw;
     background: linear-gradient(to top, #4481eb 0%, #04befe 100%);
@@ -131,4 +135,8 @@ tr:nth-child(odd) {
 
 .closebtn:hover {
     color: black;
+}
+
+.login-button {
+    margin-top: 17px;
 }

@@ -10,7 +10,7 @@
 <div th:replace="~{fragments/header.html :: header}"></div>
 
 <div class="content">
-    <div class="container">
+    <div class="container small">
         <h1>Tilføj ny bil til flåden</h1>
 
         <form th:action="@{/cars/create}" method="post" th:object="${car}">
