@@ -83,7 +83,7 @@ public class CarController {
     // Viser alle biler, henter bilerne igennem service layer og adder dem til modellen.
     @GetMapping("/all")
     public String showAllCars(Model model, HttpSession session) {
-        EmployeeModel loggedInUser = (EmployeeModel) session.getAttribute("loggedInUser");
+        Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
 
         if (loggedInUser != null) {
             model.addAttribute("cars", carService.getAllCars());
