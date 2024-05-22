@@ -49,7 +49,6 @@ public class CarController {
         if (loggedInUser != null) {
             Car car = carService.getCarByFrameNumber(frameNumber);
             model.addAttribute("car", car);
-            System.out.println(car.getAcquisitionDate());
             return "/car/updateCar";
         } else {
             return "redirect:/";
