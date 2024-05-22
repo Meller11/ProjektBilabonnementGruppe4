@@ -16,7 +16,9 @@
         <h1 class="frontpage-headline"> Bilabonnement - Medarbejderportal</h1>
         <div class="links-container">
             <div th:if="${session.loggedInUser == null}">
-                <a class="button" th:href="@{/employee/login}">Login</a>
+                <form th:action="@{/employee/login}" method="get" style="display: inline;">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
             </div>
             <div th:if="${session.loggedInUser != null}">
                 <form th:action="@{/cars/search}" method="get" class="search-form">

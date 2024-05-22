@@ -5,29 +5,27 @@
   <title>Login</title>
   <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
-<body class="body">
+<body>
 <div th:replace="~{fragments/header.html :: header}"></div>
 
 <div class="content">
-  <div class="container">
+  <div class="container small">
 
         <h1>Administration Login</h1>
         <form action="/employee/login" method="post" th:object="${employee}">
           <div class="form-group row">
             <div class="col">
               <label for="username">Brugernavn:</label>
-              <input type="text" id="username" placeholder="Brugernavn" th:field="*{username}" required>
+              <input type="text" id="username" placeholder="E-mail" th:field="*{username}" required>
             </div>
             <div class="col">
               <label for="password">Adgangskode:</label>
               <input type="password" id="password" placeholder="*********" th:field="*{password}" required>
             </div>
             <div class="col">
-              <button type="submit" class="btn">Login</button>
+              <button type="submit" class="btn login-button">Login</button>
             </div>
           </div>
-
-
         </form>
     <p th:if="${loginError}" class="error-message" th:text="${loginError}"></p>
   </div>

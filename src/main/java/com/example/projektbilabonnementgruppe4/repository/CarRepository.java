@@ -44,32 +44,19 @@ public class CarRepository {
     }
 
     public List<CarWithStatus> getAllCarsWithStatus() {
-        String sql = "SELECT c.car_id, c.frame_number, c.brand, c.model, c.colour, cs.car_status_type " +
-                "FROM car c JOIN car_status cs ON c.car_id = cs.car_id";
-        return jdbcTemplate.query(sql, (rs, rowNum) -> new CarWithStatus(
-                rs.getInt("car_id"),
-                rs.getString("frame_number"),
-                rs.getString("brand"),
-                rs.getString("model"),
-                rs.getString("colour"),
-                rs.getString("car_status_type")
-        ));
+        String sql = "SELECT c.car_id, c.frame_number, c.brand, c.model, c.colour, cs.car_status_type, cs.car_status_date " +
+                "FROM car c JOIN car_status cs ON c.car_id = cs.car_id " +
+                "ORDER BY cs.car_status_date DESC";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(CarWithStatus.class));
     }
 
     public List<CarWithStatus> searchCarsWithStatus(String query) {
-        String sql = "SELECT c.car_id, c.frame_number, c.brand, c.model, c.colour, cs.car_status_type " +
+        String sql = "SELECT c.car_id, c.frame_number, c.brand, c.model, c.colour, cs.car_status_type, cs.car_status_date " +
                 "FROM car c JOIN car_status cs ON c.car_id = cs.car_id " +
                 "WHERE c.frame_number LIKE ? OR c.brand LIKE ? OR c.model LIKE ? OR c.colour LIKE ? OR cs.car_status_type LIKE ?";
         String searchQuery = "%" + query + "%";
         return jdbcTemplate.query(sql, new Object[]{searchQuery, searchQuery, searchQuery, searchQuery, searchQuery},
-                (rs, rowNum) -> new CarWithStatus(
-                        rs.getInt("car_id"),
-                        rs.getString("frame_number"),
-                        rs.getString("brand"),
-                        rs.getString("model"),
-                        rs.getString("colour"),
-                        rs.getString("car_status_type")
-                ));
+                new BeanPropertyRowMapper<>(CarWithStatus.class));
     }
 
     public double getAveragePriceOfAllCars(){
