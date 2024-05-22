@@ -97,12 +97,11 @@ public class EmployeeController {
 
     //Viser siden til redigering af en medarbejder, hvis en bruger er logget ind
     @GetMapping("/edit")
-    public String showEditEmployee(@RequestParam String username, Model model, HttpSession session) {
+    public String showEditEmployee(@RequestParam("username") String username, Model model, HttpSession session) {
         Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
 
-        Employee employee = employeeService.getEmployeeByUsername(username);
-
         if (loggedInUser != null) {
+            Employee employee = employeeService.getEmployeeByUsername(username);
             model.addAttribute("employee", employee);
             return "employee/updateEmployee";
         } else {
@@ -113,13 +112,6 @@ public class EmployeeController {
     //Behandler redigering af medarbejderoplysninger.
     @PostMapping("/update")
     public String processEditEmployee(@ModelAttribute("employee") Employee updatedEmployee) {
-        employeeService.editEmployee(updatedEmployee);
-        return "redirect:/employee/list";
-    }
-
-    //gemmer opdateringerede medarb.oplysninger
-    @PostMapping("/saveUpdate")
-    public String saveUpdatedEmployee(@ModelAttribute("employee") Employee updatedEmployee) {
         employeeService.editEmployee(updatedEmployee);
         return "redirect:/employee/list";
     }

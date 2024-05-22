@@ -52,9 +52,10 @@ public class EmployeeRepository {
 
     // Redigerer oplysninger om en medarbejder i databasen baseret på brugernavn.
     public void editEmployee(Employee employee) {
-        String sql = "UPDATE employee SET firstname = ?, lastname = ?, user_type = ?, username = ?, password = ? WHERE username = ?";
-        jdbcTemplate.update(sql, employee.getFirstname(), employee.getLastname(), employee.getUserType(), employee.getUsername(), employee.getPassword(), employee.getUsername());
+        String sql = "UPDATE employee SET firstname = ?, lastname = ?, user_type = ?, username = ?, password = ? WHERE employee_id = ?";
+        jdbcTemplate.update(sql, employee.getFirstname(), employee.getLastname(), employee.getUserType(), employee.getUsername(), employee.getPassword(), employee.getEmployeeId());
     }
+
 
     //Sletter en medarbejder fra databasen baseret på brugernavn.
     public void deleteEmployee(String username) {
