@@ -43,6 +43,8 @@ public class RentalAgreementService {
         return rentalAgreementRepository.getAverageMonthlyFee();
     }
 
+    // Total forskel fra start dato til slut dato i en specifik kontrakt.
+
     public int getDifferenceInMonthsForContractID(int contractID){
         Period period = Period.between(getRentalAgreement(contractID).getContractStartDate(), getRentalAgreement(contractID).getContractEndDate());
         int totalYears = 0;
@@ -52,6 +54,8 @@ public class RentalAgreementService {
         totalMonths += period.getMonths();
         return totalMonths;
     }
+
+    // Udregner den gennemsnitlige tid for alle leje kontrakter der er tilbage i kontrakterne.
 
     public int getDifferenceInMonthsAverageRemaining(){
         LocalDate today = LocalDate.now();
@@ -68,6 +72,8 @@ public class RentalAgreementService {
         monthDifferenceAverage = totalMonths / getAllRentalAgreements().size();
         return monthDifferenceAverage;
     }
+
+    // Udregner den totale gennemsnitlige tid alle kontrakter er oprettet med.
     public int getDifferenceInMonthsAverageTotal(){
         Period period = null;
         int totalMonths = 0;
@@ -83,10 +89,12 @@ public class RentalAgreementService {
         return monthDifferenceAverage;
     }
 
+    // Udregner gennemsnit af kilometer tilkøb i lejekontrakter.
     public double getAverageOfMileageOfContracts(){
         double averageMileagePerContract = rentalAgreementRepository.getTotalMileageOfContracts() / getAllRentalAgreements().size();
         return averageMileagePerContract;
     }
+    // Udregner total kilometer for en kontrakt.
 
     public int getTotalMilesPerContract(int contractID){
         int totalMileageForContract = 0;
@@ -104,6 +112,7 @@ public class RentalAgreementService {
         }
         return totalMileageForContract;
     }
+    // Udregner den totale tilkøbte pris af en kontrakts kilometer.
 
     public double getTotalPriceOfMileageInContract(int contractID){
         double totalMileageForContract = 0;
@@ -121,6 +130,8 @@ public class RentalAgreementService {
             return totalMileageForContract;
         }
 
+        // Total pris af alle ekstra kilometer købt i kontrakter.
+
     public double totalPriceOfAllMileageInAllContracts(){
         double totalPrice = 0;
         for (int i = 0; getAllRentalAgreements().size()>i; i++){
@@ -128,6 +139,8 @@ public class RentalAgreementService {
         }
         return totalPrice;
     }
+
+    //Udregner den totale mængde måneder tilbage af en kontrakt fra dags dato.
 
     public int getMonthsRemainingOnContract(int contractID){
         LocalDate today = LocalDate.now();
@@ -142,6 +155,7 @@ public class RentalAgreementService {
         return monthsRemaining;
     }
 
+    // Får den totale pris fra dags dato til slut dato af kontrakt, på de ekstra tilkøb af kilometer en kontrakt potentielt kunne have.
     public double getTotalPriceOfAllMileageFromCurrentDateToEndDateOfContracts(){
         double totalPrice = 0;
         for (int i = 0; getAllRentalAgreements().size()>i; i++){
