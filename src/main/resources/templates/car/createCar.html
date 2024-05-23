@@ -16,7 +16,8 @@
         <form th:action="@{/cars/create}" method="post" th:object="${car}">
             <div class="form-group">
                 <label for="frameNumber">Stelnummer:</label>
-                <input type="text" id="frameNumber" name="frameNumber" th:field="*{frameNumber}" required>
+                <input type="text" id="frameNumber" name="frameNumber" th:field="*{frameNumber}" pattern="^[A-Z0-9]{17}$" title="Stelnummeret skal være 17 tegn langt" required>
+
             </div>
 
             <div class="form-group">
@@ -45,14 +46,14 @@
                     </select>
                 </div>
                 <div class="col">
-                    <label for="gearType">Gear Type:</label>
+                    <label for="gearType">Gear:</label>
                     <select id="gearType" name="gearType" th:field="*{gearType}" required>
                         <option value="Automatisk">Automatisk</option>
                         <option value="Manuel">Manuel</option>
                     </select>
                 </div>
                 <div class="col">
-                    <label for="emission">CO2 Emission:</label>
+                    <label for="emission">CO2 Emission (g/km):</label>
                     <input type="number" step="0.01" id="emission" name="emission" th:field="*{emission}" required>
                 </div>
             </div>
