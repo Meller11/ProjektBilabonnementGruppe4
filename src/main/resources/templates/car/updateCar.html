@@ -18,7 +18,7 @@
 
             <div class="form-group">
                 <label for="frameNumber">Stelnummer:</label>
-                <input type="text" id="frameNumber" name="frameNumber" th:field="*{frameNumber}" required>
+                <input type="text" id="frameNumber" name="frameNumber" th:field="*{frameNumber}" pattern="^[A-Z0-9]{17}$" title="Stelnummeret skal være 17 tegn langt" required>
             </div>
 
             <div class="form-group">
