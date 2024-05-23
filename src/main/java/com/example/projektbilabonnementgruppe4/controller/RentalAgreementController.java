@@ -34,6 +34,8 @@ public class RentalAgreementController {
             return "redirect:/";
         }
     }*/
+
+    // Viser alle udlejningsaftaler fra viwemodel RentedCar, henter alle udlejningsaftaler fra service layer og adder dem til modellen
     @GetMapping("/rented")
     public String showAllRentedCars(Model model, HttpSession session) {
         Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
@@ -46,6 +48,7 @@ public class RentalAgreementController {
         }
     }
 
+    // Viser formen for at oprette en ny udlejningsaftale, henter carId fra URL og adder den til modellen.
     @GetMapping("/create")
     public String showCreateForm(Model model, @RequestParam("carId") int carId, HttpSession session){
         Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
@@ -59,6 +62,7 @@ public class RentalAgreementController {
         }
     }
 
+    // Opretter en ny udlejningsaftale igennem service layer og opdaterer bilens status til "Udlejet"
     @PostMapping("/create")
     public String createRentalAgreement(RentalAgreement rentalAgreement, @RequestParam("carId") int carId, HttpSession session) {
         Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
@@ -72,6 +76,7 @@ public class RentalAgreementController {
 
     }
 
+    // Viser formen for at opdatere en udlejningsaftale, henter rentalAgreement med det givne contractId igennem service layer og adder den til modellen.
     @GetMapping("/update")
     public String showUpdateForm(@RequestParam("contractId") int contractId, Model model, HttpSession session){
         Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
@@ -84,6 +89,7 @@ public class RentalAgreementController {
         }
     }
 
+    // Opdaterer en eksisterende udlejningsaftale igennem service layer og redirecter til alle udlejede biler
     @PostMapping("/update")
     public String updateRentalAgreement(@ModelAttribute ("rentalAgreement") RentalAgreement rentalAgreement, HttpSession session) {
         Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
@@ -95,6 +101,7 @@ public class RentalAgreementController {
         }
     }
 
+    // Sletter en udlejningsaftale igennem service layer og opdaterer bilens status til "Klar til udlejning"
     @PostMapping("/delete")
     public String deleteRentalAgreement(@RequestParam("contractId") int contractId, @RequestParam("carId") int carId, HttpSession session){
         Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");

@@ -12,7 +12,7 @@ CREATE TABLE `car` (
                        `fuel_type` varchar(255) NOT NULL,
                        PRIMARY KEY (`car_id`),
                        UNIQUE KEY `frame_number` (`frame_number`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 CREATE TABLE `car_buyer` (
                              `buyer_id` int NOT NULL AUTO_INCREMENT,
@@ -59,8 +59,10 @@ CREATE TABLE `rental_agreement` (
                                     `mileage_per_month` double NOT NULL,
                                     PRIMARY KEY (`contract_id`),
                                     UNIQUE KEY `car_id_UNIQUE` (`car_id`),
-                                    KEY `EmployeeID` (`employee_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+                                    KEY `EmployeeID` (`employee_id`),
+                                    CONSTRAINT `car_id` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
 CREATE TABLE `damage_report` (
                                  `damage_report_id` int NOT NULL AUTO_INCREMENT,
                                  `contract_id` int NOT NULL,
@@ -71,7 +73,7 @@ CREATE TABLE `damage_report` (
                                  `report_date` date DEFAULT NULL,
                                  `damage_report_done` tinyint(1) DEFAULT '0',
                                  PRIMARY KEY (`damage_report_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 CREATE TABLE `employee` (
                             `employee_id` int NOT NULL AUTO_INCREMENT,
@@ -81,4 +83,4 @@ CREATE TABLE `employee` (
                             `username` varchar(255) NOT NULL,
                             `password` varchar(255) NOT NULL,
                             PRIMARY KEY (`employee_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

@@ -12,6 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+/* Klassen er skrevet af Lasse Fosgaard, med undtagelse af få linjer.
+   Klassen styrer visninger der har med bilerne i systemet at gøre, såsom opret/rediger/slet bil
+   smat forskellige visninger af biler (liste af alle biler i flåden f.eks.) */
+
 @Controller
 @RequestMapping("/cars")
 public class CarController {
@@ -22,6 +26,7 @@ public class CarController {
     @Autowired
     private CarStatusService carStatusService;
 
+    //Viser formular for oprettelse af bil
     @GetMapping("/create")
     public String showCreateCarForm(Model model, HttpSession session) {
         Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
@@ -34,6 +39,7 @@ public class CarController {
         }
     }
 
+    //Behandler formularen for oprettelse af bil og kalder carStatusService for samtidig at oprette en status for bilen.
     @PostMapping("/create")
     public String createCar(Car car) {
         carService.createCar(car);
@@ -42,6 +48,7 @@ public class CarController {
         return "redirect:allCarsWithStatus";
     }
 
+    //Viser formular for redigering af bil
     @GetMapping("/showEditCarForm")
     public String showEditCarForm(@RequestParam("frameNumber") String frameNumber, Model model, HttpSession session) {
         Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
@@ -49,19 +56,20 @@ public class CarController {
         if (loggedInUser != null) {
             Car car = carService.getCarByFrameNumber(frameNumber);
             model.addAttribute("car", car);
-            System.out.println(car.getAcquisitionDate());
             return "/car/updateCar";
         } else {
             return "redirect:/";
         }
     }
 
+    //Behandler formularen for redigering af bil
     @PostMapping("/updateCar")
     public String updateCar(@ModelAttribute("car") Car car) {
         carService.updateCar(car);
         return "redirect:/cars/allCarsWithStatus";
     }
 
+    //Behandler en forespørgsel om at slette en bil
     @PostMapping("/deleteCar")
     public String deleteCar(@RequestParam("frameNumber") String frameNumber) {
         Car foundCar = carService.getCarByFrameNumber(frameNumber);
@@ -69,6 +77,8 @@ public class CarController {
         return "redirect:/cars/allCarsWithStatus";
     }
 
+    /*Visning for alle biler i databasen, samt deres status. Visningen returnerer CarWithStatus objekter (viewModel),
+    som er en kombination af Car og CarStatus informationer */
     @GetMapping("/allCarsWithStatus")
     public String showAllCarsWithStatus(Model model, HttpSession session) {
         Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
@@ -81,6 +91,20 @@ public class CarController {
         }
     }
 
+    // Viser alle biler, henter bilerne igennem service layer og adder dem til modellen.
+    @GetMapping("/all")
+    public String showAllCars(Model model, HttpSession session) {
+        Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
+
+        if (loggedInUser != null) {
+            model.addAttribute("cars", carService.getAllCars());
+            return "car/allCars";
+        } else {
+            return "redirect:/";
+        }
+    }
+
+    // Viser alle ikke udlejede biler, henter bilerne igennem service layer og adder dem til modellen.
     @GetMapping("/unrented")
     public String showAllUnrentedCars(Model model, HttpSession session) {
         Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
@@ -93,6 +117,7 @@ public class CarController {
         }
     }
 
+    // Viser en liste af biler (søgeresultater) ud fra den indtastede query.
     @GetMapping("/search")
     public String searchCars(@RequestParam("query") String query, Model model) {
         List<CarWithStatus> searchResults = carService.searchCarsWithStatus(query);
