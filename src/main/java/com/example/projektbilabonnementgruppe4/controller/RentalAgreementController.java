@@ -23,18 +23,6 @@ public class RentalAgreementController {
     @Autowired
     private CarStatusService carStatusService;
 
-    /*@GetMapping("/rentalAgreements")
-    public String showAllForm(Model model, HttpSession session) {
-        Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
-        if (loggedInUser != null) {
-            List<RentalAgreement> rentalAgreements = rentalAgreementService.getAllRentalAgreements();
-            model.addAttribute("rentalAgreements", rentalAgreements);
-            return "showAllRentalAgreements";
-        } else {
-            return "redirect:/";
-        }
-    }*/
-
     // Viser alle udlejningsaftaler fra viwemodel RentedCar, henter alle udlejningsaftaler fra service layer og adder dem til modellen
     @GetMapping("/rented")
     public String showAllRentedCars(Model model, HttpSession session) {
