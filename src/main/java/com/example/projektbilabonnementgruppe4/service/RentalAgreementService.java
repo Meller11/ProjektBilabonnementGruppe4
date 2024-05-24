@@ -17,9 +17,10 @@ public class RentalAgreementService {
    @Autowired
    private RentalAgreementRepository rentalAgreementRepository;
 
-    public void createRentalAgreement(RentalAgreement rentalAgreement) {
+    public void  createRentalAgreement(RentalAgreement rentalAgreement) {
          rentalAgreementRepository.createRentalAgreement(rentalAgreement);
     }
+
     public List<RentalAgreement> getAllRentalAgreements() {
         return rentalAgreementRepository.getAllRentalAgreements();
     }
