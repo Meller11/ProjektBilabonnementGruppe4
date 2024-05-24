@@ -3,6 +3,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
+/* Klassen er skrevet af Lasse Fosgaard.
+   Klassen indeholder et objekt af en bil, samt de attributter en bil har. */
+
 public class Car {
     private Integer carId;
     private String frameNumber;

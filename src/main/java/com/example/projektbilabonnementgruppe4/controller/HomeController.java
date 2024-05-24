@@ -6,9 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-
-
-
+    //Viser startsiden
     @GetMapping("/")
     public String home() {
         return "home";

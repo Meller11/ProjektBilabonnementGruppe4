@@ -2,6 +2,9 @@ package com.example.projektbilabonnementgruppe4.model;
 
 import java.time.LocalDate;
 
+/* Klassen er skrevet af Lasse Fosgaard
+   Klassen indeholder et objekt af et bilsalg. Vi nåede ikke at få implementeret logik der benytter carSale */
+
 public class CarSale {
     private int saleId;
     private LocalDate purchaseDate;
