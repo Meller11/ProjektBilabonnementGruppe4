@@ -7,8 +7,8 @@
     <body>
     <div class="header-container">
         <div class="left">
-            <a class="logo" th:href="${session.loggedInUser != null ? '/' : '/'}">
-                <img th:src="@{/images/Bilabonnementlogo.png}" alt="Home" class="logo">
+            <a class="logo" th:href="/">
+                <img th:src="@{/images/BilabonnementLogo.png}" alt="Home" class="logo">
             </a>
             <div class="navbar" th:if="${session.loggedInUser != null}">>
                 <div class="dropdown">

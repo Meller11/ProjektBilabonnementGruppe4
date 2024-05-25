@@ -83,7 +83,7 @@ public class ProjektBilabonnementGruppe4ApplicationTests {
         // Assert
         verify(carService, times(1)).getCarByFrameNumber("123ABC");
         verify(carService, times(1)).deleteCarById(1);
-        assertEquals("redirect:/cars/allCarsWithStatus", viewName);
+        assertEquals("redirect:cars/allCarsWithStatus", viewName);
     }
 
     @Test

@@ -78,7 +78,7 @@ public class DamageReportController {
         if (loggedInUser != null){
         carStatusService.updateCarStatus(damageReportService.damageReportByID(contract_id).getCarId(), "Udlejet");
         damageReportService.deleteDamageReport(contract_id);
-        return "redirect:/damageReport/";
+        return "redirect:damageReport/";
     } else {
         return "redirect:/";
         }
@@ -105,7 +105,7 @@ public class DamageReportController {
         if (loggedInUser != null){
         damageReportService.updateDamageReport(updateDamageReport, contract_id);
         carStatusService.updateCarStatus(damageReportService.damageReportByID(contract_id).getCarId(), "Klar Til Salg");
-        return "redirect:/damageReport/FinalReport/{contract_id}";
+        return "redirect:damageReport/FinalReport/{contract_id}";
         } else {
         return "redirect:/";
         }

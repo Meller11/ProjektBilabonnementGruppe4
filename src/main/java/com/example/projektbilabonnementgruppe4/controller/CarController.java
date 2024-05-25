@@ -33,7 +33,7 @@ public class CarController {
 
         if (loggedInUser != null) {
             model.addAttribute("car", new Car());
-            return "/car/createCar";
+            return "car/createCar";
         } else {
             return "redirect:/";
         }
@@ -56,7 +56,7 @@ public class CarController {
         if (loggedInUser != null) {
             Car car = carService.getCarByFrameNumber(frameNumber);
             model.addAttribute("car", car);
-            return "/car/updateCar";
+            return "car/updateCar";
         } else {
             return "redirect:/";
         }
@@ -66,7 +66,7 @@ public class CarController {
     @PostMapping("/updateCar")
     public String updateCar(@ModelAttribute("car") Car car) {
         carService.updateCar(car);
-        return "redirect:/cars/allCarsWithStatus";
+        return "redirect:cars/allCarsWithStatus";
     }
 
     //Behandler en forespørgsel om at slette en bil
@@ -74,7 +74,7 @@ public class CarController {
     public String deleteCar(@RequestParam("frameNumber") String frameNumber) {
         Car foundCar = carService.getCarByFrameNumber(frameNumber);
         carService.deleteCarById(foundCar.getCarId());
-        return "redirect:/cars/allCarsWithStatus";
+        return "redirect:cars/allCarsWithStatus";
     }
 
     /*Visning for alle biler i databasen, samt deres status. Visningen returnerer CarWithStatus objekter (viewModel),

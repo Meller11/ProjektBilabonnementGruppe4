@@ -10,9 +10,9 @@ public class RentalAgreement {
     private int carId;
     private String contractNumber;
     private String pickupLocation;
-   // @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate contractStartDate;
-    //@DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate contractEndDate;
     private String contractType;
     private double contractMonthlyFee;
