@@ -48,7 +48,7 @@ public class DamageReportController {
         }
         for (int i = 0; rentalAgreementService.getAllRentalAgreements().size() > i; i++) {
             RentalAgreement rentalAgreement = rentalAgreementService.getRentalAgreement(rentalAgreementService.getAllRentalAgreements().get(i).getContractId());
-            if (!damageReportIDs.contains(rentalAgreement)) {
+            if (!damageReportIDs.contains(rentalAgreement.getContractId())) {
                 DamageReport newDamageReport = new DamageReport(rentalAgreement.getContractId(), false, false, false, 0, rentalAgreement.getContractEndDate(), false);
                 damageReportService.createDamageReport(newDamageReport);
             }

@@ -28,7 +28,6 @@
                 <td th:text="${damageReportNotDone.contractNumber}"></td>
                 <td th:text="${damageReportNotDone.brand}"></td>
                 <td th:text="${damageReportNotDone.model}"></td>
-
                 <td th:text="${damageReportNotDone.firstName + ' ' + damageReportNotDone.lastName}"></td>
                 <td>
                     <form th:action="@{/damageReport/FinalizeReport/{contract_id}(contract_id=${damageReportNotDone.contractId})}" method="get" style="display: inline;">

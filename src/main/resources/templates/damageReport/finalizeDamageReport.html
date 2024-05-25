@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <
     <link th:href="@{/css/style.css}" rel="stylesheet">
     <head>
 <body class="frontpage-background">
@@ -37,7 +36,6 @@
                 <td th:text="${finalizeDamageReport.contractType}"></td>
             </tr>
 
-            </tr>
         </table>
         <form th:action="@{/damageReport/finalizeReport/{contract_id}(contract_id=${finalizeDamageReport.contractId})}"
               th:object="${damageReport}" method="post">
