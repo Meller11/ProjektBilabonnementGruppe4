@@ -14,6 +14,8 @@
 
         <form th:action="@{/rentalAgreements/update}" th:object="${rentalAgreement}" method="post" >
             <input type="hidden" th:field="*{contractId}" />
+            <input type="hidden" name="employeeId" th:value="${rentalAgreement.employeeId}" />
+
 
 
             <div class="form-group">
