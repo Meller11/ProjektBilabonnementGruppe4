@@ -17,7 +17,7 @@ public class Car {
     private double price;
     private double registrationFee;
     private double emission;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+  //  @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate acquisitionDate;
 
 
