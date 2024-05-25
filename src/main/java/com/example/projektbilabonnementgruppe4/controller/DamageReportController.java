@@ -1,6 +1,7 @@
 package com.example.projektbilabonnementgruppe4.controller;
 import com.example.projektbilabonnementgruppe4.model.DamageReport;
 import com.example.projektbilabonnementgruppe4.model.Employee;
+import com.example.projektbilabonnementgruppe4.model.RentalAgreement;
 import com.example.projektbilabonnementgruppe4.service.CarStatusService;
 import com.example.projektbilabonnementgruppe4.viewModel.DamageReportWithCarAndRA;
 import com.example.projektbilabonnementgruppe4.service.DamageReportService;
@@ -45,9 +46,10 @@ public class DamageReportController {
         for (int i = 0; damageReportService.listOfAllDamageReports().size()>i;i++) {
             damageReportIDs.add(damageReportService.listOfAllDamageReports().get(i).getContractId());
         }
-        for (int rentalAgreementID : rentalAgreementIDs) {
-            if (!damageReportIDs.contains(rentalAgreementID)) {
-                DamageReport newDamageReport = new DamageReport(rentalAgreementID, false, false, false, 0, currentDate, false);
+        for (int i = 0; rentalAgreementService.getAllRentalAgreements().size() > i; i++) {
+            RentalAgreement rentalAgreement = rentalAgreementService.getRentalAgreement(rentalAgreementService.getAllRentalAgreements().get(i).getContractId());
+            if (!damageReportIDs.contains(rentalAgreement)) {
+                DamageReport newDamageReport = new DamageReport(rentalAgreement.getContractId(), false, false, false, 0, rentalAgreement.getContractEndDate(), false);
                 damageReportService.createDamageReport(newDamageReport);
             }
         }
