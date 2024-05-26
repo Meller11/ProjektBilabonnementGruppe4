@@ -57,7 +57,7 @@ public class RentalAgreementController {
         if (loggedInUser != null) {
             rentalAgreementService.createRentalAgreement(rentalAgreement);
             carStatusService.updateCarStatus(carId, "Udlejet");
-            return "redirect:rentalAgreements/rented";
+            return "redirect:rented";
         }else {
             return "redirect:/";
         }
@@ -83,7 +83,7 @@ public class RentalAgreementController {
         Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
         if (loggedInUser != null) {
             rentalAgreementService.updateRentalAgreement(rentalAgreement);
-            return "redirect:rentalAgreements/rented";
+            return "redirect:rented";
         } else {
             return "redirect:/";
         }
@@ -96,7 +96,7 @@ public class RentalAgreementController {
         if (loggedInUser != null) {
             rentalAgreementService.deleteRentalAgreement(contractId);
             carStatusService.updateCarStatus(carId, "Klar til udlejning");
-            return "redirect:rentalAgreements/rented";
+            return "redirect:rented";
         } else {
             return "redirect:/";
         }
