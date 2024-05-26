@@ -2,12 +2,14 @@ package com.example.projektbilabonnementgruppe4;
 
 import com.example.projektbilabonnementgruppe4.controller.CarController;
 import com.example.projektbilabonnementgruppe4.model.Car;
+import com.example.projektbilabonnementgruppe4.model.Employee;
 import com.example.projektbilabonnementgruppe4.model.RentalAgreement;
 import com.example.projektbilabonnementgruppe4.repository.RentalAgreementRepository;
 import com.example.projektbilabonnementgruppe4.service.CarService;
 import com.example.projektbilabonnementgruppe4.service.CarStatusService;
 import com.example.projektbilabonnementgruppe4.service.RentalAgreementService;
 import com.example.projektbilabonnementgruppe4.viewModel.CarWithStatus;
+import jakarta.servlet.http.HttpSession;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -44,6 +46,9 @@ public class ProjektBilabonnementGruppe4ApplicationTests {
 
     @Mock
     private Model model;
+
+    @Mock
+    private HttpSession session;
 
     @BeforeEach
     public void setup() {
@@ -83,17 +88,19 @@ public class ProjektBilabonnementGruppe4ApplicationTests {
         // Assert
         verify(carService, times(1)).getCarByFrameNumber("123ABC");
         verify(carService, times(1)).deleteCarById(1);
-        assertEquals("redirect:/cars/allCarsWithStatus", viewName);
+        assertEquals("redirect:allCarsWithStatus", viewName);
     }
 
     @Test
-    public void testSearchCars() {
+    public void testSearchCars_UserLoggedIn() {
         // Arrange
         List<CarWithStatus> mockSearchResults = new ArrayList<>();
         when(carService.searchCarsWithStatus(anyString())).thenReturn(mockSearchResults);
+        Employee mockEmployee = new Employee();
+        when(session.getAttribute("loggedInUser")).thenReturn(mockEmployee);
 
         // Act
-        String viewName = carController.searchCars("testQuery", model);
+        String viewName = carController.searchCars("testQuery", model, session);
 
         // Assert
         verify(carService, times(1)).searchCarsWithStatus("testQuery");

@@ -66,7 +66,7 @@ public class CarController {
     @PostMapping("/updateCar")
     public String updateCar(@ModelAttribute("car") Car car) {
         carService.updateCar(car);
-        return "redirect:cars/allCarsWithStatus";
+        return "redirect:allCarsWithStatus";
     }
 
     //Behandler en forespørgsel om at slette en bil
@@ -74,7 +74,7 @@ public class CarController {
     public String deleteCar(@RequestParam("frameNumber") String frameNumber) {
         Car foundCar = carService.getCarByFrameNumber(frameNumber);
         carService.deleteCarById(foundCar.getCarId());
-        return "redirect:cars/allCarsWithStatus";
+        return "redirect:allCarsWithStatus";
     }
 
     /*Visning for alle biler i databasen, samt deres status. Visningen returnerer CarWithStatus objekter (viewModel),
@@ -106,10 +106,16 @@ public class CarController {
 
     // Viser en liste af biler (søgeresultater) ud fra den indtastede query.
     @GetMapping("/search")
-    public String searchCars(@RequestParam("query") String query, Model model) {
-        List<CarWithStatus> searchResults = carService.searchCarsWithStatus(query);
-        model.addAttribute("searchResults", searchResults);
-        return "searchResults";
+    public String searchCars(@RequestParam("query") String query, Model model, HttpSession session) {
+        Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
+
+        if (loggedInUser != null) {
+            List<CarWithStatus> searchResults = carService.searchCarsWithStatus(query);
+            model.addAttribute("searchResults", searchResults);
+            return "searchResults";
+        } else {
+            return "redirect:/";
+        }
     }
 
 }
