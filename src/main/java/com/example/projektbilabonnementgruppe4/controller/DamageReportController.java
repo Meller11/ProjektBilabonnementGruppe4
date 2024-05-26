@@ -86,7 +86,7 @@ public class DamageReportController {
 
     //Visning til færdiggøring af skade rapport.
 
-    @GetMapping("/FinalizeReport/{contract_id}")
+    @GetMapping("/finalizeReport/{contract_id}")
     public String finalizeDamageReport(@ModelAttribute("damageReport") DamageReport updateDamageReport, @PathVariable int contract_id, Model model, HttpSession session){
         Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
         if (loggedInUser != null){
@@ -105,14 +105,14 @@ public class DamageReportController {
         if (loggedInUser != null){
         damageReportService.updateDamageReport(updateDamageReport, contract_id);
         carStatusService.updateCarStatus(damageReportService.damageReportByID(contract_id).getCarId(), "Klar Til Salg");
-        return "redirect:/damageReport/FinalReport/{contract_id}";
+        return "redirect:/finalReport/{contract_id}";
         } else {
         return "redirect:/";
         }
     }
 
     //Visning af færdiggjort skade rapport samt udregning af skade + overkørte kilometer.
-    @GetMapping("/FinalReport/{contract_id}")
+    @GetMapping("/finalReport/{contract_id}")
     public String finalDamageReport(@PathVariable int contract_id, Model model, HttpSession session){
         Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
         if (loggedInUser != null){
