@@ -30,7 +30,7 @@ public class RentalAgreementController {
         if (loggedInUser != null) {
             List<RentedCar> rentedCars = rentalAgreementService.getAllRentedCars();
             model.addAttribute("rentedCars", rentedCars);
-            return "/car/rentedCars";
+            return "car/rentedCars";
         } else {
             return "redirect:/";
         }
@@ -44,7 +44,7 @@ public class RentalAgreementController {
             model.addAttribute("loggedInUser", session.getAttribute("loggedInUser"));
             model.addAttribute("rentalAgreement", new RentalAgreement());
             model.addAttribute("carId", carId);
-            return "/rentalAgreement/createRentalAgreement";
+            return "rentalAgreement/createRentalAgreement";
         }else {
             return "redirect:/";
         }
@@ -57,7 +57,7 @@ public class RentalAgreementController {
         if (loggedInUser != null) {
             rentalAgreementService.createRentalAgreement(rentalAgreement);
             carStatusService.updateCarStatus(carId, "Udlejet");
-            return "redirect:/rentalAgreements/rented";
+            return "redirect:rented";
         }else {
             return "redirect:/";
         }
@@ -71,7 +71,7 @@ public class RentalAgreementController {
         if (loggedInUser != null) {
             RentalAgreement rentalAgreement = rentalAgreementService.getRentalAgreement(contractId);
             model.addAttribute("rentalAgreement", rentalAgreement);
-            return "/rentalAgreement/updateRentalAgreement";
+            return "rentalAgreement/updateRentalAgreement";
         }else {
             return "redirect:/";
         }
@@ -83,7 +83,7 @@ public class RentalAgreementController {
         Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
         if (loggedInUser != null) {
             rentalAgreementService.updateRentalAgreement(rentalAgreement);
-            return "redirect:/rentalAgreements/rented";
+            return "redirect:rented";
         } else {
             return "redirect:/";
         }
@@ -96,7 +96,7 @@ public class RentalAgreementController {
         if (loggedInUser != null) {
             rentalAgreementService.deleteRentalAgreement(contractId);
             carStatusService.updateCarStatus(carId, "Klar til udlejning");
-            return "redirect:/rentalAgreements/rented";
+            return "redirect:rented";
         } else {
             return "redirect:/";
         }

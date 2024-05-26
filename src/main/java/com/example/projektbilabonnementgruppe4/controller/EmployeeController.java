@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("employee")
 public class EmployeeController {
 
-    //Autowire indsætter EmployeService-instansen i EmployeeController
+    //Autowire sætter EmployeService-instansen i EmployeeController
     @Autowired
     private EmployeeService employeeService;
 
@@ -38,7 +38,7 @@ public class EmployeeController {
             return "redirect:/";
         } else {
             redirectAttributes.addFlashAttribute("loginError", "Brugernavn eller Kodeord er forkert.");
-            return "redirect:/employee/login";
+            return "redirect:login";
         }
     }
 
@@ -66,7 +66,7 @@ public class EmployeeController {
     @PostMapping("/register")
     public String processRegisterNewEmployee(@ModelAttribute("employee") Employee employee, RedirectAttributes redirectAttributes) {
         employeeService.saveNewEmployee(employee);
-        return "redirect:/employee/list";
+        return "redirect:list";
     }
 
     // Sendes til listen over medarbejdere, når "tilbage til menu" knappen trykkes.
@@ -75,7 +75,7 @@ public class EmployeeController {
         Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
 
         if (loggedInUser != null) {
-            return "redirect:/employee/list";
+            return "redirect:list";
         } else {
             return "redirect:/";
         }
@@ -97,11 +97,12 @@ public class EmployeeController {
 
     //Viser siden til redigering af en medarbejder, hvis en bruger er logget ind
     @GetMapping("/edit")
-    public String showEditEmployee(@RequestParam("username") String username, Model model, HttpSession session) {
+    public String showEditEmployee(@RequestParam String username, Model model, HttpSession session) {
         Employee loggedInUser = (Employee) session.getAttribute("loggedInUser");
 
+        Employee employee = employeeService.getEmployeeByUsername(username);
+
         if (loggedInUser != null) {
-            Employee employee = employeeService.getEmployeeByUsername(username);
             model.addAttribute("employee", employee);
             return "employee/updateEmployee";
         } else {
@@ -113,14 +114,14 @@ public class EmployeeController {
     @PostMapping("/update")
     public String processEditEmployee(@ModelAttribute("employee") Employee updatedEmployee) {
         employeeService.editEmployee(updatedEmployee);
-        return "redirect:/employee/list";
+        return "redirect:list";
     }
 
     // Sletter en medarbejder baseret brugernavn
     @PostMapping("/delete")
     public String deleteEmployee(@RequestParam String username) {
         employeeService.deleteEmployee(username);
-        return "redirect:/employee/list";
+        return "redirect:list";
     }
 }
 
