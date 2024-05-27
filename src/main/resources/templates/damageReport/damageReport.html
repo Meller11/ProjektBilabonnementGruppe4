@@ -61,7 +61,7 @@
                 <td th:text="${damageReportDone.model}"></td>
                 <td th:text="${damageReportDone.firstName + ' ' + damageReportDone.lastName}"></td>
                 <td>
-                    <form th:action="@{/damageReport/FinalizeReport/{contract_id}(contract_id=${damageReportDone.contractId})}" method="get" style="display: inline-block;">
+                    <form th:action="@{/damageReport/finalizeReport/{contract_id}(contract_id=${damageReportDone.contractId})}" method="get" style="display: inline-block;">
                         <input type="hidden" name="contractId" th:value="${damageReportDone.contractId}" />
                         <button type="submit" class="btn btn-primary">Rediger</button>
                     </form>
