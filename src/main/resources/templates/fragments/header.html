@@ -43,28 +43,9 @@
                 </div>
                 <div class="dropdown">
                     <button class="navbarButton notSelectable">Salg</button>
-                    <div class="dropdown-content">
-                        <a th:href="@{/registerSale}" class="a">
-                            <button class="navbarButton">Registrer salg</button>
-                        </a>
-                        <a th:href="@{/soldCars}" class="a">
-                            <button class="navbarButton">Solgte biler</button>
-                        </a>
-                        <a th:href="@{/pendingBuyer}" class="a">
-                            <button class="navbarButton">Mangler opkøber</button>
-                        </a>
-                    </div>
                 </div>
                 <div class="dropdown">
                     <button class="navbarButton notSelectable">Transport</button>
-                    <div class="dropdown-content">
-                        <a th:href="@{/readyForTransport}" class="a">
-                            <button class="navbarButton">Klar til transport</button>
-                        </a>
-                        <a th:href="@{/transportOverview}" class="a">
-                            <button class="navbarButton">Transportoversigt</button>
-                        </a>
-                    </div>
                 </div>
                 <div class="dropdown" th:if="${session?.loggedInUser?.userType == 'Forretningsudvikler'}">
                 <button class="navbarButton notSelectable">Økonomi og Statistik</button>
