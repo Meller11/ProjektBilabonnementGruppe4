@@ -87,3 +87,7 @@ CREATE TABLE `employee` (
                             `password` varchar(255) NOT NULL,
                             PRIMARY KEY (`employee_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+INSERT INTO `gruppe4_db`.`employee`
+    (`firstname`, `lastname`, `user_type`, `username`, `password`)
+    VALUES ('Admin', 'Admin', 'Admin', 'admin', '12345');
