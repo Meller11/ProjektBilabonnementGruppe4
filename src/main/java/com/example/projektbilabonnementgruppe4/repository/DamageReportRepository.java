@@ -1,7 +1,7 @@
 package com.example.projektbilabonnementgruppe4.repository;
 
 import com.example.projektbilabonnementgruppe4.model.DamageReport;
-import com.example.projektbilabonnementgruppe4.repository.viewModel.DamageReportWithCarAndRA;
+import com.example.projektbilabonnementgruppe4.viewModel.DamageReportWithCarAndRA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;

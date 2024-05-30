@@ -3,7 +3,7 @@ package com.example.projektbilabonnementgruppe4.controller;
 import com.example.projektbilabonnementgruppe4.model.Employee;
 import com.example.projektbilabonnementgruppe4.service.CarService;
 import com.example.projektbilabonnementgruppe4.service.RentalAgreementService;
-import com.example.projektbilabonnementgruppe4.repository.viewModel.CarWithStatus;
+import com.example.projektbilabonnementgruppe4.viewModel.CarWithStatus;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

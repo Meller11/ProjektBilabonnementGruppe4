@@ -3,7 +3,7 @@ import com.example.projektbilabonnementgruppe4.model.DamageReport;
 import com.example.projektbilabonnementgruppe4.model.Employee;
 import com.example.projektbilabonnementgruppe4.model.RentalAgreement;
 import com.example.projektbilabonnementgruppe4.service.CarStatusService;
-import com.example.projektbilabonnementgruppe4.repository.viewModel.DamageReportWithCarAndRA;
+import com.example.projektbilabonnementgruppe4.viewModel.DamageReportWithCarAndRA;
 import com.example.projektbilabonnementgruppe4.service.DamageReportService;
 import com.example.projektbilabonnementgruppe4.service.RentalAgreementService;
 import jakarta.servlet.http.HttpSession;

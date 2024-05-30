@@ -1,4 +1,4 @@
-package com.example.projektbilabonnementgruppe4.repository.viewModel;
+package com.example.projektbilabonnementgruppe4.viewModel;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;

@@ -1,7 +1,7 @@
 package com.example.projektbilabonnementgruppe4.repository;
 
 import com.example.projektbilabonnementgruppe4.model.Car;
-import com.example.projektbilabonnementgruppe4.repository.viewModel.CarWithStatus;
+import com.example.projektbilabonnementgruppe4.viewModel.CarWithStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;

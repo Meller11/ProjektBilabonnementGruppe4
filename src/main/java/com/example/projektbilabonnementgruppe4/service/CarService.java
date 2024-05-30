@@ -2,7 +2,7 @@ package com.example.projektbilabonnementgruppe4.service;
 
 import com.example.projektbilabonnementgruppe4.model.Car;
 import com.example.projektbilabonnementgruppe4.repository.CarRepository;
-import com.example.projektbilabonnementgruppe4.repository.viewModel.CarWithStatus;
+import com.example.projektbilabonnementgruppe4.viewModel.CarWithStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;

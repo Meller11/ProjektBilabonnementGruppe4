@@ -2,7 +2,7 @@ package com.example.projektbilabonnementgruppe4.service;
 
 import com.example.projektbilabonnementgruppe4.model.RentalAgreement;
 import com.example.projektbilabonnementgruppe4.repository.RentalAgreementRepository;
-import com.example.projektbilabonnementgruppe4.repository.viewModel.RentedCar;
+import com.example.projektbilabonnementgruppe4.viewModel.RentedCar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
