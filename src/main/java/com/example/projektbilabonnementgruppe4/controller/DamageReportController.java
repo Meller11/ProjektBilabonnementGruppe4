@@ -3,7 +3,7 @@ import com.example.projektbilabonnementgruppe4.model.DamageReport;
 import com.example.projektbilabonnementgruppe4.model.Employee;
 import com.example.projektbilabonnementgruppe4.model.RentalAgreement;
 import com.example.projektbilabonnementgruppe4.service.CarStatusService;
-import com.example.projektbilabonnementgruppe4.viewModel.DamageReportWithCarAndRA;
+import com.example.projektbilabonnementgruppe4.repository.viewModel.DamageReportWithCarAndRA;
 import com.example.projektbilabonnementgruppe4.service.DamageReportService;
 import com.example.projektbilabonnementgruppe4.service.RentalAgreementService;
 import jakarta.servlet.http.HttpSession;
@@ -40,12 +40,16 @@ public class DamageReportController {
         List <Integer> damageReportIDs = new ArrayList<>();
         LocalDate currentDate = LocalDate.now();
 
+
+        // Opretter lister med ID'er for alle lejekontrakter og alle skaderapporter.
         for (int i = 0; rentalAgreementService.getAllRentalAgreements().size()>i;i++) {
         rentalAgreementIDs.add(rentalAgreementService.getAllRentalAgreements().get(i).getContractId());
         }
         for (int i = 0; damageReportService.listOfAllDamageReports().size()>i;i++) {
             damageReportIDs.add(damageReportService.listOfAllDamageReports().get(i).getContractId());
         }
+
+        // Tjekker om der er skadesrapporter der ikke findes ved at refere ID'erne overfor hinanden, hvis ikke, bliver der oprettet en ny skadesrapport med det ID der mangler.
         for (int i = 0; rentalAgreementService.getAllRentalAgreements().size() > i; i++) {
             RentalAgreement rentalAgreement = rentalAgreementService.getRentalAgreement(rentalAgreementService.getAllRentalAgreements().get(i).getContractId());
             if (!damageReportIDs.contains(rentalAgreement.getContractId())) {
@@ -53,6 +57,8 @@ public class DamageReportController {
                 damageReportService.createDamageReport(newDamageReport);
             }
         }
+
+        // Sætter det ind på hjemmesiden i forhold til dags dato og om den er færdig eller ej.
         List<DamageReportWithCarAndRA> damageReportOverview = damageReportService.damageReportOverview();
         for (int i = 0; damageReportOverview.size() > i; i++) {
             if (damageReportOverview.get(i).getReportDate().compareTo(currentDate) <= 0 && !damageReportOverview.get(i).isDamageReportDone()) {
@@ -105,7 +111,7 @@ public class DamageReportController {
         if (loggedInUser != null){
         damageReportService.updateDamageReport(updateDamageReport, contract_id);
         carStatusService.updateCarStatus(damageReportService.damageReportByID(contract_id).getCarId(), "Klar Til Salg");
-        return "redirect:/finalReport/{contract_id}";
+        return "redirect:/damageReport/finalReport/{contract_id}";
         } else {
         return "redirect:/";
         }

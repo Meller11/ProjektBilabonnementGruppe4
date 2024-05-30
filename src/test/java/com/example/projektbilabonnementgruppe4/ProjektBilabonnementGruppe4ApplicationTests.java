@@ -8,7 +8,7 @@ import com.example.projektbilabonnementgruppe4.repository.RentalAgreementReposit
 import com.example.projektbilabonnementgruppe4.service.CarService;
 import com.example.projektbilabonnementgruppe4.service.CarStatusService;
 import com.example.projektbilabonnementgruppe4.service.RentalAgreementService;
-import com.example.projektbilabonnementgruppe4.viewModel.CarWithStatus;
+import com.example.projektbilabonnementgruppe4.repository.viewModel.CarWithStatus;
 import jakarta.servlet.http.HttpSession;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -3,7 +3,7 @@ package com.example.projektbilabonnementgruppe4.controller;
 import com.example.projektbilabonnementgruppe4.model.Employee;
 import com.example.projektbilabonnementgruppe4.service.CarService;
 import com.example.projektbilabonnementgruppe4.service.RentalAgreementService;
-import com.example.projektbilabonnementgruppe4.viewModel.CarWithStatus;
+import com.example.projektbilabonnementgruppe4.repository.viewModel.CarWithStatus;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +36,8 @@ public class FinanceController {
             List<CarWithStatus> carWithStatus = carService.getAllCarsWithStatus();
             model.addAttribute("user", loggedInUser);
             model.addAttribute("cars", carWithStatus);
+            model.addAttribute("totalRentedCars", carService.getTotalRentedCars());
+            model.addAttribute("totalPriceOfRentedCars", carService.getTotalPriceOfRentedCars());
             model.addAttribute("averageContractMonthlyFee", rentalAgreementService.getAverageMonthlyFee());
             model.addAttribute("averageCostOfCars", carService.getAveragePriceOfAllCars());
             model.addAttribute("totalPriceOfAllCars", carService.getTotalPriceOfAllCars());

@@ -1,4 +1,4 @@
-package com.example.projektbilabonnementgruppe4.viewModel;
+package com.example.projektbilabonnementgruppe4.repository.viewModel;
 
 import java.time.LocalDate;
 

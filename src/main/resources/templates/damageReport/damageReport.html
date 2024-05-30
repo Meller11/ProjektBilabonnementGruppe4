@@ -30,7 +30,7 @@
                 <td th:text="${damageReportNotDone.model}"></td>
                 <td th:text="${damageReportNotDone.firstName + ' ' + damageReportNotDone.lastName}"></td>
                 <td>
-                    <form th:action="@{/damageReport/FinalizeReport/{contract_id}(contract_id=${damageReportNotDone.contractId})}" method="get" style="display: inline;">
+                    <form th:action="@{/damageReport/finalizeReport/{contract_id}(contract_id=${damageReportNotDone.contractId})}" method="get" style="display: inline;">
                         <button type="submit" class="btn btn-primary">Færdiggør Rapport</button>
                     </form>
                 </td>
