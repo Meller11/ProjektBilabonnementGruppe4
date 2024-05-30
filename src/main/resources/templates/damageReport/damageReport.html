@@ -70,7 +70,7 @@
                         <input type="hidden" name="username" th:value="${damageReportDone.username}" />
                         <button type="submit" class="btn btn-danger">Slet</button>
                     </form>
-                    <form th:action="@{/damageReport/FinalReport/{contract_id}(contract_id=${damageReportDone.contractId})}" method="get" style="display: inline-block;">
+                    <form th:action="@{/damageReport/finalReport/{contract_id}(contract_id=${damageReportDone.contractId})}" method="get" style="display: inline-block;">
                         <input type="hidden" name="contractId" th:value="${damageReportDone.contractId}" />
                         <button type="submit" class="btn btn-primary">Udskrift</button>
                     </form>
